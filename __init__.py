@@ -160,6 +160,7 @@ if module == "UpdateRange":
     try:
         print(text,"*****")
         if not text.startswith("["):
+            text = text.replace('"', '\\\"')
             text = "[[ \"{}\" ]]".format(text)
             print(text, "-----")
         values = json.loads(text)
@@ -188,14 +189,22 @@ if module == "ReadCells":
     range_ = GetParams('range')
     result = GetParams('result')
 
-    service = discovery.build('sheets', 'v4', credentials=creds)
+    try:
+        service = discovery.build('sheets', 'v4', credentials=creds)
 
-    request = service.spreadsheets().values().get(spreadsheetId=ss_id, range=range_ )
+        request = service.spreadsheets().values().get(spreadsheetId=ss_id, range=range_)
 
-    response = request.execute()
+        response = request.execute()
+        try:
+            value = response["values"]
+        except:
+            value = ""
 
-    if result:
-        SetVar(result, response["values"])
+        if result:
+            SetVar(result, value)
+    except Exception as e:
+        PrintException()
+        raise e
 if module == "GetSheets":
 
     if not creds:
@@ -233,6 +242,78 @@ if module == "CountCells":
         length = len(response["values"])
         if result:
             SetVar(result, length)
+
+    except Exception as e:
+        PrintException()
+        raise e
+if module == "DeleteColumn":
+    if not creds:
+        raise Exception("No hay credenciales ni token válidos, por favor configure sus credenciales")
+
+    ss_id = GetParams('ss_id')
+    col = GetParams('column').lower()
+
+    try:
+        service = discovery.build('sheets', 'v4', credentials=creds)
+
+        range_ = "A1:ZZZ999999"
+        abc = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v',
+         'w', 'x', 'y', 'z']
+        request = service.spreadsheets().values().get(spreadsheetId=ss_id, range=range_)
+        print(request)
+        text = request.execute()['values']
+
+        around_abc = len(col) - 1
+        col_index  = around_abc*len(abc) + len(col[-1]) -1
+        print(col_index)
+        for row in text:
+            row.append("")
+            if len(row)>= col_index:
+                row.pop(col_index)
+
+        body = {
+            "values": text
+        }
+        print(body)
+
+        request = service.spreadsheets().values().update(spreadsheetId=ss_id, range=range_,
+                                                         valueInputOption="USER_ENTERED",
+                                                         body=body)
+        response = request.execute()
+
+    except Exception as e:
+        PrintException()
+        raise e
+if module == "DeleteRow":
+    if not creds:
+        raise Exception("No hay credenciales ni token válidos, por favor configure sus credenciales")
+
+    ss_id = GetParams('ss_id')
+    row = GetParams('row')
+
+    try:
+
+        row = int(row)
+        service = discovery.build('sheets', 'v4', credentials=creds)
+
+        range_ = "A1:ZZZ999999"
+
+        request = service.spreadsheets().values().get(spreadsheetId=ss_id, range=range_)
+        print(request)
+        text = request.execute()['values']
+
+        if len(text)>= row:
+            text.pop(int(row) - 1)
+
+        body = {
+            "values": text
+        }
+        print(body)
+
+        request = service.spreadsheets().values().update(spreadsheetId=ss_id, range=range_,
+                                                         valueInputOption="USER_ENTERED",
+                                                         body=body)
+        response = request.execute()
 
     except Exception as e:
         PrintException()
