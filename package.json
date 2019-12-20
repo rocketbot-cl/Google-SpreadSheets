@@ -593,6 +593,21 @@
           {
             "type": "input",
             "placeholder": {
+              "es": "Hoja:",
+              "en": "Sheet: ",
+              "cn": "Sheet: "
+            },
+            "title": {
+              "es": "Ingrese nombre de la hoja",
+              "en": "Sheet name",
+              "cn": "Sheet name"
+            },
+            "id": "sheetName",
+            "css": "col-md-6"
+          },
+          {
+            "type": "input",
+            "placeholder": {
               "es": "AB",
               "en": "AC"
             },
@@ -646,6 +661,21 @@
             },
             "id": "ss_id",
             "css": "col-md-12"
+          },
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "Hoja:",
+              "en": "Sheet: ",
+              "cn": "Sheet: "
+            },
+            "title": {
+              "es": "Ingrese nombre de la hoja",
+              "en": "Sheet name",
+              "cn": "Sheet name"
+            },
+            "id": "sheetName",
+            "css": "col-md-6"
           },
           {
             "type": "input",
