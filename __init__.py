@@ -19,13 +19,14 @@ Para obtener la Opcion seleccionada:
 
 
 Para instalar librerias se debe ingresar por terminal a la carpeta "libs"
-    
+
     pip install <package> -t .
 
 """
 import os.path
 import pickle
 import json
+
 base_path = tmp_global_obj["basepath"]
 cur_path = base_path + 'modules' + os.sep + 'Google-SpreadSheets' + os.sep + 'libs' + os.sep
 sys.path.append(cur_path)
@@ -33,8 +34,6 @@ sys.path.append(cur_path)
 from google.auth.transport.requests import Request
 from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient import discovery
-
-
 
 """
     Obtengo el modulo que fueron invocados
@@ -132,7 +131,7 @@ if module == "DeleteSheet":
 
     for sheet in sheets:
         if sheet["properties"]["title"] == sheet_name:
-            sheet_id =  sheet["properties"]["sheetId"]
+            sheet_id = sheet["properties"]["sheetId"]
 
     body = {
         "requests": [
@@ -158,7 +157,7 @@ if module == "UpdateRange":
     text = GetParams('text')
 
     try:
-        print(text,"*****")
+        print(text, "*****")
         if not text.startswith("["):
             text = text.replace('"', '\\\"')
             text = "[[ \"{}\" ]]".format(text)
@@ -236,7 +235,7 @@ if module == "CountCells":
         range_ = sheet_name + "!A1:ZZZ999999"
 
         service = discovery.build('sheets', 'v4', credentials=creds)
-        request = service.spreadsheets().values().get(spreadsheetId=ss_id, range=range_ )
+        request = service.spreadsheets().values().get(spreadsheetId=ss_id, range=range_)
         response = request.execute()
 
         length = len(response["values"])
@@ -251,24 +250,26 @@ if module == "DeleteColumn":
         raise Exception("No hay credenciales ni token válidos, por favor configure sus credenciales")
 
     ss_id = GetParams('ss_id')
+    sheet = GetParams("sheetName")
     col = GetParams('column').lower()
 
     try:
         service = discovery.build('sheets', 'v4', credentials=creds)
 
-        range_ = "A1:ZZZ999999"
-        abc = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v',
-         'w', 'x', 'y', 'z']
+        range_ = sheet + "!A1:ZZZ999999"
+        abc = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u',
+               'v',
+               'w', 'x', 'y', 'z']
         request = service.spreadsheets().values().get(spreadsheetId=ss_id, range=range_)
         print(request)
         text = request.execute()['values']
 
         around_abc = len(col) - 1
-        col_index  = around_abc*len(abc) + len(col[-1]) -1
+        col_index = around_abc * len(abc) + abc.index(col)
         print(col_index)
         for row in text:
             row.append("")
-            if len(row)>= col_index:
+            if len(row) >= col_index:
                 row.pop(col_index)
 
         body = {
@@ -289,6 +290,7 @@ if module == "DeleteRow":
         raise Exception("No hay credenciales ni token válidos, por favor configure sus credenciales")
 
     ss_id = GetParams('ss_id')
+    sheet = GetParams("sheetName")
     row = GetParams('row')
 
     try:
@@ -296,19 +298,30 @@ if module == "DeleteRow":
         row = int(row)
         service = discovery.build('sheets', 'v4', credentials=creds)
 
-        range_ = "A1:ZZZ999999"
+        range_ = sheet + "!A1:ZZZ999999"
 
         request = service.spreadsheets().values().get(spreadsheetId=ss_id, range=range_)
         print(request)
         text = request.execute()['values']
 
-        if len(text)>= row:
-            text.pop(int(row) - 1)
+        if len(text) >= row:
+            for i in range(len(text)):
+                try:
+                    difference = len(text[i]) - len(text[i + 1])
+                    if difference > 0:
+                        for j in range(difference):
+                            text[i + 1].append("")
+                except:
+                    pass
+            length = len(text[int(row) - 1])
+            after = text[int(row):]
+            text[int(row) - 1:] = after
+            text.append([""] * length)
+        print(text)
 
         body = {
             "values": text
         }
-        print(body)
 
         request = service.spreadsheets().values().update(spreadsheetId=ss_id, range=range_,
                                                          valueInputOption="USER_ENTERED",
