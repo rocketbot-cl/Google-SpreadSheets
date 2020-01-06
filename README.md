@@ -17,7 +17,7 @@ Module to work with Google spreadsheets
 
 <strong>Video Example:</strong>
 
-
+[![Google Spreadsheets](https://img.youtube.com/vi/WM8poSItOWk/0.jpg)](https://www.youtube.com/watch?v=WM8poSItOWk "Google Spreadsheets")
 
 <h2>Link to API Documentation</h2>
 
