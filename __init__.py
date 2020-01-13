@@ -19,13 +19,14 @@ Para obtener la Opcion seleccionada:
 
 
 Para instalar librerias se debe ingresar por terminal a la carpeta "libs"
-    
+
     pip install <package> -t .
 
 """
 import os.path
 import pickle
 import json
+
 base_path = tmp_global_obj["basepath"]
 cur_path = base_path + 'modules' + os.sep + 'Google-SpreadSheets' + os.sep + 'libs' + os.sep
 sys.path.append(cur_path)
@@ -33,8 +34,6 @@ sys.path.append(cur_path)
 from google.auth.transport.requests import Request
 from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient import discovery
-
-
 
 """
     Obtengo el modulo que fueron invocados
@@ -132,7 +131,7 @@ if module == "DeleteSheet":
 
     for sheet in sheets:
         if sheet["properties"]["title"] == sheet_name:
-            sheet_id =  sheet["properties"]["sheetId"]
+            sheet_id = sheet["properties"]["sheetId"]
 
     body = {
         "requests": [
@@ -158,7 +157,7 @@ if module == "UpdateRange":
     text = GetParams('text')
 
     try:
-        print(text,"*****")
+        print(text, "*****")
         if not text.startswith("["):
             text = text.replace('"', '\\\"')
             text = "[[ \"{}\" ]]".format(text)
@@ -236,7 +235,7 @@ if module == "CountCells":
         range_ = sheet_name + "!A1:ZZZ999999"
 
         service = discovery.build('sheets', 'v4', credentials=creds)
-        request = service.spreadsheets().values().get(spreadsheetId=ss_id, range=range_ )
+        request = service.spreadsheets().values().get(spreadsheetId=ss_id, range=range_)
         response = request.execute()
 
         length = len(response["values"])
@@ -253,34 +252,46 @@ if module == "DeleteColumn":
     ss_id = GetParams('ss_id')
     sheet = GetParams("sheetName")
     col = GetParams('column').lower()
+    blank = GetParams('blank')
 
     try:
         service = discovery.build('sheets', 'v4', credentials=creds)
 
-        range_ = sheet + "!A1:ZZZ999999"
-        abc = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v',
-         'w', 'x', 'y', 'z']
-        request = service.spreadsheets().values().get(spreadsheetId=ss_id, range=range_)
-        print(request)
-        text = request.execute()['values']
+        data = service.spreadsheets().get(spreadsheetId=ss_id).execute()
+
+        for element in data["sheets"]:
+            if element["properties"]["title"] == sheet:
+                sheet_id = element["properties"]["index"]
+
+        abc = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u',
+               'v', 'w', 'x', 'y', 'z']
 
         around_abc = len(col) - 1
-        col_index = around_abc*len(abc) + abc.index(col)
+        col = col[-1]
+        col_index = around_abc * len(abc) + abc.index(col)
         print(col_index)
-        for row in text:
-            row.append("")
-            if len(row)>= col_index:
-                row.pop(col_index)
+
+        if blank:
+            shiftDimension = "ROWS"
+        else:
+            shiftDimension = "COLUMNS"
 
         body = {
-            "values": text
+            "requests": [{
+                "deleteRange": {
+                    "range": {
+                        "sheetId": sheet_id,
+                        "startColumnIndex": col_index,
+                        "endColumnIndex": col_index + 1
+                    },
+                    "shiftDimension": shiftDimension
+                }
+            }]
         }
-        print(body)
 
-        request = service.spreadsheets().values().update(spreadsheetId=ss_id, range=range_,
-                                                         valueInputOption="USER_ENTERED",
-                                                         body=body)
+        request = service.spreadsheets().batchUpdate(spreadsheetId=ss_id, body=body)
         response = request.execute()
+
 
     except Exception as e:
         PrintException()
@@ -292,40 +303,38 @@ if module == "DeleteRow":
     ss_id = GetParams('ss_id')
     sheet = GetParams("sheetName")
     row = GetParams('row')
+    blank = GetParams('blank')
 
     try:
-
-        row = int(row)
+        service = discovery.build('sheets', 'v4', credentials=creds)
         service = discovery.build('sheets', 'v4', credentials=creds)
 
-        range_ = sheet + "!A1:ZZZ999999"
+        data = service.spreadsheets().get(spreadsheetId=ss_id).execute()
 
-        request = service.spreadsheets().values().get(spreadsheetId=ss_id, range=range_)
-        print(request)
-        text = request.execute()['values']
+        for element in data["sheets"]:
+            if element["properties"]["title"] == sheet:
+                sheet_id = element["properties"]["index"]
 
-        if len(text) >= row:
-            for i in range(len(text)):
-                try:
-                    difference = len(text[i]) - len(text[i + 1])
-                    if difference > 0:
-                        for j in range(difference):
-                            text[i + 1].append("")
-                except:
-                    pass
-            length = len(text[int(row) - 1])
-            after = text[int(row):]
-            text[int(row) - 1:] = after
-            text.append([""]*length)
-        print(text)
+        row = int(row)
+        if blank:
+            shiftDimension = "COLUMNS"
+        else:
+            shiftDimension = "ROWS"
 
         body = {
-            "values": text
+            "requests": [{
+                "deleteRange": {
+                    "range": {
+                        "sheetId": sheet_id,
+                        "startRowIndex": row - 1,
+                        "endRowIndex": row
+                    },
+                    "shiftDimension": shiftDimension
+                }
+            }]
         }
 
-        request = service.spreadsheets().values().update(spreadsheetId=ss_id, range=range_,
-                                                         valueInputOption="USER_ENTERED",
-                                                         body=body)
+        request = service.spreadsheets().batchUpdate(spreadsheetId=ss_id, body=body)
         response = request.execute()
 
     except Exception as e:
