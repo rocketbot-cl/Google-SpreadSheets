@@ -307,13 +307,12 @@ if module == "DeleteRow":
 
     try:
         service = discovery.build('sheets', 'v4', credentials=creds)
-        service = discovery.build('sheets', 'v4', credentials=creds)
 
         data = service.spreadsheets().get(spreadsheetId=ss_id).execute()
 
         for element in data["sheets"]:
             if element["properties"]["title"] == sheet:
-                sheet_id = element["properties"]["index"]
+                sheet_id = element["properties"]["sheetId"]
 
         row = int(row)
         if blank:
