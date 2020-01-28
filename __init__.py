@@ -157,13 +157,11 @@ if module == "UpdateRange":
     text = GetParams('text')
 
     try:
-        print(text, "*****")
         if not text.startswith("["):
             text = text.replace('"', '\\\"')
             text = "[[ \"{}\" ]]".format(text)
-            print(text, "-----")
-        values = json.loads(text)
-        print(values)
+        values = eval(text)
+
 
         service = discovery.build('sheets', 'v4', credentials=creds)
 
