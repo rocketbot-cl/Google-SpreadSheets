@@ -23,17 +23,18 @@ Para instalar librerias se debe ingresar por terminal a la carpeta "libs"
     pip install <package> -t .
 
 """
+from googleapiclient import discovery
+from google_auth_oauthlib.flow import InstalledAppFlow
+from google.auth.transport.requests import Request
 import os.path
 import pickle
 import json
 
 base_path = tmp_global_obj["basepath"]
-cur_path = base_path + 'modules' + os.sep + 'Google-SpreadSheets' + os.sep + 'libs' + os.sep
+cur_path = base_path + 'modules' + os.sep + \
+    'Google-SpreadSheets' + os.sep + 'libs' + os.sep
 sys.path.append(cur_path)
 
-from google.auth.transport.requests import Request
-from google_auth_oauthlib.flow import InstalledAppFlow
-from googleapiclient import discovery
 
 """
     Obtengo el modulo que fueron invocados
@@ -47,7 +48,8 @@ if module == "GoogleSuite":
     credential_path = GetParams("credentials_path")
     print(credential_path)
     if not os.path.exists(credential_path):
-        raise Exception("El archivo de credenciales no existe en la ruta especificada")
+        raise Exception(
+            "El archivo de credenciales no existe en la ruta especificada")
 
     SCOPES = [
         'https://www.googleapis.com/auth/spreadsheets',
@@ -73,7 +75,8 @@ if module == "GoogleSuite":
 if module == "CreateSpreadSheet":
 
     if not creds:
-        raise Exception("No hay credenciales ni token válidos, por favor configure sus credenciales")
+        raise Exception(
+            "No hay credenciales ni token válidos, por favor configure sus credenciales")
 
     ss_name = GetParams('ss_name')
     result = GetParams('result')
@@ -92,7 +95,8 @@ if module == "CreateSpreadSheet":
         SetVar(result, response["spreadsheetId"])
 if module == "CreateSheet":
     if not creds:
-        raise Exception("No hay credenciales ni token válidos, por favor configure sus credenciales")
+        raise Exception(
+            "No hay credenciales ni token válidos, por favor configure sus credenciales")
 
     ss_id = GetParams('ss_id')
     name = GetParams('name')
@@ -121,13 +125,15 @@ if module == "CreateSheet":
         SetVar(result, sheetId)
 if module == "DeleteSheet":
     if not creds:
-        raise Exception("No hay credenciales ni token válidos, por favor configure sus credenciales")
+        raise Exception(
+            "No hay credenciales ni token válidos, por favor configure sus credenciales")
 
     ss_id = GetParams('ss_id')
     sheet_name = GetParams('sheetName')
     service = discovery.build('sheets', 'v4', credentials=creds)
 
-    sheets = service.spreadsheets().get(spreadsheetId=ss_id).execute()["sheets"]
+    sheets = service.spreadsheets().get(
+        spreadsheetId=ss_id).execute()["sheets"]
 
     for sheet in sheets:
         if sheet["properties"]["title"] == sheet_name:
@@ -150,7 +156,8 @@ if module == "DeleteSheet":
 if module == "UpdateRange":
 
     if not creds:
-        raise Exception("No hay credenciales ni token válidos, por favor configure sus credenciales")
+        raise Exception(
+            "No hay credenciales ni token válidos, por favor configure sus credenciales")
 
     ss_id = GetParams('ss_id')
     range_ = GetParams('range')
@@ -161,7 +168,6 @@ if module == "UpdateRange":
             text = text.replace('"', '\\\"')
             text = "[[ \"{}\" ]]".format(text)
         values = eval(text)
-
 
         service = discovery.build('sheets', 'v4', credentials=creds)
 
@@ -180,7 +186,8 @@ if module == "UpdateRange":
 if module == "ReadCells":
 
     if not creds:
-        raise Exception("No hay credenciales ni token válidos, por favor configure sus credenciales")
+        raise Exception(
+            "No hay credenciales ni token válidos, por favor configure sus credenciales")
 
     ss_id = GetParams('ss_id')
     range_ = GetParams('range')
@@ -205,7 +212,8 @@ if module == "ReadCells":
 if module == "GetSheets":
 
     if not creds:
-        raise Exception("No hay credenciales ni token válidos, por favor configure sus credenciales")
+        raise Exception(
+            "No hay credenciales ni token válidos, por favor configure sus credenciales")
 
     ss_id = GetParams('ss_id')
     result = GetParams('result')
@@ -223,7 +231,8 @@ if module == "GetSheets":
 if module == "CountCells":
 
     if not creds:
-        raise Exception("No hay credenciales ni token válidos, por favor configure sus credenciales")
+        raise Exception(
+            "No hay credenciales ni token válidos, por favor configure sus credenciales")
 
     try:
         ss_id = GetParams('ss_id')
@@ -245,7 +254,8 @@ if module == "CountCells":
         raise e
 if module == "DeleteColumn":
     if not creds:
-        raise Exception("No hay credenciales ni token válidos, por favor configure sus credenciales")
+        raise Exception(
+            "No hay credenciales ni token válidos, por favor configure sus credenciales")
 
     ss_id = GetParams('ss_id')
     sheet = GetParams("sheetName")
@@ -290,13 +300,13 @@ if module == "DeleteColumn":
         request = service.spreadsheets().batchUpdate(spreadsheetId=ss_id, body=body)
         response = request.execute()
 
-
     except Exception as e:
         PrintException()
         raise e
 if module == "DeleteRow":
     if not creds:
-        raise Exception("No hay credenciales ni token válidos, por favor configure sus credenciales")
+        raise Exception(
+            "No hay credenciales ni token válidos, por favor configure sus credenciales")
 
     ss_id = GetParams('ss_id')
     sheet = GetParams("sheetName")
@@ -304,6 +314,7 @@ if module == "DeleteRow":
     blank = GetParams('blank')
 
     try:
+
         service = discovery.build('sheets', 'v4', credentials=creds)
 
         data = service.spreadsheets().get(spreadsheetId=ss_id).execute()
@@ -312,24 +323,39 @@ if module == "DeleteRow":
             if element["properties"]["title"] == sheet:
                 sheet_id = element["properties"]["sheetId"]
 
-        row = int(row)
         if blank:
             shiftDimension = "COLUMNS"
         else:
             shiftDimension = "ROWS"
 
-        body = {
-            "requests": [{
-                "deleteRange": {
-                    "range": {
-                        "sheetId": sheet_id,
-                        "startRowIndex": row - 1,
-                        "endRowIndex": row
-                    },
-                    "shiftDimension": shiftDimension
-                }
-            }]
-        }
+        if row.find("-") == -1:
+            row = int(row)
+            body = {
+                "requests": [{
+                    "deleteRange": {
+                        "range": {
+                            "sheetId": sheet_id,
+                            "startRowIndex": row - 1,
+                            "endRowIndex": row
+                        },
+                        "shiftDimension": shiftDimension
+                    }
+                }]
+            }
+        else:
+            row = row.split("-")
+            body = {
+                "requests": [{
+                    "deleteRange": {
+                        "range": {
+                            "sheetId": sheet_id,
+                            "startRowIndex": int(row[0]) - 1,
+                            "endRowIndex": int(row[1])
+                        },
+                        "shiftDimension": shiftDimension
+                    }
+                }]
+            }
 
         request = service.spreadsheets().batchUpdate(spreadsheetId=ss_id, body=body)
         response = request.execute()

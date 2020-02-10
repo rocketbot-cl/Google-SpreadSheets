@@ -697,8 +697,8 @@
           {
             "type": "input",
             "placeholder": {
-              "es": "5",
-              "en": "5"
+              "es": "5-7",
+              "en": "5-2"
             },
             "title": {
               "es": "Fila: ",
