@@ -23,18 +23,19 @@ Para instalar librerias se debe ingresar por terminal a la carpeta "libs"
     pip install <package> -t .
 
 """
-from googleapiclient import discovery
-from google_auth_oauthlib.flow import InstalledAppFlow
-from google.auth.transport.requests import Request
 import os.path
-import pickle
-import json
 
 base_path = tmp_global_obj["basepath"]
 cur_path = base_path + 'modules' + os.sep + \
     'Google-SpreadSheets' + os.sep + 'libs' + os.sep
 sys.path.append(cur_path)
 
+from googleapiclient import discovery
+from google_auth_oauthlib.flow import InstalledAppFlow
+from google.auth.transport.requests import Request
+
+import pickle
+import json
 
 """
     Obtengo el modulo que fueron invocados
@@ -46,32 +47,39 @@ global creds
 if module == "GoogleSuite":
     cred = None
     credential_path = GetParams("credentials_path")
-    print(credential_path)
-    if not os.path.exists(credential_path):
-        raise Exception(
-            "El archivo de credenciales no existe en la ruta especificada")
 
-    SCOPES = [
-        'https://www.googleapis.com/auth/spreadsheets',
-        'https://www.googleapis.com/auth/drive.file',
-        'https://www.googleapis.com/auth/drive'
-    ]
+    try:
+        print(credential_path)
+        if not os.path.exists(credential_path):
+            raise Exception(
+                "El archivo de credenciales no existe en la ruta especificada")
 
-    if os.path.exists('token_sheet.pickle'):
-        with open('token_sheet.pickle', 'rb') as token:
-            cred = pickle.load(token)
-        # If there are no (valid) credentials available, let the user log in.
-    if not cred or not cred.valid:
-        if cred and cred.expired and cred.refresh_token:
-            cred.refresh(Request())
-        else:
-            flow = InstalledAppFlow.from_client_secrets_file(
-                credential_path, SCOPES)
-            cred = flow.run_local_server()
-        # Save the credentials for the next run
-        with open('token_sheet.pickle', 'wb') as token:
-            pickle.dump(cred, token)
-    creds = cred
+        SCOPES = [
+            'https://www.googleapis.com/auth/spreadsheets',
+            'https://www.googleapis.com/auth/drive.file',
+            'https://www.googleapis.com/auth/drive'
+        ]
+
+        if os.path.exists('token_sheet.pickle'):
+            with open('token_sheet.pickle', 'rb') as token:
+                cred = pickle.load(token)
+            # If there are no (valid) credentials available, let the user log in.
+        if not cred or not cred.valid:
+            if cred and cred.expired and cred.refresh_token:
+                cred.refresh(Request())
+            else:
+                flow = InstalledAppFlow.from_client_secrets_file(
+                    credential_path, SCOPES)
+                cred = flow.run_local_server()
+            # Save the credentials for the next run
+            with open('token_sheet.pickle', 'wb') as token:
+                pickle.dump(cred, token)
+        creds = cred
+    except Exception as e:
+        PrintException()
+        raise e
+
+
 if module == "CreateSpreadSheet":
 
     if not creds:

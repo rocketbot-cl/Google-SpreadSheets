@@ -95,8 +95,7 @@ class Flow(object):
 
     def __init__(
             self, oauth2session, client_type, client_config,
-            redirect_uri=None, code_verifier=None,
-            autogenerate_code_verifier=False):
+            redirect_uri=None, code_verifier=None):
         """
         Args:
             oauth2session (requests_oauthlib.OAuth2Session):
@@ -109,9 +108,8 @@ class Flow(object):
                 creation time. Otherwise, it will need to be set using
                 :attr:`redirect_uri`.
             code_verifier (str): random string of 43-128 chars used to verify
-                the key exchange.using PKCE.
-            autogenerate_code_verifier (bool): If true, auto-generate a
-                code_verifier.
+                the key exchange.using PKCE. Auto-generated if not provided.
+
         .. _client secrets:
             https://developers.google.com/api-client-library/python/guide
             /aaa_client_secrets
@@ -124,7 +122,6 @@ class Flow(object):
         """requests_oauthlib.OAuth2Session: The OAuth 2.0 session."""
         self.redirect_uri = redirect_uri
         self.code_verifier = code_verifier
-        self.autogenerate_code_verifier = autogenerate_code_verifier
 
     @classmethod
     def from_client_config(cls, client_config, scopes, **kwargs):
@@ -158,25 +155,12 @@ class Flow(object):
             raise ValueError(
                 'Client secrets must be for a web or installed app.')
 
-        # these args cannot be passed to requests_oauthlib.OAuth2Session
-        code_verifier = kwargs.pop('code_verifier', None)
-        autogenerate_code_verifier = kwargs.pop(
-            'autogenerate_code_verifier', None)
-
         session, client_config = (
             google_auth_oauthlib.helpers.session_from_client_config(
                 client_config, scopes, **kwargs))
 
         redirect_uri = kwargs.get('redirect_uri', None)
-
-        return cls(
-            session,
-            client_type,
-            client_config,
-            redirect_uri,
-            code_verifier,
-            autogenerate_code_verifier
-        )
+        return cls(session, client_type, client_config, redirect_uri)
 
     @classmethod
     def from_client_secrets_file(cls, client_secrets_file, scopes, **kwargs):
@@ -233,20 +217,18 @@ class Flow(object):
                 specify the ``state`` when constructing the :class:`Flow`.
         """
         kwargs.setdefault('access_type', 'offline')
-        if self.autogenerate_code_verifier:
+        if not self.code_verifier:
             chars = ascii_letters+digits+'-._~'
             rnd = SystemRandom()
             random_verifier = [rnd.choice(chars) for _ in range(0, 128)]
             self.code_verifier = ''.join(random_verifier)
-
-        if self.code_verifier:
-            code_hash = hashlib.sha256()
-            code_hash.update(str.encode(self.code_verifier))
-            unencoded_challenge = code_hash.digest()
-            b64_challenge = urlsafe_b64encode(unencoded_challenge)
-            code_challenge = b64_challenge.decode().split('=')[0]
-            kwargs.setdefault('code_challenge', code_challenge)
-            kwargs.setdefault('code_challenge_method', 'S256')
+        code_hash = hashlib.sha256()
+        code_hash.update(str.encode(self.code_verifier))
+        unencoded_challenge = code_hash.digest()
+        b64_challenge = urlsafe_b64encode(unencoded_challenge)
+        code_challenge = b64_challenge.decode().split('=')[0]
+        kwargs.setdefault('code_challenge', code_challenge)
+        kwargs.setdefault('code_challenge_method', 'S256')
         url, state = self.oauth2session.authorization_url(
             self.client_config['auth_uri'], **kwargs)
 
@@ -365,7 +347,7 @@ class InstalledAppFlow(Flow):
     authorization code. Used only by the console strategy."""
 
     _DEFAULT_WEB_SUCCESS_MESSAGE = (
-        'The authentication flow has completed. You may close this window.')
+        'The authentication flow has completed, you may close this window.')
 
     def run_console(
             self,
