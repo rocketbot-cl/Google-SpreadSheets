@@ -398,11 +398,14 @@ def get_existing_basic_filters(ss_id, service) -> dict:
     params = {'spreadsheetId': ss_id,
               'fields': 'sheets(properties(sheetId,title),basicFilter)'}
     response = service.spreadsheets().get(**params).execute()
-    filters = {}
+    values_range = []
     for sheet in response['sheets']:
         if 'basicFilter' in sheet:
-            filters[sheet['properties']['sheetId']] = sheet['basicFilter']
-    return filters
+            values_range = list(sheet.values())[1]['range']
+    {'startRowIndex': 0, 'endRowIndex': 1000, 'startColumnIndex': 4, 'endColumnIndex': 5}
+    col = chr(values_range['startColumnIndex'] + 65)
+    col = col + str(values_range['startRowIndex']+1) + ":" + col + str(values_range['endRowIndex']+1)
+    return col
 
 
 def apply_filters(ss_id, filters, service):
@@ -433,25 +436,12 @@ def apply_filters(ss_id, filters, service):
             # desired values for startColumnIndex, startRowIndex, endRowIndex, endColumnIndex,
             # then they can be used to create a range-specific basic filter.
             # The 'range' property is a `GridRange`:
-            print("filter ANTES XD")
-            print(filter)
-            # filter['range'] = {'sheetId': sheetId}
-            print("filter['range']")
-            print(filter['range'])
-            print("filter")
-            # filter = removekey(filter, "criteria")
-            print(filter)
-            # get_column_index
             if 'filterSpecs' not in filter:
                 filter['filterSpecs'] = [{
                     'filterCriteria': {
                         'hiddenValues': []
                     }
                 }]
-            # filter['filterSpecs'][0]['columnIndex'] = '4'
-            # filter['filterSpecs'][0]['filterCriteria']['hiddenValues'] = ['5']
-            # print("filter2")
-            # print(filter)
             requests.append({'setBasicFilter': {'filter': filter}})
         if not requests:
             return
@@ -523,6 +513,25 @@ if module == "filterData":
                     hidden_values.append(cell)
         filters = create_filter_structure(ranges, hidden_values, sheet_id)
         apply_filters(ss_id, filters, service)
+    except Exception as e:
+        PrintException()
+        raise e
+
+if module == "filterCells":
+    if not creds:
+        raise Exception(
+            "No hay credenciales ni token válidos, por favor configure sus credenciales")
+    ss_id = GetParams('ss_id')
+    sheet = GetParams("sheetName")
+    res = GetParams("res")
+    try:
+        service = discovery.build('sheets', 'v4', credentials=creds)
+        data = service.spreadsheets().get(spreadsheetId=ss_id).execute()
+        column_filter = get_existing_basic_filters(ss_id, service)
+        request = service.spreadsheets().values().get(spreadsheetId=ss_id, range=column_filter)
+        response = request.execute()
+        value = response["values"]
+        SetVar(res, value)
     except Exception as e:
         PrintException()
         raise e
