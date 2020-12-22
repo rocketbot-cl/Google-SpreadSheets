@@ -27,7 +27,7 @@ import os.path
 
 base_path = tmp_global_obj["basepath"]
 cur_path = base_path + 'modules' + os.sep + \
-    'Google-SpreadSheets' + os.sep + 'libs' + os.sep
+           'Google-SpreadSheets' + os.sep + 'libs' + os.sep
 sys.path.append(cur_path)
 
 from googleapiclient import discovery
@@ -78,7 +78,6 @@ if module == "GoogleSuite":
     except Exception as e:
         PrintException()
         raise e
-
 
 if module == "CreateSpreadSheet":
 
@@ -260,6 +259,21 @@ if module == "CountCells":
     except Exception as e:
         PrintException()
         raise e
+
+
+def get_column_index(col):
+    try:
+        abc = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u',
+               'v', 'w', 'x', 'y', 'z']
+        around_abc = len(col) - 1
+        col = col[-1]
+        col_index = around_abc * len(abc) + abc.index(col)
+        return col_index
+    except Exception as e:
+        PrintException()
+        raise e
+
+
 if module == "DeleteColumn":
     if not creds:
         raise Exception(
@@ -279,12 +293,7 @@ if module == "DeleteColumn":
             if element["properties"]["title"] == sheet:
                 sheet_id = element["properties"]["index"]
 
-        abc = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u',
-               'v', 'w', 'x', 'y', 'z']
-
-        around_abc = len(col) - 1
-        col = col[-1]
-        col_index = around_abc * len(abc) + abc.index(col)
+        col_index = get_column_index(col)
         print(col_index)
 
         if blank:
@@ -368,6 +377,152 @@ if module == "DeleteRow":
         request = service.spreadsheets().batchUpdate(spreadsheetId=ss_id, body=body)
         response = request.execute()
 
+    except Exception as e:
+        PrintException()
+        raise e
+
+
+def get_existing_basic_filters(wkbkId: str) -> dict:
+    params = {'spreadsheetId': wkbkId,
+              'fields': 'sheets(properties(sheetId,title),basicFilter)'}
+    response = service.spreadsheets().get(**params).execute()
+    filters = {}
+    for sheet in response['sheets']:
+        if 'basicFilter' in sheet:
+            filters[sheet['properties']['sheetId']] = sheet['basicFilter']
+    print(filters)
+    return filters
+
+
+def get_existing_basic_filters(ss_id, service) -> dict:
+    params = {'spreadsheetId': ss_id,
+              'fields': 'sheets(properties(sheetId,title),basicFilter)'}
+    response = service.spreadsheets().get(**params).execute()
+    filters = {}
+    for sheet in response['sheets']:
+        if 'basicFilter' in sheet:
+            filters[sheet['properties']['sheetId']] = sheet['basicFilter']
+    return filters
+
+
+def apply_filters(ss_id, filters, service):
+    try:
+        # All requests are validated before any are applied, so bundling the set and clear filter
+        # operations in the same request would fail: only 1 basic filter can exist at a time.
+        def clear_filters(ss_id, known_filters, service):
+            requests = []
+            for sheetId, filter in known_filters.items():
+                requests.append({'clearBasicFilter': {'sheetId': sheetId}})
+            if not requests:
+                return
+            params = {'spreadsheetId': ss_id,
+                      'body': {'requests': requests}}
+            service.spreadsheets().batchUpdate(**params).execute()
+
+        def removekey(d, key):
+            r = dict(d)
+            del r[key]
+            return r
+
+        clear_filters(ss_id, filters, service)
+
+        requests = []
+        for sheetId, filter in filters.items():
+            # By removing the starting and ending indices from the 'range' property,
+            # we ensure the basicFilter will apply to the entire sheet bounds. If one knows the
+            # desired values for startColumnIndex, startRowIndex, endRowIndex, endColumnIndex,
+            # then they can be used to create a range-specific basic filter.
+            # The 'range' property is a `GridRange`:
+            print("filter ANTES XD")
+            print(filter)
+            # filter['range'] = {'sheetId': sheetId}
+            print("filter['range']")
+            print(filter['range'])
+            print("filter")
+            # filter = removekey(filter, "criteria")
+            print(filter)
+            # get_column_index
+            if 'filterSpecs' not in filter:
+                filter['filterSpecs'] = [{
+                    'filterCriteria': {
+                        'hiddenValues': []
+                    }
+                }]
+            filter['filterSpecs'][0]['columnIndex'] = '4'
+            filter['filterSpecs'][0]['filterCriteria']['hiddenValues'] = ['5']
+            print("filter2")
+            print(filter)
+            requests.append({'setBasicFilter': {'filter': filter}})
+        if not requests:
+            return
+        params = {'spreadsheetId': ss_id,
+                  'body': {'requests': requests}}
+        print("Params")
+        print(params)
+        service.spreadsheets().batchUpdate(**params).execute()
+    except Exception as e:
+        PrintException()
+        raise e
+
+
+def create_filter_structure(ranges, values, sheet_id):
+    try:
+        new_filter = {
+            'range': ranges
+        }
+        startColumnIndex = ranges['startColumnIndex']
+        endColumnIndex = ranges['endColumnIndex']
+        new_filter['filterSpecs'] = []
+        for index in range(startColumnIndex, endColumnIndex):
+            new_filter['filterSpecs'].append({
+                'columnIndex': index,
+                'filterCriteria': {
+                    'hiddenValues': values
+                }
+            })
+        new_filter_with_sheet_id = {
+            sheet_id: new_filter
+        }
+        return new_filter_with_sheet_id
+    except Exception as e:
+        PrintException()
+        raise e
+
+
+if module == "filterData":
+    if not creds:
+        raise Exception(
+            "No hay credenciales ni token válidos, por favor configure sus credenciales")
+    ss_id = GetParams('ss_id')
+    sheet = GetParams("sheetName")
+    col = GetParams("col").lower()
+    valor_filtro = GetParams("valor_filtro")
+    try:
+        col_index = get_column_index(col)
+        print(col_index)
+        service = discovery.build('sheets', 'v4', credentials=creds)
+        data = service.spreadsheets().get(spreadsheetId=ss_id).execute()
+        ranges = {
+            'startRowIndex': 0,
+            'endRowIndex': 1000,
+            'startColumnIndex': col_index,
+            'endColumnIndex': col_index + 1,
+        }
+        sheet_id = 0
+        for element in data["sheets"]:
+            if element["properties"]["title"] == sheet:
+                sheet_id = element["properties"]["sheetId"]
+        range_ = col + "1:" + col + "10000"
+        request = service.spreadsheets().values().get(spreadsheetId=ss_id, range=range_)
+        response = request.execute()
+        values = response["values"]
+        hidden_values = []
+        for row in values:
+            for cell in row:
+                if valor_filtro != cell:
+                    hidden_values.append(cell)
+        filters = create_filter_structure(ranges, hidden_values, sheet_id)
+        apply_filters(ss_id, filters, service)
     except Exception as e:
         PrintException()
         raise e
