@@ -448,10 +448,10 @@ def apply_filters(ss_id, filters, service):
                         'hiddenValues': []
                     }
                 }]
-            filter['filterSpecs'][0]['columnIndex'] = '4'
-            filter['filterSpecs'][0]['filterCriteria']['hiddenValues'] = ['5']
-            print("filter2")
-            print(filter)
+            # filter['filterSpecs'][0]['columnIndex'] = '4'
+            # filter['filterSpecs'][0]['filterCriteria']['hiddenValues'] = ['5']
+            # print("filter2")
+            # print(filter)
             requests.append({'setBasicFilter': {'filter': filter}})
         if not requests:
             return
