@@ -382,27 +382,17 @@ if module == "DeleteRow":
         raise e
 
 
-def get_existing_basic_filters(wkbkId: str) -> dict:
-    params = {'spreadsheetId': wkbkId,
-              'fields': 'sheets(properties(sheetId,title),basicFilter)'}
-    response = service.spreadsheets().get(**params).execute()
-    filters = {}
-    for sheet in response['sheets']:
-        if 'basicFilter' in sheet:
-            filters[sheet['properties']['sheetId']] = sheet['basicFilter']
-    print(filters)
-    return filters
-
-
-def get_existing_basic_filters(ss_id, service) -> dict:
+def get_existing_basic_filters(ss_id, service, startRow=0, endRow=1000) -> dict:
     params = {'spreadsheetId': ss_id,
               'fields': 'sheets(properties(sheetId,title),basicFilter)'}
     response = service.spreadsheets().get(**params).execute()
+    print(response)
+    data = service.spreadsheets().get(spreadsheetId=ss_id).execute()
     values_range = []
     for sheet in response['sheets']:
         if 'basicFilter' in sheet:
             values_range = list(sheet.values())[1]['range']
-    {'startRowIndex': 0, 'endRowIndex': 1000, 'startColumnIndex': 4, 'endColumnIndex': 5}
+    # {'startRowIndex': startRow, 'endRowIndex': endRow, 'startColumnIndex': 4, 'endColumnIndex': 5}
     col = chr(values_range['startColumnIndex'] + 65)
     col = col + str(values_range['startRowIndex']+1) + ":" + col + str(values_range['endRowIndex']+1)
     return col
@@ -502,7 +492,7 @@ if module == "filterData":
         for element in data["sheets"]:
             if element["properties"]["title"] == sheet:
                 sheet_id = element["properties"]["sheetId"]
-        range_ = col + "1:" + col + "10000"
+        range_ = col + "1:" + col + "1000"
         request = service.spreadsheets().values().get(spreadsheetId=ss_id, range=range_)
         response = request.execute()
         values = response["values"]
@@ -524,14 +514,26 @@ if module == "filterCells":
     ss_id = GetParams('ss_id')
     sheet = GetParams("sheetName")
     res = GetParams("res")
+    range_ = GetParams("range_")
     try:
         service = discovery.build('sheets', 'v4', credentials=creds)
-        data = service.spreadsheets().get(spreadsheetId=ss_id).execute()
-        column_filter = get_existing_basic_filters(ss_id, service)
-        request = service.spreadsheets().values().get(spreadsheetId=ss_id, range=column_filter)
+        data = service.spreadsheets().get(spreadsheetId=ss_id, fields="sheets(data(rowMetadata(hiddenByFilter)),properties/sheetId)").execute()
+        #column_filter = get_existing_basic_filters(ss_id, service)
+        list_hidden_rows = []
+        for column in data['sheets']:
+            for index, item in enumerate(column['data'][0]['rowMetadata']):
+                if bool(item):
+                    list_hidden_rows.append(index)
+        
+        request = service.spreadsheets().values().get(spreadsheetId=ss_id, range=range_)
         response = request.execute()
+        print(response)
         value = response["values"]
-        SetVar(res, value)
+        final_cells = []
+        for row_index, item in enumerate(value):
+            if row_index not in list_hidden_rows:
+                final_cells.append(item)
+        SetVar(res, final_cells)
     except Exception as e:
         PrintException()
         raise e

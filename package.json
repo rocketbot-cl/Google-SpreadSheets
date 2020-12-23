@@ -886,6 +886,21 @@
             },
             "id": "res",
             "css": "col-md-4"
+          },
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "A1:B2",
+              "en": "A1:B2",
+              "cn": "A1:B2"
+            },
+            "title": {
+              "es": "Rango:",
+              "en": "Range: ",
+              "cn": "Range: "
+            },
+            "id": "range_",
+            "css": "col-md-4"
           }
         ]
       },
