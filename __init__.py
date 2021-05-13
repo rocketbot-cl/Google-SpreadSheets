@@ -57,7 +57,10 @@ if module == "GoogleSuite":
         SCOPES = [
             'https://www.googleapis.com/auth/spreadsheets',
             'https://www.googleapis.com/auth/drive.file',
-            'https://www.googleapis.com/auth/drive'
+            'https://www.googleapis.com/auth/drive',
+            'https://www.googleapis.com/auth/script.projects',
+            'https://www.googleapis.com/auth/script.external_request',
+            'https://www.googleapis.com/auth/drive.scripts'
         ]
 
         if os.path.exists('token_sheet.pickle'):
@@ -100,6 +103,7 @@ if module == "CreateSpreadSheet":
     response = request.execute()
     if result:
         SetVar(result, response["spreadsheetId"])
+        
 if module == "CreateSheet":
     if not creds:
         raise Exception(
@@ -291,10 +295,15 @@ if module == "DeleteColumn":
 
         for element in data["sheets"]:
             if element["properties"]["title"] == sheet:
-                sheet_id = element["properties"]["index"]
+                sheet_id = element["properties"]["sheetId"]
+        
+        print("sheet id",sheet_id)
 
         col_index = get_column_index(col)
         print(col_index)
+
+        if blank is not None:
+            blank = eval(blank)
 
         if blank:
             shiftDimension = "ROWS"
@@ -339,6 +348,9 @@ if module == "DeleteRow":
         for element in data["sheets"]:
             if element["properties"]["title"] == sheet:
                 sheet_id = element["properties"]["sheetId"]
+
+        if blank is not None:
+            blank = eval(blank)
 
         if blank:
             shiftDimension = "COLUMNS"
@@ -492,6 +504,7 @@ if module == "filterData":
         for element in data["sheets"]:
             if element["properties"]["title"] == sheet:
                 sheet_id = element["properties"]["sheetId"]
+        print("sheet id",sheet_id)
         range_ = col + "1:" + col + "1000"
         request = service.spreadsheets().values().get(spreadsheetId=ss_id, range=range_)
         response = request.execute()

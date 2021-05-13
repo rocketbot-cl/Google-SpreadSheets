@@ -2,7 +2,7 @@
   "author": "Danilo Toro, Nicolas Liendro",
   "description": "Módulo para manejar Google SpreadSheet desde Rocketbot",
   "disclaimer": "THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM “AS IS” WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.",
-  "version": "2.0",
+  "version": "2.1",
   "license": "MIT",
   "homepage": "http://rockertbot.cl",
   "linux": true,
@@ -19,7 +19,7 @@
   "title": {
     "en": "Google SpreadSheet",
     "es": "Google SpreadSheet",
-    "cn": "Google SpreadSheet"
+    "pr": "Planilhas Google"
   },
   "icon": "data:image/png;base64,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",
   "children": [
@@ -36,20 +36,26 @@
         "title_options": "Seleccione una opción",
         "options": null
       },
+      "pr": {
+        "title": "Configurar credenciais G-Suite",
+        "description": "Obtém permissão para trabalhar no Google SpreadSheet com o Rocketbot",
+        "title_options": "Seleccione una opción",
+        "options": null
+      },
       "form": {
         "css": "modal-lg",
         "inputs": [
           {
             "type": "file_select",
             "placeholder": {
-              "es": "Ruta",
-              "en": "Path",
-              "cn": "Path"
+              "es": "C:/ruta/a/credenciales.json",
+              "en": "C:/path/to/credentials.json",
+              "pr": "C:/caminho/credenciais.json"
             },
             "title": {
-              "es": "Ruta archivo de credenciales",
-              "en": "Credentials file path",
-              "cn": "Credentials file path"
+              "es": "Ruta",
+              "en": "Path",
+              "pr": "Caminho"
             },
             "id": "credentials_path",
             "css": "col-md-12"
@@ -82,20 +88,26 @@
         "title_options": null,
         "options": null
       },
+      "pr": {
+        "title": "Criar Planilha do google",
+        "description": "Cria uma nova Planilha do google",
+        "title_options": null,
+        "options": null
+      },
       "form": {
         "css": "modal-lg",
         "inputs": [
           {
             "type": "input",
             "placeholder": {
-              "es": "Nombre: ",
-              "en": "Name: ",
-              "cn": "Name: "
+              "es": "Nombre",
+              "en": "Name",
+              "pr": "Nome"
             },
             "title": {
-              "es": "Nombre de la hoja de cálculo",
-              "en": "SpreadSheet name",
-              "cn": "SpreadSheet name"
+              "es": "Nombre de la hoja de cálculo:",
+              "en": "SpreadSheet name:",
+              "pr": "Nome da Planilha do Google:"
             },
             "id": "ss_name",
             "css": "col-md-12"
@@ -103,18 +115,19 @@
           {
             "type": "input",
             "placeholder": {
-              "es": "{Resultado}",
-              "en": "{Result}",
-              "cn": "{Result}"
+              "es": "Variable",
+              "en": "Variable",
+              "pr": "Variável"
             },
             "title": {
-              "es": "Variable donde se guardará el ID",
-              "en": "Variable where the ID will be saved",
-              "cn": "Variable where the ID will be saved"
+              "es": "Variable donde se guardará el ID:",
+              "en": "Variable where the ID will be saved:",
+              "pr": "Variável onde o ID será salvo:"
             },
             "help": {
-              "es": "Variable donde se almacena el resultado sin {}",
-              "en": "Variable where the result is stored without {}"
+              "es": "Nombre de variable sin {}",
+              "en": "Variable name without {}",
+              "pr": "Nome da variável sem {}"
             },
             "id": "result",
             "css": "col-md-12"
@@ -147,6 +160,12 @@
         "title_options": null,
         "options": null
       },
+       "pr": {
+        "title": "Ciar Página",
+        "description": "Cria uma nova página na planilha selecionada",
+        "title_options": null,
+        "options": null
+      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -155,12 +174,12 @@
             "placeholder": {
               "es": "Spreadsheet ID",
               "en": "Spreadsheet ID",
-              "cn": "Spreadsheet ID"
+              "pr": "ID da Planilha"
             },
             "title": {
-              "es": "Ingrese Spreadsheet ID",
-              "en": "Spreadsheet ID",
-              "cn": " Spreadsheet ID"
+              "es": "Ingrese Spreadsheet ID:",
+              "en": "Spreadsheet ID:",
+              "pr": " ID da Planilha:"
             },
             "id": "ss_id",
             "css": "col-md-12"
@@ -168,14 +187,14 @@
           {
             "type": "input",
             "placeholder": {
-              "es": "Nombre: ",
-              "en": "Name: ",
-              "cn": "Name: "
+              "es": "Nombre",
+              "en": "Name",
+              "pr": "Nome"
             },
             "title": {
-              "es": "Nombre de la hoja",
-              "en": "Sheet name",
-              "cn": "Sheet name"
+              "es": "Nombre de la hoja:",
+              "en": "Sheet name:",
+              "pr": "Nome da página:"
             },
             "id": "name",
             "css": "col-md-12"
@@ -208,6 +227,12 @@
         "title_options": null,
         "options": null
       },
+      "pr": {
+        "title": "Excluir Página",
+        "description": "Excluir uma página na planilha selecionada",
+        "title_options": null,
+        "options": null
+      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -216,12 +241,12 @@
             "placeholder": {
               "es": "Spreadsheet ID",
               "en": "Spreadsheet ID",
-              "cn": "Spreadsheet ID"
+              "pr": "ID da Planilha"
             },
             "title": {
-              "es": "Ingrese Spreadsheet ID",
-              "en": "Spreadsheet ID",
-              "cn": "Spreadsheet ID"
+              "es": "Ingrese Spreadsheet ID:",
+              "en": "Spreadsheet ID:",
+              "pr": "ID da Planilha:"
             },
             "id": "ss_id",
             "css": "col-md-12"
@@ -229,14 +254,14 @@
           {
             "type": "input",
             "placeholder": {
-              "es": "Nombre de la hoja: ",
-              "en": "Sheet Name: ",
-              "cn": "Sheet Name: "
+              "es": "Nombre de la hoja",
+              "en": "Sheet Name",
+              "pr": "Nome da Página"
             },
             "title": {
-              "es": "Nombre de la hoja a borrar",
-              "en": "Sheet name for delete",
-              "cn": "Sheet name for delete"
+              "es": "Nombre de la hoja a borrar:",
+              "en": "Sheet name for delete:",
+              "pr": "Nome da página a ser excluida:"
             },
             "id": "sheetName",
             "css": "col-md-12"
@@ -269,6 +294,12 @@
         "title_options": null,
         "options": null
       },
+      "pr": {
+        "title": "Escrever em células",
+        "description": "Escreve em uma célula ou intervalo de células em uma planilha selecionada",
+        "title_options": null,
+        "options": null
+      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -277,12 +308,12 @@
             "placeholder": {
               "es": "Spreadsheet ID",
               "en": "Spreadsheet ID",
-              "cn": "Spreadsheet ID"
+              "pr": "ID da Planilha"
             },
             "title": {
-              "es": "Ingrese Spreadsheet ID",
-              "en": "Spreadsheet ID",
-              "cn": "Spreadsheet ID"
+              "es": "Ingrese Spreadsheet ID:",
+              "en": "Spreadsheet ID:",
+              "pr": "ID da Planilha:"
             },
             "id": "ss_id",
             "css": "col-md-12"
@@ -292,16 +323,17 @@
             "placeholder": {
               "es": "A1",
               "en": "A1",
-              "cn": "A1"
+              "pr": "A1"
             },
             "title": {
               "es": "Ingrese la celda a escribir: ",
               "en": "Enter cell: ",
-              "cn": "Enter cell: "
+              "pr": "entre na célula para escrever:"
             },
             "help": {
               "es": "Ejemplo Hoja 1!A1",
-              "en": "Example Sheet1!A1"
+              "en": "Example Sheet1!A1",
+              "pr": "Exemplo Sheet1!A1"
             },
             "id": "range",
             "css": "col-md-6"
@@ -316,7 +348,7 @@
             "title": {
               "es": "Ingrese texto: ",
               "en": "Text: ",
-              "cn": "Text: "
+              "pr": "Texto: "
             },
             "id": "text",
             "css": "col-md-6"
@@ -349,6 +381,12 @@
         "title_options": null,
         "options": null
       },
+      "pr": {
+        "title": "Ler células",
+        "description": "Ler células ou intervalo de células em uma planilha selecionada, exemplo A1 ou A1:B5",
+        "title_options": null,
+        "options": null
+      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -357,12 +395,12 @@
             "placeholder": {
               "es": "Spreadsheet ID",
               "en": "Spreadsheet ID",
-              "cn": "Spreadsheet ID"
+              "pr": "ID da Planilha"
             },
             "title": {
               "es": "Ingrese Spreadsheet ID",
               "en": "Spreadsheet ID",
-              "cn": "Spreadsheet ID"
+              "pr": "ID da Planilha"
             },
             "id": "ss_id",
             "css": "col-md-12"
@@ -372,12 +410,12 @@
             "placeholder": {
               "es": "A1",
               "en": "A1",
-              "cn": "A1"
+              "pr": "A1"
             },
             "title": {
               "es": "Ingrese celda o rango de celdas: ",
               "en": "Enter cell or range of cells: ",
-              "cn": "Enter cell or range of cells: "
+              "pr": "Insira uma célula ou intervalo de células: "
             },
             "id": "range",
             "css": "col-md-6"
@@ -385,18 +423,19 @@
           {
             "type": "input",
             "placeholder": {
-              "es": "{resultado}",
-              "en": "{result}",
-              "cn": "{result}"
+              "es": "Variable",
+              "en": "Variable",
+              "pr": "Variável"
             },
             "title": {
-              "es": "Resultado: ",
-              "en": "Result ",
-              "cn": "Result "
+              "es": "Resultado:",
+              "en": "Result:",
+              "pr": "Resultado:"
             },
             "help": {
-              "es": "Variable donde se almacena el resultado sin {}",
-              "en": "Variable where the result is stored without {}"
+              "es": "Nombre de variable sin {}",
+              "en": "Variable name without {}",
+              "pr": "Nome da variável sem {}"
             },
             "id": "result",
             "css": "col-md-6"
@@ -429,6 +468,12 @@
         "title_options": null,
         "options": null
       },
+       "pr": {
+        "title": "Obter páginas",
+        "description": "Obtém uma lista de páginas com o seu id em uma planilha selecionada",
+        "title_options": null,
+        "options": null
+      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -437,12 +482,12 @@
             "placeholder": {
               "es": "Spreadsheet ID",
               "en": "Spreadsheet ID",
-              "cn": "Spreadsheet ID"
+              "pr": "ID da Planilha"
             },
             "title": {
-              "es": "Ingrese Spreadsheet ID",
-              "en": "Spreadsheet ID",
-              "cn": "Spreadsheet ID"
+              "es": "Ingrese Spreadsheet ID:",
+              "en": "Spreadsheet ID:",
+              "pr": "ID da Planilha:"
             },
             "id": "ss_id",
             "css": "col-md-12"
@@ -450,18 +495,19 @@
           {
             "type": "input",
             "placeholder": {
-              "es": "{resultado}",
-              "en": "{result}",
-              "cn": "{result}"
+              "es": "Variable",
+              "en": "Variable",
+              "pr": "Variável"
             },
             "title": {
-              "es": "Resultado: ",
-              "en": "Result ",
-              "cn": "Result "
+              "es": "Resultado:",
+              "en": "Result:",
+              "pr": "Resultado:"
             },
             "help": {
-              "es": "Variable donde se almacena el resultado sin {}",
-              "en": "Variable where the result is stored without {}"
+              "es": "Nombre de variable sin {}",
+              "en": "Variable name without {}",
+              "pr": "Nome da variável sem {}"
             },
             "id": "result",
             "css": "col-md-12"
@@ -494,6 +540,12 @@
         "title_options": null,
         "options": null
       },
+      "pr": {
+        "title": "Contar linhas",
+        "description": "Conta as linhas de uma planilha selecionada",
+        "title_options": null,
+        "options": null
+      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -502,12 +554,12 @@
             "placeholder": {
               "es": "Spreadsheet ID",
               "en": "Spreadsheet ID",
-              "cn": "Spreadsheet ID"
+              "pr": "ID da Planilha"
             },
             "title": {
-              "es": "Ingrese Spreadsheet ID",
-              "en": "Spreadsheet ID",
-              "cn": "Spreadsheet ID"
+              "es": "Ingrese Spreadsheet ID:",
+              "en": "Spreadsheet ID:",
+              "pr": "ID da Planilha:"
             },
             "id": "ss_id",
             "css": "col-md-12"
@@ -515,14 +567,14 @@
           {
             "type": "input",
             "placeholder": {
-              "es": "Hoja:",
-              "en": "Sheet: ",
-              "cn": "Sheet: "
+              "es": "Hoja",
+              "en": "Sheet",
+              "pr": "Página"
             },
             "title": {
-              "es": "Ingrese nombre de la hoja",
-              "en": "Sheet name",
-              "cn": "Sheet name"
+              "es": "Ingrese nombre de la hoja:",
+              "en": "Sheet name:",
+              "pr": "Nome da página:"
             },
             "id": "sheetName",
             "css": "col-md-6"
@@ -530,18 +582,19 @@
           {
             "type": "input",
             "placeholder": {
-              "es": "{resultado}",
-              "en": "{result}",
-              "cn": "{result}"
+              "es": "Variable",
+              "en": "Variable",
+              "pr": "Variável"
             },
             "title": {
-              "es": "Resultado: ",
-              "en": "Result ",
-              "cn": "Result "
+              "es": "Resultado:",
+              "en": "Result:",
+              "pr": "Resultado:"
             },
             "help": {
-              "es": "Variable donde se almacena el resultado sin {}",
-              "en": "Variable where the result is stored without {}"
+              "es": "Nombre de variable sin {}",
+              "en": "Variable name without {}",
+              "pr": "Nome da variável sem {}"
             },
             "id": "result",
             "css": "col-md-6"
@@ -574,6 +627,12 @@
         "title_options": null,
         "options": null
       },
+      "pr": {
+        "title": "Excluir Coluna",
+        "description": "Excluir uma coluna de uma planilha selecionada",
+        "title_options": null,
+        "options": null
+      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -581,11 +640,13 @@
             "type": "input",
             "placeholder": {
               "es": "Spreadsheet ID",
-              "en": "Spreadsheet ID"
+              "en": "Spreadsheet ID",
+              "pr": "ID da Planilha"
             },
             "title": {
               "es": "Ingrese Spreadsheet ID",
-              "en": "Spreadsheet ID"
+              "en": "Spreadsheet ID",
+              "pr": "ID da Planilha"
             },
             "id": "ss_id",
             "css": "col-md-12"
@@ -593,14 +654,14 @@
           {
             "type": "input",
             "placeholder": {
-              "es": "Hoja:",
-              "en": "Sheet: ",
-              "cn": "Sheet: "
+              "es": "Hoja",
+              "en": "Sheet",
+              "pr": "Página"
             },
             "title": {
-              "es": "Ingrese nombre de la hoja",
-              "en": "Sheet name",
-              "cn": "Sheet name"
+              "es": "Ingrese nombre de la hoja:",
+              "en": "Sheet name:",
+              "pr": "Nome da página:"
             },
             "id": "sheetName",
             "css": "col-md-4"
@@ -609,11 +670,13 @@
             "type": "input",
             "placeholder": {
               "es": "AB",
-              "en": "AC"
+              "en": "AC",
+              "pr": "AC"
             },
             "title": {
-              "es": "Columna: ",
-              "en": "Column: "
+              "es": "Columna:",
+              "en": "Column:",
+              "pr": "Coluna:"
             },
             "id": "column",
             "css": "col-md-4"
@@ -622,15 +685,18 @@
             "type": "checkbox",
             "placeholder": {
               "es": "",
-              "en": ""
+              "en": "",
+              "pr": ""
             },
             "title": {
               "es": "Dejar en blanco",
-              "en": "Blank"
+              "en": "Blank",
+              "pr": "deixar vazio"
             },
             "help": {
               "en": "If selected, it will leave the column blank. By default, all columns will be moved left",
-              "es": "Si se selecciona, dejará la columna en blanco. Por defecto, se moverán todas las columnas hacia la izquierda"
+              "es": "Si se selecciona, dejará la columna en blanco. Por defecto, se moverán todas las columnas hacia la izquierda",
+              "pr": "Se selecionado, deixará a coluna em branco. Por padrão, todas as colunas serão movidas para a esquerda"
             },
             "id": "blank",
             "css": "col-md-4"
@@ -663,6 +729,12 @@
         "title_options": null,
         "options": null
       },
+       "pr": {
+        "title": "Excluir linha",
+        "description": "Excluir uma linha da planilha selecionada",
+        "title_options": null,
+        "options": null
+      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -670,11 +742,13 @@
             "type": "input",
             "placeholder": {
               "es": "Spreadsheet ID",
-              "en": "Spreadsheet ID"
+              "en": "Spreadsheet ID",
+              "pr": "ID da Planilha"
             },
             "title": {
               "es": "Ingrese Spreadsheet ID",
-              "en": "Spreadsheet ID"
+              "en": "Spreadsheet ID",
+              "pr": "ID da Planilha"
             },
             "id": "ss_id",
             "css": "col-md-12"
@@ -682,14 +756,14 @@
           {
             "type": "input",
             "placeholder": {
-              "es": "Hoja:",
-              "en": "Sheet: ",
-              "cn": "Sheet: "
+              "es": "Hoja",
+              "en": "Sheet",
+              "pr": "Página"
             },
             "title": {
-              "es": "Ingrese nombre de la hoja",
-              "en": "Sheet name",
-              "cn": "Sheet name"
+              "es": "Ingrese nombre de la hoja:",
+              "en": "Sheet name:",
+              "pr": "Nome da página:"
             },
             "id": "sheetName",
             "css": "col-md-4"
@@ -698,11 +772,13 @@
             "type": "input",
             "placeholder": {
               "es": "5-7",
-              "en": "5-2"
+              "en": "5-7",
+              "pr": "5-7"
             },
             "title": {
-              "es": "Fila: ",
-              "en": "Row: "
+              "es": "Fila:",
+              "en": "Row:",
+              "pr": "Linha:"
             },
             "id": "row",
             "css": "col-md-4"
@@ -711,15 +787,18 @@
             "type": "checkbox",
             "placeholder": {
               "es": "",
-              "en": ""
+              "en": "",
+              "pr": ""
             },
             "title": {
               "es": "Dejar en blanco",
-              "en": "Blank"
+              "en": "Blank",
+              "pr": "Deixar vazio"
             },
             "help": {
               "en": "If selected, it will leave the row blank. By default, all rows will be moved up",
-              "es": "Si se selecciona, dejará la fila en blanco. Por defecto, se moverán todas las filas hacia la arriba"
+              "es": "Si se selecciona, dejará la fila en blanco. Por defecto, se moverán todas las filas hacia la arriba",
+              "pr": "Se selecionado, deixará a coluna em branco. Por padrão, todas as colunas serão movidas para cima"
             },
             "id": "blank",
             "css": "col-md-4"
@@ -742,13 +821,19 @@
     {
       "en": {
         "title": "Filter data",
-        "description": "Delete a row from spreadsheet selected",
+        "description": "Filter data in a spreadsheet selected",
         "title_options": null,
         "options": null
       },
       "es": {
         "title": "Filtrar datos",
-        "description": "Elimina una fila desde una hoja de cálculo seleccionada",
+        "description": "Filtra datos en una hoja de cáclulo seleccionada",
+        "title_options": null,
+        "options": null
+      },
+       "pr": {
+        "title": "Filtrar dados",
+        "description": "Filtra dados da planilha selecionada",
         "title_options": null,
         "options": null
       },
@@ -759,11 +844,13 @@
             "type": "input",
             "placeholder": {
               "es": "Spreadsheet ID",
-              "en": "Spreadsheet ID"
+              "en": "Spreadsheet ID",
+              "pr": "ID da Planilha"
             },
             "title": {
-              "es": "Ingrese Spreadsheet ID",
-              "en": "Spreadsheet ID"
+              "es": "Ingrese Spreadsheet ID:",
+              "en": "Spreadsheet ID:",
+              "pr": "ID da Planilha:"
             },
             "id": "ss_id",
             "css": "col-md-12"
@@ -771,14 +858,14 @@
           {
             "type": "input",
             "placeholder": {
-              "es": "Hoja:",
-              "en": "Sheet: ",
-              "cn": "Sheet: "
+              "es": "Hoja",
+              "en": "Sheet",
+              "pr": "Página"
             },
             "title": {
-              "es": "Ingrese nombre de la hoja",
-              "en": "Sheet name",
-              "cn": "Sheet name"
+              "es": "Ingrese nombre de la hoja:",
+              "en": "Sheet name:",
+              "pr": "Nome da página:"
             },
             "id": "sheetName",
             "css": "col-md-4"
@@ -786,14 +873,14 @@
           {
             "type": "input",
             "placeholder": {
-              "es": "Columna:",
-              "en": "Column: ",
-              "cn": "Column: "
+              "es": "Columna",
+              "en": "Column",
+              "pr": "Coluna"
             },
             "title": {
-              "es": "Ingrese la columna",
-              "en": "Column name",
-              "cn": "Column name"
+              "es": "Ingrese la columna:",
+              "en": "Column name:",
+              "pr": "Coluna:"
             },
             "id": "col",
             "css": "col-md-4"
@@ -801,14 +888,14 @@
            {
             "type": "input",
             "placeholder": {
-              "es": "Valor a filtrar:",
-              "en": "Valor a filtrar: ",
-              "cn": "Valor a filtrar: "
+              "es": "Valor a filtrar",
+              "en": "Value to filter",
+              "pr": "Valor para filtrar"
             },
             "title": {
-              "es": "Ingrese el valor",
-              "en": "Ingrese el valor",
-              "cn": "Ingrese el valor"
+              "es": "Ingrese el valor:",
+              "en": "Ingrese el valor:",
+              "pr": "Insira o valor:"
             },
             "id": "valor_filtro",
             "css": "col-md-4"
@@ -841,6 +928,12 @@
         "title_options": null,
         "options": null
       },
+      "pr": {
+        "title": "Obter células filtrdas",
+        "description": "Obter células filtrdas",
+        "title_options": null,
+        "options": null
+      },
       "form": {
         "css": "modal-lg",
         "inputs": [
@@ -848,11 +941,13 @@
             "type": "input",
             "placeholder": {
               "es": "Spreadsheet ID",
-              "en": "Spreadsheet ID"
+              "en": "Spreadsheet ID",
+              "pr": "ID da Planilha"
             },
             "title": {
               "es": "Ingrese Spreadsheet ID",
-              "en": "Spreadsheet ID"
+              "en": "Spreadsheet ID",
+              "pr": "ID da Planilha"
             },
             "id": "ss_id",
             "css": "col-md-12"
@@ -861,30 +956,15 @@
             "type": "input",
             "placeholder": {
               "es": "Hoja:",
-              "en": "Sheet: ",
-              "cn": "Sheet: "
+              "en": "Sheet:",
+              "pr": "Página:"
             },
             "title": {
-              "es": "Ingrese nombre de la hoja",
-              "en": "Sheet name",
-              "cn": "Sheet name"
+              "es": "Ingrese nombre de la hoja:",
+              "en": "Sheet name:",
+              "pr": "Nome da página:"
             },
             "id": "sheetName",
-            "css": "col-md-4"
-          },
-           {
-            "type": "input",
-            "placeholder": {
-              "es": "res",
-              "en": "res",
-              "cn": "res"
-            },
-            "title": {
-              "es": "Resultado:",
-              "en": "Result: ",
-              "cn": "Result: "
-            },
-            "id": "res",
             "css": "col-md-4"
           },
           {
@@ -892,14 +972,34 @@
             "placeholder": {
               "es": "A1:B2",
               "en": "A1:B2",
-              "cn": "A1:B2"
+              "pr": "A1:B2"
             },
             "title": {
               "es": "Rango:",
               "en": "Range: ",
-              "cn": "Range: "
+              "pr": "Intervalo: "
             },
             "id": "range_",
+            "css": "col-md-4"
+          },
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "Variable",
+              "en": "Variable",
+              "pr": "Variável"
+            },
+            "title": {
+              "es": "Resultado:",
+              "en": "Result:",
+              "pr": "Resultado:"
+            },
+            "help": {
+              "es": "Nombre de variable sin {}",
+              "en": "Variable name without {}",
+              "pr": "Nome da variável sem {}"
+            },
+            "id": "res",
             "css": "col-md-4"
           }
         ]
