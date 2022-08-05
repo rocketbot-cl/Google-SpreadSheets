@@ -164,6 +164,7 @@ if module == "DeleteSheet":
     request = service.spreadsheets().batchUpdate(spreadsheetId=ss_id,
                                                  body=body)
     response = request.execute()
+
 if module == "UpdateRange":
 
     if not creds:
@@ -171,6 +172,7 @@ if module == "UpdateRange":
             "No hay credenciales ni token válidos, por favor configure sus credenciales")
 
     ss_id = GetParams('ss_id')
+    sheet = GetParams("sheetName")
     range_ = GetParams('range')
     text = GetParams('text')
 
@@ -178,22 +180,34 @@ if module == "UpdateRange":
         if not text.startswith("["):
             text = text.replace('"', '\\\"')
             text = "[[ \"{}\" ]]".format(text)
+        
+               
+        print(text)
         values = eval(text)
-
+        print(values)
+        
         service = discovery.build('sheets', 'v4', credentials=creds)
 
+        # Checks existence of the given sheet name and update the range
+        data = service.spreadsheets().get(spreadsheetId=ss_id).execute()
+        for element in data["sheets"]:
+            if element["properties"]["title"] == sheet:
+                range_ = sheet + "!" + range_ # Sheet1!A1:A10
+        
         body = {
             "values": values
         }
         print(body)
-
+        
         request = service.spreadsheets().values().update(spreadsheetId=ss_id, range=range_,
                                                          valueInputOption="USER_ENTERED",
                                                          body=body)
         response = request.execute()
+    
     except Exception as e:
         PrintException()
         raise e
+
 if module == "ReadCells":
 
     if not creds:
@@ -201,12 +215,19 @@ if module == "ReadCells":
             "No hay credenciales ni token válidos, por favor configure sus credenciales")
 
     ss_id = GetParams('ss_id')
+    sheet = GetParams("sheetName")
     range_ = GetParams('range')
     result = GetParams('result')
 
     try:
         service = discovery.build('sheets', 'v4', credentials=creds)
 
+        # Checks existence of the given sheet name and update the range
+        data = service.spreadsheets().get(spreadsheetId=ss_id).execute()
+        for element in data["sheets"]:
+            if element["properties"]["title"] == sheet:
+                range_ = sheet + "!" + range_ # Sheet1!A1:A10
+                
         request = service.spreadsheets().values().get(spreadsheetId=ss_id, range=range_)
 
         response = request.execute()
@@ -220,6 +241,7 @@ if module == "ReadCells":
     except Exception as e:
         PrintException()
         raise e
+
 if module == "GetSheets":
 
     if not creds:
@@ -227,10 +249,11 @@ if module == "GetSheets":
             "No hay credenciales ni token válidos, por favor configure sus credenciales")
 
     ss_id = GetParams('ss_id')
+    sheet = GetParams('sheetName')
     result = GetParams('result')
-
+    
     service = discovery.build('sheets', 'v4', credentials=creds)
-
+        
     request = service.spreadsheets().get(spreadsheetId=ss_id)
     response = request.execute()
 
@@ -239,6 +262,7 @@ if module == "GetSheets":
         sheets.append(element["properties"]["title"])
     if result:
         SetVar(result, sheets)
+        
 if module == "CountCells":
 
     if not creds:
@@ -253,6 +277,13 @@ if module == "CountCells":
         range_ = sheet_name + "!A1:ZZZ999999"
 
         service = discovery.build('sheets', 'v4', credentials=creds)
+        
+        # Checks existence of the given sheet name and update the range
+        data = service.spreadsheets().get(spreadsheetId=ss_id).execute()
+        for element in data["sheets"]:
+            if element["properties"]["title"] == sheet:
+                range_ = sheet + "!" + range_ # Sheet1!A1:A10
+                
         request = service.spreadsheets().values().get(spreadsheetId=ss_id, range=range_)
         response = request.execute()
 
@@ -329,6 +360,7 @@ if module == "DeleteColumn":
     except Exception as e:
         PrintException()
         raise e
+
 if module == "DeleteRow":
     if not creds:
         raise Exception(
@@ -393,6 +425,108 @@ if module == "DeleteRow":
         PrintException()
         raise e
 
+if module == "AddColumn":
+    if not creds:
+        raise Exception(
+            "No hay credenciales ni token válidos, por favor configure sus credenciales")
+
+    ss_id = GetParams('ss_id')
+    sheet = GetParams("sheetName")
+    col = GetParams('column').lower()
+    q = int(GetParams("q"))
+    blank = GetParams('blank')
+
+    try:
+        service = discovery.build('sheets', 'v4', credentials=creds)
+
+        data = service.spreadsheets().get(spreadsheetId=ss_id).execute()
+
+        for element in data["sheets"]:
+            if element["properties"]["title"] == sheet:
+                sheet_id = element["properties"]["sheetId"]
+
+        col_index = get_column_index(col)
+        
+        if blank is not None:
+            blank = eval(blank)
+
+        if blank == False or col_index == 0:
+            inheritance = "false"
+        else:
+            inheritance = "true"
+
+        body = {
+            "requests": [{
+                "insertDimension": {
+                    "range": {
+                    "sheetId": sheet_id,
+                    "dimension": "COLUMNS",
+                    "startIndex": col_index,
+                    "endIndex": col_index + q
+                },
+                "inheritFromBefore": inheritance
+                }
+            }]
+        }
+
+        request = service.spreadsheets().batchUpdate(spreadsheetId=ss_id, body=body)
+        response = request.execute()
+
+    except Exception as e:
+        PrintException()
+        raise e
+
+if module == "AddRow":
+    if not creds:
+        raise Exception(
+            "No hay credenciales ni token válidos, por favor configure sus credenciales")
+
+    ss_id = GetParams('ss_id')
+    sheet = GetParams("sheetName")
+    row = int(GetParams('row'))
+    q = int(GetParams("q"))
+    blank = GetParams('blank')
+    
+    try:
+
+        service = discovery.build('sheets', 'v4', credentials=creds)
+
+        data = service.spreadsheets().get(spreadsheetId=ss_id).execute()
+
+        for element in data["sheets"]:
+            if element["properties"]["title"] == sheet:
+                sheet_id = element["properties"]["sheetId"]
+
+        if blank is not None:
+            blank = eval(blank)
+            
+        row_index = row - 1
+
+        if blank == False or row_index == 0:
+            inheritance = "false"
+        else:
+            inheritance = "true"
+
+        body = {
+            "requests": [{
+                "insertDimension": {
+                    "range": {
+                    "sheetId": sheet_id,
+                    "dimension": "ROWS",
+                    "startIndex": row_index,
+                    "endIndex": row_index + q
+                },
+                "inheritFromBefore": inheritance
+                }
+            }]
+        }
+
+        request = service.spreadsheets().batchUpdate(spreadsheetId=ss_id, body=body)
+        response = request.execute()
+
+    except Exception as e:
+        PrintException()
+        raise e
 
 def get_existing_basic_filters(ss_id, service, startRow=0, endRow=1000) -> dict:
     params = {'spreadsheetId': ss_id,
