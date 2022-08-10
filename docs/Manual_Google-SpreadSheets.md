@@ -6,149 +6,150 @@
   
 Módulo para manejar Google SpreadSheet desde Rocketbot  
   
-![banner](/docs/imgs/Banner_C:\Users\jmsir\Desktop\RB\Rocketbot\modules\Google-SpreadSheets.png)
-## Como instalar este módulo
+<!-- ![banner]() -->
+
+## How to install this module
   
-__Descarga__ e __instala__ el contenido en la carpeta 'modules' en la ruta de rocketbot.  
+__Download__ and __install__ the content in 'modules' folder in Rocketbot path  
 
 
 
-## Descripción de los comandos
+## Description of the commands
 
-### Configurar credenciales G-Suite
+### Setup G-Suite credentials
   
-Obtiene los permisos para manejar Google SpreadSheet con Rocketbot
-|Parámetros|Descripción|ejemplo|
+Get permissions to handle Google SpreadSheet with Rocketbot
+|Parameters|Description|example|
 | --- | --- | --- |
-|Ruta||C:/ruta/a/credenciales.json|
+|Path||C:/path/to/credentials.json|
 
-### Crear Hoja de Cálculo
+### Create SpreadSheet
   
-Crea una nueva hoja de cálculo en Google SpreadSheet
-|Parámetros|Descripción|ejemplo|
+Create a new spreadsheet in Google SpreadSheet
+|Parameters|Description|example|
 | --- | --- | --- |
-|Nombre de la hoja de cálculo||Nombre|
-|Variable donde se guardará el ID||Variable|
+|SpreadSheet name||Name|
+|Variable where the ID will be saved||Variable|
 
-### Crear Hoja
+### Create Sheet
   
-Crear una nueva hoja en la Hoja de cálculo seleccionada
-|Parámetros|Descripción|ejemplo|
+Create a new sheet in SpreadSheet selected
+|Parameters|Description|example|
 | --- | --- | --- |
-|Ingrese Spreadsheet ID||Spreadsheet ID|
-|Nombre de la hoja||Nombre|
+|Spreadsheet ID||Spreadsheet ID|
+|Sheet name||Name|
 
-### Borrar Hoja
+### Delete Sheet
   
-Elimina una hoja de la Hoja de cálculo seleccionada
-|Parámetros|Descripción|ejemplo|
+Delete a sheet from SpreadSheet selected
+|Parameters|Description|example|
 | --- | --- | --- |
-|Ingrese Spreadsheet ID||Spreadsheet ID|
-|Nombre de la hoja a borrar||Nombre de la hoja|
+|Spreadsheet ID||Spreadsheet ID|
+|Sheet name for delete||Sheet Name|
 
-### Escribir en celdas
+### Set cells
   
-Escribe en una celda o rango de celdas desde una hoja de cálculo seleccionada
-|Parámetros|Descripción|ejemplo|
+Set a cell or range of cells from spreadsheet selected
+|Parameters|Description|example|
 | --- | --- | --- |
-|Ingrese Spreadsheet ID||Spreadsheet ID|
-|Ingrese nombre de la hoja||Hoja|
-|Ingrese la celda a escribir ||A1|
-|Ingrese texto ||[["data","data"],["data","data"]]|
+|Spreadsheet ID||Spreadsheet ID|
+|Sheet name||Sheet|
+|Enter cell ||A1|
+|Text ||[["data","data"],["data","data"]]|
 
-### Leer celdas
+### Read cells
   
-Lee celdas o rango de celdas desde una hoja de cálculo seleccionada, ejemplo A1 o A1:B5
-|Parámetros|Descripción|ejemplo|
+Read a cell or range of cells from SpreadSheet selected, eg. A1 or A1:B5
+|Parameters|Description|example|
 | --- | --- | --- |
-|Ingrese Spreadsheet ID||Spreadsheet ID|
-|Ingrese nombre de la hoja||Hoja|
-|Ingrese celda o rango de celdas ||A1|
-|Resultado||Variable|
+|Spreadsheet ID||Spreadsheet ID|
+|Sheet name||Sheet|
+|Enter cell or range of cells ||A1|
+|Result||Variable|
 
-### Obtener hojas
+### Get sheets
   
-Obtener lista de hojas con su id desde una hoja de cálculo seleccionada
-|Parámetros|Descripción|ejemplo|
+Get list of sheets with your id from a spreadsheet selected
+|Parameters|Description|example|
 | --- | --- | --- |
-|Ingrese Spreadsheet ID||Spreadsheet ID|
-|Resultado||Variable|
+|Spreadsheet ID||Spreadsheet ID|
+|Result||Variable|
 
 ### Contar filas
   
-Cuenta las filas de una hoja seleccionada
-|Parámetros|Descripción|ejemplo|
+Count rows
+|Parameters|Description|example|
 | --- | --- | --- |
-|Ingrese Spreadsheet ID||Spreadsheet ID|
-|Ingrese nombre de la hoja||Hoja|
-|Resultado||Variable|
+|Spreadsheet ID||Spreadsheet ID|
+|Sheet name||Sheet|
+|Result||Variable|
 
-### Agregar columna
+### Add column
   
-Agrega una columna desde una hoja de cálculo seleccionada
-|Parámetros|Descripción|ejemplo|
+Add a column from spreadsheet selected
+|Parameters|Description|example|
 | --- | --- | --- |
-|Ingrese Spreadsheet ID||Spreadsheet ID|
-|Ingrese nombre de la hoja||Hoja|
-|Columna||A|
-|Cantidad||Cantidad|
-|Mantener formato|||
+|Spreadsheet ID||Spreadsheet ID|
+|Sheet name||Sheet|
+|Column||A|
+|Quantity||Quantity|
+|Keep format|||
 
-### Agregar fila
+### Add row
   
-Agregar una fila desde una hoja de cálculo seleccionada
-|Parámetros|Descripción|ejemplo|
+Add a row from spreadsheet selected
+|Parameters|Description|example|
 | --- | --- | --- |
-|Ingrese Spreadsheet ID||Spreadsheet ID|
-|Ingrese nombre de la hoja||Hoja|
-|Fila||5|
-|Cantidad||Cantidad|
-|Mantener formato|||
+|Spreadsheet ID||Spreadsheet ID|
+|Sheet name||Sheet|
+|Row||5|
+|Quantity||Quantity|
+|Keep format|||
 
-### Eliminar columna
+### Delete column
   
-Elimina una columna desde una hoja de cálculo seleccionada
-|Parámetros|Descripción|ejemplo|
+Delete a column from spreadsheet selected
+|Parameters|Description|example|
 | --- | --- | --- |
-|Ingrese Spreadsheet ID||Spreadsheet ID|
-|Ingrese nombre de la hoja||Hoja|
-|Columna||A|
-|Dejar en blanco|||
+|Spreadsheet ID||Spreadsheet ID|
+|Sheet name||Sheet|
+|Column||A|
+|Blank|||
 
-### Eliminar fila
+### Delete row
   
-Elimina una fila desde una hoja de cálculo seleccionada
-|Parámetros|Descripción|ejemplo|
+Delete a row from spreadsheet selected
+|Parameters|Description|example|
 | --- | --- | --- |
-|Ingrese Spreadsheet ID||Spreadsheet ID|
-|Ingrese nombre de la hoja||Hoja|
-|Fila||5-7|
-|Dejar en blanco|||
+|Spreadsheet ID||Spreadsheet ID|
+|Sheet name||Sheet|
+|Row||5-7|
+|Blank|||
 
-### Filtrar datos
+### Filter data
   
-Filtra datos en una hoja de cáclulo seleccionada
-|Parámetros|Descripción|ejemplo|
+Filter data in a spreadsheet selected
+|Parameters|Description|example|
 | --- | --- | --- |
-|Ingrese Spreadsheet ID||Spreadsheet ID|
-|Ingrese nombre de la hoja||Hoja|
-|Ingrese la columna||Columna|
-|Ingrese el valor||Valor a filtrar|
+|Spreadsheet ID||Spreadsheet ID|
+|Sheet name||Sheet|
+|Column name||Column|
+|Ingrese el valor||Value to filter|
 
-### Desfiltrar datos
+### Unfilter data
   
-Desfiltra datos en una hoja de cáclulo seleccionada
-|Parámetros|Descripción|ejemplo|
+Filter data in a spreadsheet selected
+|Parameters|Description|example|
 | --- | --- | --- |
-|Ingrese Spreadsheet ID||Spreadsheet ID|
-|Ingrese nombre de la hoja||Hoja|
+|Spreadsheet ID||Spreadsheet ID|
+|Sheet name||Sheet|
 
-### Obtener celdas filtrdas
+### Get cells filtered
   
-Obtiene las celdas filtradas
-|Parámetros|Descripción|ejemplo|
+Get cells filtered
+|Parameters|Description|example|
 | --- | --- | --- |
-|Ingrese Spreadsheet ID||Spreadsheet ID|
-|Ingrese nombre de la hoja||Hoja:|
-|Rango||A1:B2|
-|Resultado||Variable|
+|Spreadsheet ID||Spreadsheet ID|
+|Sheet name||Sheet:|
+|Range ||A1:B2|
+|Result||Variable|

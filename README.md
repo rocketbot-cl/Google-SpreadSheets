@@ -4,9 +4,9 @@
 
 # Google SpreadSheet
   
-Módulo para manejar Google SpreadSheet desde Rocketbot  
+Module to handle Google SpreadSheet from Rocketbot   
 
-## Howto install this module
+## How to install this module
   
 __Download__ and __install__ the content in 'modules' folder in Rocketbot path  
 
