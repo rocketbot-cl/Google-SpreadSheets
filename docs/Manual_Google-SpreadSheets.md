@@ -6,13 +6,27 @@
   
 Módulo para manejar Google SpreadSheet desde Rocketbot  
   
-<!-- ![banner]() -->
-
+![banner](imgs/Banner_Google-SpreadSheets.png)
 ## How to install this module
   
 __Download__ and __install__ the content in 'modules' folder in Rocketbot path  
 
+## How to use this module
 
+Before using this module, you must register your app into the Google Cloud Portal.
+
+1. Sign in with a google account to the following link: https://console.cloud.google.com/projectcreate?previousPage=%2Fhome%2Fdashboard
+2. Complete the form and then press Create
+3. Within the Navigation Menu (Left), enter API and Services
+4. In the upper section, go to "+ ENABLE API AND SERVICES"
+5. Search for "Google Sheets API", select it and finally enable it
+6. Again, go to the Navigation Menu (Left) > API and Services > Credentials
+7. Press Create Credentials > OAuth Client ID, select Application Type: Desktop App, enter a name and create.
+8. Download the credentials JSON file.
+9. Finally go to the Navigation Menu (Left) > Consent Screen and add a user in the "Test Users" section
+
+Note: When the first connection is made, a .pickle file will be created in the Rocketbot root folder, to connect to the same service from another account you must delete
+that file. Do the same procedure for the case in which the credentials expire.
 
 ## Description of the commands
 
@@ -33,7 +47,7 @@ Create a new spreadsheet in Google SpreadSheet
 
 ### Create Sheet
   
-Create a new sheet in SpreadSheet selected
+Create a new sheet in selected SpreadSheet
 |Parameters|Description|example|
 | --- | --- | --- |
 |Spreadsheet ID||Spreadsheet ID|
@@ -41,35 +55,35 @@ Create a new sheet in SpreadSheet selected
 
 ### Delete Sheet
   
-Delete a sheet from SpreadSheet selected
+Delete a sheet from selected SpreadSheet
 |Parameters|Description|example|
 | --- | --- | --- |
 |Spreadsheet ID||Spreadsheet ID|
-|Sheet name for delete||Sheet Name|
+|Name of the sheet to delete||Sheet Name|
 
-### Set cells
+### Write cells
   
-Set a cell or range of cells from spreadsheet selected
+Write to a cell or range of cells in the selected Spreadsheet
 |Parameters|Description|example|
 | --- | --- | --- |
 |Spreadsheet ID||Spreadsheet ID|
 |Sheet name||Sheet|
-|Enter cell ||A1|
+|Cell to write ||A1|
 |Text ||[["data","data"],["data","data"]]|
 
 ### Read cells
   
-Read a cell or range of cells from SpreadSheet selected, eg. A1 or A1:B5
+Read a cell or range of cells from the selected Spreadsheet, example A1 or A1:B5
 |Parameters|Description|example|
 | --- | --- | --- |
 |Spreadsheet ID||Spreadsheet ID|
 |Sheet name||Sheet|
-|Enter cell or range of cells ||A1|
+|Cell or range of cells ||A1|
 |Result||Variable|
 
 ### Get sheets
   
-Get list of sheets with your id from a spreadsheet selected
+Get list of sheets with their ID of the selected Spreadsheet
 |Parameters|Description|example|
 | --- | --- | --- |
 |Spreadsheet ID||Spreadsheet ID|
@@ -77,7 +91,7 @@ Get list of sheets with your id from a spreadsheet selected
 
 ### Contar filas
   
-Count rows
+Count the rows of the selected sheet
 |Parameters|Description|example|
 | --- | --- | --- |
 |Spreadsheet ID||Spreadsheet ID|
@@ -86,7 +100,7 @@ Count rows
 
 ### Add column
   
-Add a column from spreadsheet selected
+Add Columns to Selected Spreadsheet
 |Parameters|Description|example|
 | --- | --- | --- |
 |Spreadsheet ID||Spreadsheet ID|
@@ -97,7 +111,7 @@ Add a column from spreadsheet selected
 
 ### Add row
   
-Add a row from spreadsheet selected
+Add rows to the selected Spreadsheet
 |Parameters|Description|example|
 | --- | --- | --- |
 |Spreadsheet ID||Spreadsheet ID|
@@ -108,7 +122,7 @@ Add a row from spreadsheet selected
 
 ### Delete column
   
-Delete a column from spreadsheet selected
+Delete a column from a selected Spreadsheet
 |Parameters|Description|example|
 | --- | --- | --- |
 |Spreadsheet ID||Spreadsheet ID|
@@ -118,7 +132,7 @@ Delete a column from spreadsheet selected
 
 ### Delete row
   
-Delete a row from spreadsheet selected
+Delete a row from a selected Spreadsheet
 |Parameters|Description|example|
 | --- | --- | --- |
 |Spreadsheet ID||Spreadsheet ID|
@@ -128,25 +142,25 @@ Delete a row from spreadsheet selected
 
 ### Filter data
   
-Filter data in a spreadsheet selected
+Filter data in the selected Spreadsheet
 |Parameters|Description|example|
 | --- | --- | --- |
 |Spreadsheet ID||Spreadsheet ID|
 |Sheet name||Sheet|
-|Column name||Column|
-|Ingrese el valor||Value to filter|
+|Column||Column|
+|Value||Value to filter|
 
 ### Unfilter data
   
-Filter data in a spreadsheet selected
+Unfilter data in the selected Spreadsheet
 |Parameters|Description|example|
 | --- | --- | --- |
 |Spreadsheet ID||Spreadsheet ID|
 |Sheet name||Sheet|
 
-### Get cells filtered
+### Get filtered cells
   
-Get cells filtered
+Get the filtered cells
 |Parameters|Description|example|
 | --- | --- | --- |
 |Spreadsheet ID||Spreadsheet ID|

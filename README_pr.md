@@ -4,16 +4,30 @@
 
 # Planilhas Google
   
-Módulo para lidar com o Google SpreadSheet do Rocketbot  
+Módulo para manejar Google SpreadSheet desde Rocketbot  
 
 ## Como instalar este módulo
   
 __Baixe__ e __instale__ o conteúdo na pasta 'modules' no caminho do Rocketbot  
 
+## Como usar este módulo
 
+Antes de usar este módulo, você deve registrar seu aplicativo no Google Cloud Portal.
+
+1. Faça login com uma conta do Google no seguinte link: https://console.cloud.google.com/projectcreate?previousPage=%2Fhome%2Fdashboard
+2. Preencha o formulário e pressione Criar
+3. No Menu de Navegação (Esquerda), insira API e Serviços
+4. Na seção superior, vá para "+ ATIVAR API E SERVIÇOS"
+5. Pesquise "API do Planilhas Google", selecione-o e, finalmente, ative-o
+6. Novamente, vá para o Menu de Navegação (Esquerda) > API e Serviços > Credenciais
+7. Pressione Create Credentials > OAuth Client ID, selecione Application Type: Desktop App, digite um nome e crie.
+8. Baixe o arquivo JSON de credenciais.
+9. Por fim, vá para o Menu de Navegação (Esquerda) > Tela de Consentimento e adicione um usuário na seção "Testar usuários".
+
+Nota: Quando a primeira conexão for feita, um arquivo .pickle será criado na pasta raiz do Rocketbot, para conectar ao mesmo serviço de outra conta, você precisa deletar
+esse arquivo Faça o mesmo procedimento caso as credenciais expirem.
 
 ## Overview
-
 
 1. Configurar credenciais G-Suite  
 Obtém permissão para trabalhar no Google SpreadSheet com o Rocketbot
@@ -22,43 +36,43 @@ Obtém permissão para trabalhar no Google SpreadSheet com o Rocketbot
 Cria uma nova Planilha do google
 
 3. Ciar Página  
-Cria uma nova página na planilha selecionada
+Cria uma nova página na Planilha selecionada
 
 4. Excluir Página  
-Excluir uma página na planilha selecionada
+Excluir uma página na Planilha selecionada
 
 5. Escrever em células  
-Escreve em uma célula ou intervalo de células em uma planilha selecionada
+Gravar em uma célula ou intervalo de células na Planilha selecionada
 
 6. Ler células  
-Ler células ou intervalo de células em uma planilha selecionada, exemplo A1 ou A1:B5
+Ler uma célula ou intervalo de células da planilha selecionada, exemplo A1 ou A1:B5
 
 7. Obter páginas  
-Obtém uma lista de páginas com o seu id em uma planilha selecionada
+Obter lista de planilhas com o ID da Planilha selecionada
 
 8. Contar linhas  
-Conta as linhas de uma planilha selecionada
+Contar as linhas da planilha selecionada
 
 9. Adicionar Coluna  
-Adicionar uma coluna de uma planilha selecionada
+Adicionar colunas à Planilha selecionada
 
 10. Adicionar linha  
-Adicionar uma linha da planilha selecionada
+Adicionar linhas à Planilha selecionada
 
 11. Excluir Coluna  
-Excluir uma coluna de uma planilha selecionada
+Excluir uma coluna de uma Planilha selecionada
 
 12. Excluir linha  
-Excluir uma linha da planilha selecionada
+Excluir uma linha de uma planilha selecionada
 
 13. Filtrar dados  
-Filtra dados da planilha selecionada
+Filtrar dados na Planilha selecionada
 
 14. Não filtrar dados  
-Não filtrar dados da planilha selecionada
+Não filtrar dados na Planilha selecionada
 
 15. Obter células filtrdas  
-Obter células filtrdas  
+Obtenha as células filtradas  
 
 
 
