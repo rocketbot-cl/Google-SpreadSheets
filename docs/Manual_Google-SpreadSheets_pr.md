@@ -21,9 +21,12 @@ Antes de usar este módulo, você deve registrar seu aplicativo no Google Cloud 
 4. Na seção superior, vá para "+ ATIVAR API E SERVIÇOS"
 5. Pesquise "API do Planilhas Google", selecione-o e, finalmente, ative-o
 6. Novamente, vá para o Menu de Navegação (Esquerda) > API e Serviços > Credenciais
-7. Pressione Create Credentials > OAuth Client ID, selecione Application Type: Desktop App, digite um nome e crie.
-8. Baixe o arquivo JSON de credenciais.
+7. Pressione Create Credentials > OAuth Client ID, selecione Application Type: Desktop App, digite um nome e crie
+8. Baixe o arquivo JSON de credenciais
 9. Por fim, vá para o Menu de Navegação (Esquerda) > Tela de Consentimento e adicione um usuário na seção "Testar usuários"
+
+Nota: Quando a primeira conexão for feita, um arquivo .pickle será criado na pasta raiz do Rocketbot, para conectar ao mesmo serviço de outra conta, você precisa deletar
+esse arquivo Faça o mesmo procedimento caso as credenciais expirem.
 
 ## Descrição do comando
 

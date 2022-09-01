@@ -21,10 +21,12 @@ Antes de usar este modulo, es necesario registrar tu aplicación en el portal de
 4. En la sección superior, ingresar a "+ HABILITAR API Y SERVICIOS"
 5. Buscar "Google Sheets API", seleccionar y por ultimo habilitar
 6. Nuevamente dirigirse a Menu de Navegación (Izquierdo) > API y Servicios > Credenciales
-7. Presionas Crear Credenciales > ID de cliente de OAuth, seleccionar como Tipo de Aplicación: App de Escritorio, colocar un nombre y crear.
-8. Descargar el achivo JSON de credenciales.
+7. Presionas Crear Credenciales > ID de cliente de OAuth, seleccionar como Tipo de Aplicación: App de Escritorio, colocar un nombre y crear
+8. Descargar el achivo JSON de credenciales
 9. Por ultimo dirigirse a Menu de Navegación (Izquierdo) > Pantalla de Consentimiento y agregar usuario dentro de la seccion "Usuarios de prueba"
 
+Nota: Cuando se realice la primera conexión, se creará un archivo .pickle en la carpeta raíz de Rocketbot, para conectarse al mismo servicio desde otra cuenta, debe eliminar
+ese archivo Realice el mismo procedimiento para el caso en que caduquen las credenciales.
 
 ## Descripción de los comandos
 
