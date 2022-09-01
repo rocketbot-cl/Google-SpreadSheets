@@ -14,7 +14,7 @@ Before using this module, you must register your app into the Google Cloud Porta
 9. Finally go to the Navigation Menu (Left) > Consent Screen and add a user in the "Test Users" section
 
 Note: When the first connection is made, a .pickle file will be created in the Rocketbot root folder, to connect to the same service from another account you must delete
-that file. Same procedure for the case in which the credentials expire.
+that file. Do the same procedure for the case in which the credentials expire.
 
 ---
 
@@ -32,6 +32,9 @@ Antes de usar este modulo, es necesario registrar tu aplicación en el portal de
 8. Descargar el achivo JSON de credenciales.
 9. Por ultimo dirigirse a Menu de Navegación (Izquierdo) > Pantalla de Consentimiento y agregar usuario dentro de la seccion "Usuarios de prueba"
 
+Nota: Cuando se realice la primera conexión, se creará un archivo .pickle en la carpeta raíz de Rocketbot, para conectarse al mismo servicio desde otra cuenta, debe eliminar
+ese archivo Realice el mismo procedimiento para el caso en que caduquen las credenciales.
+
 ---
 
 ## Como usar este módulo
@@ -47,3 +50,6 @@ Antes de usar este módulo, você deve registrar seu aplicativo no Google Cloud 
 7. Pressione Create Credentials > OAuth Client ID, selecione Application Type: Desktop App, digite um nome e crie.
 8. Baixe o arquivo JSON de credenciais.
 9. Por fim, vá para o Menu de Navegação (Esquerda) > Tela de Consentimento e adicione um usuário na seção "Testar usuários"
+
+Nota: Quando a primeira conexão for feita, um arquivo .pickle será criado na pasta raiz do Rocketbot, para conectar ao mesmo serviço de outra conta, você precisa deletar
+esse arquivo Faça o mesmo procedimento caso as credenciais expirem.
