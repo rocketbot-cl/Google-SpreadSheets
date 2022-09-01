@@ -1,8 +1,8 @@
 {
-  "author": "Danilo Toro, Nicolas Liendro",
+  "author": "Danilo Toro, Nicolas Liendro, Juan Siro",
   "description": "Módulo para manejar Google SpreadSheet desde Rocketbot",
   "disclaimer": "THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM “AS IS” WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.",
-  "version": "2.2",
+  "version": "2.2.1",
   "license": "MIT",
   "homepage": "http://rockertbot.cl",
   "linux": true,
@@ -150,19 +150,19 @@
     {
       "en": {
         "title": "Create Sheet",
-        "description": "Create a new sheet in SpreadSheet selected",
+        "description": "Create a new sheet in selected SpreadSheet",
         "title_options": null,
         "options": null
       },
       "es": {
         "title": "Crear Hoja",
-        "description": "Crear una nueva hoja en la Hoja de cálculo seleccionada",
+        "description": "Crear una nueva hoja en la Hoja de Cálculo seleccionada",
         "title_options": null,
         "options": null
       },
        "pr": {
         "title": "Ciar Página",
-        "description": "Cria uma nova página na planilha selecionada",
+        "description": "Cria uma nova página na Planilha selecionada",
         "title_options": null,
         "options": null
       },
@@ -177,9 +177,9 @@
               "pr": "ID da Planilha"
             },
             "title": {
-              "es": "Ingrese Spreadsheet ID:",
+              "es": "Spreadsheet ID:",
               "en": "Spreadsheet ID:",
-              "pr": " ID da Planilha:"
+              "pr": "ID da Planilha:"
             },
             "id": "ss_id",
             "css": "col-md-12"
@@ -217,19 +217,19 @@
     {
       "en": {
         "title": "Delete Sheet",
-        "description": "Delete a sheet from SpreadSheet selected",
+        "description": "Delete a sheet from selected SpreadSheet",
         "title_options": null,
         "options": null
       },
       "es": {
         "title": "Borrar Hoja",
-        "description": "Elimina una hoja de la Hoja de cálculo seleccionada",
+        "description": "Elimina una hoja de la Hoja de Cálculo seleccionada",
         "title_options": null,
         "options": null
       },
       "pr": {
         "title": "Excluir Página",
-        "description": "Excluir uma página na planilha selecionada",
+        "description": "Excluir uma página na Planilha selecionada",
         "title_options": null,
         "options": null
       },
@@ -244,7 +244,7 @@
               "pr": "ID da Planilha"
             },
             "title": {
-              "es": "Ingrese Spreadsheet ID:",
+              "es": "Spreadsheet ID:",
               "en": "Spreadsheet ID:",
               "pr": "ID da Planilha:"
             },
@@ -260,7 +260,7 @@
             },
             "title": {
               "es": "Nombre de la hoja a borrar:",
-              "en": "Sheet name for delete:",
+              "en": "Name of the sheet to delete:",
               "pr": "Nome da página a ser excluida:"
             },
             "id": "sheetName",
@@ -283,20 +283,20 @@
     },
     {
       "en": {
-        "title": "Set cells",
-        "description": "Set a cell or range of cells from spreadsheet selected",
+        "title": "Write cells",
+        "description": "Write to a cell or range of cells in the selected Spreadsheet",
         "title_options": null,
         "options": null
       },
       "es": {
         "title": "Escribir en celdas",
-        "description": "Escribe en una celda o rango de celdas desde una hoja de cálculo seleccionada",
+        "description": "Escribe en una celda o rango de celdas en la Hoja de Cálculo seleccionada",
         "title_options": null,
         "options": null
       },
       "pr": {
         "title": "Escrever em células",
-        "description": "Escreve em uma célula ou intervalo de células em uma planilha selecionada",
+        "description": "Gravar em uma célula ou intervalo de células na Planilha selecionada",
         "title_options": null,
         "options": null
       },
@@ -311,7 +311,7 @@
               "pr": "ID da Planilha"
             },
             "title": {
-              "es": "Ingrese Spreadsheet ID:",
+              "es": "Spreadsheet ID:",
               "en": "Spreadsheet ID:",
               "pr": "ID da Planilha:"
             },
@@ -326,7 +326,7 @@
               "pr": "Página"
             },
             "title": {
-              "es": "Ingrese nombre de la hoja:",
+              "es": "Nombre de la hoja:",
               "en": "Sheet name:",
               "pr": "Nome da página:"
             },
@@ -341,9 +341,9 @@
               "pr": "A1"
             },
             "title": {
-              "es": "Ingrese la celda a escribir: ",
-              "en": "Enter cell: ",
-              "pr": "entre na célula para escrever:"
+              "es": "Celda a escribir: ",
+              "en": "Cell to write: ",
+              "pr": "Célula para escrever:"
             },
             "help": {
               "es": "Ejemplo Hoja 1!A1",
@@ -361,7 +361,7 @@
               "cn": "[[\"data\",\"data\"],[\"data\",\"data\"]]"
             },
             "title": {
-              "es": "Ingrese texto: ",
+              "es": "Texto: ",
               "en": "Text: ",
               "pr": "Texto: "
             },
@@ -386,19 +386,19 @@
     {
       "en": {
         "title": "Read cells",
-        "description": "Read a cell or range of cells from SpreadSheet selected, eg. A1 or A1:B5",
+        "description": "Read a cell or range of cells from the selected Spreadsheet, example A1 or A1:B5",
         "title_options": null,
         "options": null
       },
       "es": {
         "title": "Leer celdas",
-        "description": "Lee celdas o rango de celdas desde una hoja de cálculo seleccionada, ejemplo A1 o A1:B5",
+        "description": "Lee una celda o rango de celdas desde la Hoja de Cálculo seleccionada, ejemplo A1 o A1:B5",
         "title_options": null,
         "options": null
       },
       "pr": {
         "title": "Ler células",
-        "description": "Ler células ou intervalo de células em uma planilha selecionada, exemplo A1 ou A1:B5",
+        "description": "Ler uma célula ou intervalo de células da planilha selecionada, exemplo A1 ou A1:B5",
         "title_options": null,
         "options": null
       },
@@ -413,7 +413,7 @@
               "pr": "ID da Planilha"
             },
             "title": {
-              "es": "Ingrese Spreadsheet ID",
+              "es": "Spreadsheet ID",
               "en": "Spreadsheet ID",
               "pr": "ID da Planilha"
             },
@@ -428,7 +428,7 @@
               "pr": "Página"
             },
             "title": {
-              "es": "Ingrese nombre de la hoja:",
+              "es": "Nombre de la hoja:",
               "en": "Sheet name:",
               "pr": "Nome da página:"
             },
@@ -443,9 +443,9 @@
               "pr": "A1"
             },
             "title": {
-              "es": "Ingrese celda o rango de celdas: ",
-              "en": "Enter cell or range of cells: ",
-              "pr": "Insira uma célula ou intervalo de células: "
+              "es": "Celda o rango de celdas: ",
+              "en": "Cell or range of cells: ",
+              "pr": "Célula ou intervalo de células: "
             },
             "id": "range",
             "css": "col-md-6"
@@ -488,19 +488,19 @@
     {
       "en": {
         "title": "Get sheets",
-        "description": "Get list of sheets with your id from a spreadsheet selected",
+        "description": "Get list of sheets with their ID of the selected Spreadsheet",
         "title_options": null,
         "options": null
       },
       "es": {
         "title": "Obtener hojas",
-        "description": "Obtener lista de hojas con su id desde una hoja de cálculo seleccionada",
+        "description": "Obtener lista de hojas con su ID de la Hoja de Cálculo seleccionada",
         "title_options": null,
         "options": null
       },
        "pr": {
         "title": "Obter páginas",
-        "description": "Obtém uma lista de páginas com o seu id em uma planilha selecionada",
+        "description": "Obter lista de planilhas com o ID da Planilha selecionada",
         "title_options": null,
         "options": null
       },
@@ -515,7 +515,7 @@
               "pr": "ID da Planilha"
             },
             "title": {
-              "es": "Ingrese Spreadsheet ID:",
+              "es": "Spreadsheet ID:",
               "en": "Spreadsheet ID:",
               "pr": "ID da Planilha:"
             },
@@ -560,19 +560,19 @@
     {
       "en": {
         "title": "Contar filas",
-        "description": "Count rows",
+        "description": "Count the rows of the selected sheet",
         "title_options": null,
         "options": null
       },
       "es": {
         "title": "Contar filas",
-        "description": "Cuenta las filas de una hoja seleccionada",
+        "description": "Cuenta las filas de la hoja seleccionada",
         "title_options": null,
         "options": null
       },
       "pr": {
         "title": "Contar linhas",
-        "description": "Conta as linhas de uma planilha selecionada",
+        "description": "Contar as linhas da planilha selecionada",
         "title_options": null,
         "options": null
       },
@@ -587,7 +587,7 @@
               "pr": "ID da Planilha"
             },
             "title": {
-              "es": "Ingrese Spreadsheet ID:",
+              "es": "Spreadsheet ID:",
               "en": "Spreadsheet ID:",
               "pr": "ID da Planilha:"
             },
@@ -602,7 +602,7 @@
               "pr": "Página"
             },
             "title": {
-              "es": "Ingrese nombre de la hoja:",
+              "es": "Nombre de la hoja:",
               "en": "Sheet name:",
               "pr": "Nome da página:"
             },
@@ -647,19 +647,19 @@
     {
       "en": {
         "title": "Add column",
-        "description": "Add a column from spreadsheet selected",
+        "description": "Add Columns to Selected Spreadsheet",
         "title_options": null,
         "options": null
       },
       "es": {
         "title": "Agregar columna",
-        "description": "Agrega una columna desde una hoja de cálculo seleccionada",
+        "description": "Agregar columnas a la Hoja de Cálculo seleccionada",
         "title_options": null,
         "options": null
       },
       "pr": {
         "title": "Adicionar Coluna",
-        "description": "Adicionar uma coluna de uma planilha selecionada",
+        "description": "Adicionar colunas à Planilha selecionada",
         "title_options": null,
         "options": null
       },
@@ -674,7 +674,7 @@
               "pr": "ID da Planilha"
             },
             "title": {
-              "es": "Ingrese Spreadsheet ID",
+              "es": "Spreadsheet ID",
               "en": "Spreadsheet ID",
               "pr": "ID da Planilha"
             },
@@ -689,7 +689,7 @@
               "pr": "Página"
             },
             "title": {
-              "es": "Ingrese nombre de la hoja:",
+              "es": "Nombre de la hoja:",
               "en": "Sheet name:",
               "pr": "Nome da página:"
             },
@@ -724,9 +724,9 @@
               "pr": "Quantidade:"
             },
             "help": {
-              "en": "The columns will be added from the selected column to its right",
-              "es": "Las columnas seran agregadas desde la columna seleccionada hacia su derecha",
-              "pr": "As colunas serão adicionadas da coluna selecionada à sua direita"
+              "en": "The columns will be added to the left of the selected column, moving it 'x' spaces to the right.",
+              "es": "Las columnas se agregarán a la izquierda de la columna seleccionada, moviéndola 'x' espacios a la derecha.",
+              "pr": "As colunas serão adicionadas à esquerda da coluna selecionada, movendo 'x' espaços para a direita."
             },
             "id": "q",
             "css": "col-md-4"
@@ -769,19 +769,19 @@
     {
       "en": {
         "title": "Add row",
-        "description": "Add a row from spreadsheet selected",
+        "description": "Add rows to the selected Spreadsheet",
         "title_options": null,
         "options": null
       },
       "es": {
         "title": "Agregar fila",
-        "description": "Agregar una fila desde una hoja de cálculo seleccionada",
+        "description": "Agregar filas a la Hoja de Cálculo seleccionada",
         "title_options": null,
         "options": null
       },
        "pr": {
         "title": "Adicionar linha",
-        "description": "Adicionar uma linha da planilha selecionada",
+        "description": "Adicionar linhas à Planilha selecionada",
         "title_options": null,
         "options": null
       },
@@ -796,7 +796,7 @@
               "pr": "ID da Planilha"
             },
             "title": {
-              "es": "Ingrese Spreadsheet ID",
+              "es": "Spreadsheet ID",
               "en": "Spreadsheet ID",
               "pr": "ID da Planilha"
             },
@@ -811,7 +811,7 @@
               "pr": "Página"
             },
             "title": {
-              "es": "Ingrese nombre de la hoja:",
+              "es": "Nombre de la hoja:",
               "en": "Sheet name:",
               "pr": "Nome da página:"
             },
@@ -846,9 +846,9 @@
               "pr": "Quantidade:"
             },
             "help": {
-              "en": "The rows will be added from the selected column to its right",
-              "es": "Las filas seran agregadas desde la columna seleccionada hacia su derecha",
-              "pr": "As linhas serão adicionadas da coluna selecionada à sua direita"
+              "en": "The rows will be added over of the selected row, moving it 'x' spaces downwards.",
+              "es": "Las filas se agregarán sobre la fila seleccionada, moviéndola 'x' espacios hacia abajo.",
+              "pr": "As linhas serão adicionadas sobre a linha selecionada, movendo os espaços 'x' para baixo."
             },
             "id": "q",
             "css": "col-md-4"
@@ -891,19 +891,19 @@
     {
       "en": {
         "title": "Delete column",
-        "description": "Delete a column from spreadsheet selected",
+        "description": "Delete a column from a selected Spreadsheet",
         "title_options": null,
         "options": null
       },
       "es": {
         "title": "Eliminar columna",
-        "description": "Elimina una columna desde una hoja de cálculo seleccionada",
+        "description": "Elimina una columna de una Hoja de Cálculo seleccionada",
         "title_options": null,
         "options": null
       },
       "pr": {
         "title": "Excluir Coluna",
-        "description": "Excluir uma coluna de uma planilha selecionada",
+        "description": "Excluir uma coluna de uma Planilha selecionada",
         "title_options": null,
         "options": null
       },
@@ -918,7 +918,7 @@
               "pr": "ID da Planilha"
             },
             "title": {
-              "es": "Ingrese Spreadsheet ID",
+              "es": "Spreadsheet ID",
               "en": "Spreadsheet ID",
               "pr": "ID da Planilha"
             },
@@ -933,7 +933,7 @@
               "pr": "Página"
             },
             "title": {
-              "es": "Ingrese nombre de la hoja:",
+              "es": "Nombre de la hoja:",
               "en": "Sheet name:",
               "pr": "Nome da página:"
             },
@@ -993,19 +993,19 @@
     {
       "en": {
         "title": "Delete row",
-        "description": "Delete a row from spreadsheet selected",
+        "description": "Delete a row from a selected Spreadsheet",
         "title_options": null,
         "options": null
       },
       "es": {
         "title": "Eliminar fila",
-        "description": "Elimina una fila desde una hoja de cálculo seleccionada",
+        "description": "Elimina una fila de una Hoja de Cálculo seleccionada",
         "title_options": null,
         "options": null
       },
        "pr": {
         "title": "Excluir linha",
-        "description": "Excluir uma linha da planilha selecionada",
+        "description": "Excluir uma linha de uma planilha selecionada",
         "title_options": null,
         "options": null
       },
@@ -1020,7 +1020,7 @@
               "pr": "ID da Planilha"
             },
             "title": {
-              "es": "Ingrese Spreadsheet ID",
+              "es": "Spreadsheet ID",
               "en": "Spreadsheet ID",
               "pr": "ID da Planilha"
             },
@@ -1035,7 +1035,7 @@
               "pr": "Página"
             },
             "title": {
-              "es": "Ingrese nombre de la hoja:",
+              "es": "Nombre de la hoja:",
               "en": "Sheet name:",
               "pr": "Nome da página:"
             },
@@ -1095,19 +1095,19 @@
     {
       "en": {
         "title": "Filter data",
-        "description": "Filter data in a spreadsheet selected",
+        "description": "Filter data in the selected Spreadsheet",
         "title_options": null,
         "options": null
       },
       "es": {
         "title": "Filtrar datos",
-        "description": "Filtra datos en una hoja de cáclulo seleccionada",
+        "description": "Filtrar datos en la Hoja de Cálculo seleccionada",
         "title_options": null,
         "options": null
       },
        "pr": {
         "title": "Filtrar dados",
-        "description": "Filtra dados da planilha selecionada",
+        "description": "Filtrar dados na Planilha selecionada",
         "title_options": null,
         "options": null
       },
@@ -1122,7 +1122,7 @@
               "pr": "ID da Planilha"
             },
             "title": {
-              "es": "Ingrese Spreadsheet ID:",
+              "es": "Spreadsheet ID:",
               "en": "Spreadsheet ID:",
               "pr": "ID da Planilha:"
             },
@@ -1137,7 +1137,7 @@
               "pr": "Página"
             },
             "title": {
-              "es": "Ingrese nombre de la hoja:",
+              "es": "Nombre de la hoja:",
               "en": "Sheet name:",
               "pr": "Nome da página:"
             },
@@ -1152,8 +1152,8 @@
               "pr": "Coluna"
             },
             "title": {
-              "es": "Ingrese la columna:",
-              "en": "Column name:",
+              "es": "Columna:",
+              "en": "Column:",
               "pr": "Coluna:"
             },
             "id": "col",
@@ -1167,9 +1167,9 @@
               "pr": "Valor para filtrar"
             },
             "title": {
-              "es": "Ingrese el valor:",
-              "en": "Ingrese el valor:",
-              "pr": "Insira o valor:"
+              "es": "Valor:",
+              "en": "Value:",
+              "pr": "Valor:"
             },
             "id": "valor_filtro",
             "css": "col-md-4"
@@ -1192,19 +1192,19 @@
     {
       "en": {
         "title": "Unfilter data",
-        "description": "Filter data in a spreadsheet selected",
+        "description": "Unfilter data in the selected Spreadsheet",
         "title_options": null,
         "options": null
       },
       "es": {
         "title": "Desfiltrar datos",
-        "description": "Desfiltra datos en una hoja de cáclulo seleccionada",
+        "description": "Desfiltrar datos en la Hoja de Cálculo seleccionada",
         "title_options": null,
         "options": null
       },
        "pr": {
         "title": "Não filtrar dados",
-        "description": "Não filtrar dados da planilha selecionada",
+        "description": "Não filtrar dados na Planilha selecionada",
         "title_options": null,
         "options": null
       },
@@ -1219,7 +1219,7 @@
               "pr": "ID da Planilha"
             },
             "title": {
-              "es": "Ingrese Spreadsheet ID:",
+              "es": "Spreadsheet ID:",
               "en": "Spreadsheet ID:",
               "pr": "ID da Planilha:"
             },
@@ -1234,7 +1234,7 @@
               "pr": "Página"
             },
             "title": {
-              "es": "Ingrese nombre de la hoja:",
+              "es": "Nombre de la hoja:",
               "en": "Sheet name:",
               "pr": "Nome da página:"
             },
@@ -1258,20 +1258,20 @@
     },
     {
       "en": {
-        "title": "Get cells filtered",
-        "description": "Get cells filtered",
+        "title": "Get filtered cells",
+        "description": "Get the filtered cells",
         "title_options": null,
         "options": null
       },
       "es": {
-        "title": "Obtener celdas filtrdas",
+        "title": "Obtener celdas filtradas",
         "description": "Obtiene las celdas filtradas",
         "title_options": null,
         "options": null
       },
       "pr": {
         "title": "Obter células filtrdas",
-        "description": "Obter células filtrdas",
+        "description": "Obtenha as células filtradas",
         "title_options": null,
         "options": null
       },
@@ -1286,7 +1286,7 @@
               "pr": "ID da Planilha"
             },
             "title": {
-              "es": "Ingrese Spreadsheet ID",
+              "es": "Spreadsheet ID",
               "en": "Spreadsheet ID",
               "pr": "ID da Planilha"
             },
@@ -1301,7 +1301,7 @@
               "pr": "Página:"
             },
             "title": {
-              "es": "Ingrese nombre de la hoja:",
+              "es": "Nombre de la hoja:",
               "en": "Sheet name:",
               "pr": "Nome da página:"
             },

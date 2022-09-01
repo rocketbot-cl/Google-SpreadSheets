@@ -1,26 +1,7 @@
-## Como usar este modulo
-
-Antes de usar este modulo, es necesario registrar tu aplicación en el portal de Google Cloud. 
-
-Registración: 
-
-1. Ingresar con una cuenta de google al siguiente link: https://console.cloud.google.com/projectcreate?previousPage=%2Fhome%2Fdashboard
-2. Completar el formulario y luego presionar Crear
-3. Dentro del Menu de Navegación (Izquierdo), ingresar en API y Servicios
-4. En la sección superior, ingresar a "+ HABILITAR API Y SERVICIOS"
-5. Buscar "Google Sheets API", seleccionar y por ultimo habilitar
-6. Nuevamente dirigirse a Menu de Navegación (Izquierdo) > API y Servicios > Credenciales
-7. Presionas Crear Credenciales > ID de cliente de OAuth, seleccionar como Tipo de Aplicación: App de Escritorio, colocar un nombre y crear.
-8. Descargar el achivo JSON de credenciales.
-9. Por ultimo dirigirse a Menu de Navegación (Izquierdo) > Pantalla de Consentimiento y agregar usuario dentro de la seccion "Usuarios de prueba"
-
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ## How to use this module
 
 Before using this module, you must register your app into the Google Cloud Portal.
-
-Registrations.
 
 1. Sign in with a google account to the following link: https://console.cloud.google.com/projectcreate?previousPage=%2Fhome%2Fdashboard
 2. Complete the form and then press Create
@@ -32,13 +13,27 @@ Registrations.
 8. Download the credentials JSON file.
 9. Finally go to the Navigation Menu (Left) > Consent Screen and add a user in the "Test Users" section
 
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---
+
+## Como usar este modulo
+
+Antes de usar este modulo, es necesario registrar tu aplicación en el portal de Google Cloud. 
+
+1. Ingresar con una cuenta de google al siguiente link: https://console.cloud.google.com/projectcreate?previousPage=%2Fhome%2Fdashboard
+2. Completar el formulario y luego presionar Crear
+3. Dentro del Menu de Navegación (Izquierdo), ingresar en API y Servicios
+4. En la sección superior, ingresar a "+ HABILITAR API Y SERVICIOS"
+5. Buscar "Google Sheets API", seleccionar y por ultimo habilitar
+6. Nuevamente dirigirse a Menu de Navegación (Izquierdo) > API y Servicios > Credenciales
+7. Presionas Crear Credenciales > ID de cliente de OAuth, seleccionar como Tipo de Aplicación: App de Escritorio, colocar un nombre y crear.
+8. Descargar el achivo JSON de credenciales.
+9. Por ultimo dirigirse a Menu de Navegación (Izquierdo) > Pantalla de Consentimiento y agregar usuario dentro de la seccion "Usuarios de prueba"
+
+---
 
 ## Como usar este módulo
 
 Antes de usar este módulo, você deve registrar seu aplicativo no Google Cloud Portal.
-
-Registros.
 
 1. Faça login com uma conta do Google no seguinte link: https://console.cloud.google.com/projectcreate?previousPage=%2Fhome%2Fdashboard
 2. Preencha o formulário e pressione Criar

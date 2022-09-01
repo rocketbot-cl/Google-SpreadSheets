@@ -4,15 +4,26 @@
 
 # Planilhas Google
   
-Módulo para lidar com o Google SpreadSheet do Rocketbot 
+Módulo para manejar Google SpreadSheet desde Rocketbot  
   
-<!-- ![banner]() -->
-
+![banner](imgs/Banner_Google-SpreadSheets.png)
 ## Como instalar este módulo
   
 __Baixe__ e __instale__ o conteúdo na pasta 'modules' no caminho do Rocketbot  
 
+## Como usar este módulo
 
+Antes de usar este módulo, você deve registrar seu aplicativo no Google Cloud Portal.
+
+1. Faça login com uma conta do Google no seguinte link: https://console.cloud.google.com/projectcreate?previousPage=%2Fhome%2Fdashboard
+2. Preencha o formulário e pressione Criar
+3. No Menu de Navegação (Esquerda), insira API e Serviços
+4. Na seção superior, vá para "+ ATIVAR API E SERVIÇOS"
+5. Pesquise "API do Planilhas Google", selecione-o e, finalmente, ative-o
+6. Novamente, vá para o Menu de Navegação (Esquerda) > API e Serviços > Credenciais
+7. Pressione Create Credentials > OAuth Client ID, selecione Application Type: Desktop App, digite um nome e crie.
+8. Baixe o arquivo JSON de credenciais.
+9. Por fim, vá para o Menu de Navegação (Esquerda) > Tela de Consentimento e adicione um usuário na seção "Testar usuários"
 
 ## Descrição do comando
 
@@ -33,15 +44,15 @@ Cria uma nova Planilha do google
 
 ### Ciar Página
   
-Cria uma nova página na planilha selecionada
+Cria uma nova página na Planilha selecionada
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
-| ID da Planilha||ID da Planilha|
+|ID da Planilha||ID da Planilha|
 |Nome da página||Nome|
 
 ### Excluir Página
   
-Excluir uma página na planilha selecionada
+Excluir uma página na Planilha selecionada
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
 |ID da Planilha||ID da Planilha|
@@ -49,27 +60,27 @@ Excluir uma página na planilha selecionada
 
 ### Escrever em células
   
-Escreve em uma célula ou intervalo de células em uma planilha selecionada
+Gravar em uma célula ou intervalo de células na Planilha selecionada
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
 |ID da Planilha||ID da Planilha|
 |Nome da página||Página|
-|entre na célula para escrever||A1|
+|Célula para escrever||A1|
 |Texto ||[["data","data"],["data","data"]]|
 
 ### Ler células
   
-Ler células ou intervalo de células em uma planilha selecionada, exemplo A1 ou A1:B5
+Ler uma célula ou intervalo de células da planilha selecionada, exemplo A1 ou A1:B5
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
 |ID da Planilha||ID da Planilha|
 |Nome da página||Página|
-|Insira uma célula ou intervalo de células ||A1|
+|Célula ou intervalo de células ||A1|
 |Resultado||Variável|
 
 ### Obter páginas
   
-Obtém uma lista de páginas com o seu id em uma planilha selecionada
+Obter lista de planilhas com o ID da Planilha selecionada
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
 |ID da Planilha||ID da Planilha|
@@ -77,7 +88,7 @@ Obtém uma lista de páginas com o seu id em uma planilha selecionada
 
 ### Contar linhas
   
-Conta as linhas de uma planilha selecionada
+Contar as linhas da planilha selecionada
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
 |ID da Planilha||ID da Planilha|
@@ -86,7 +97,7 @@ Conta as linhas de uma planilha selecionada
 
 ### Adicionar Coluna
   
-Adicionar uma coluna de uma planilha selecionada
+Adicionar colunas à Planilha selecionada
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
 |ID da Planilha||ID da Planilha|
@@ -97,7 +108,7 @@ Adicionar uma coluna de uma planilha selecionada
 
 ### Adicionar linha
   
-Adicionar uma linha da planilha selecionada
+Adicionar linhas à Planilha selecionada
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
 |ID da Planilha||ID da Planilha|
@@ -108,7 +119,7 @@ Adicionar uma linha da planilha selecionada
 
 ### Excluir Coluna
   
-Excluir uma coluna de uma planilha selecionada
+Excluir uma coluna de uma Planilha selecionada
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
 |ID da Planilha||ID da Planilha|
@@ -118,7 +129,7 @@ Excluir uma coluna de uma planilha selecionada
 
 ### Excluir linha
   
-Excluir uma linha da planilha selecionada
+Excluir uma linha de uma planilha selecionada
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
 |ID da Planilha||ID da Planilha|
@@ -128,17 +139,17 @@ Excluir uma linha da planilha selecionada
 
 ### Filtrar dados
   
-Filtra dados da planilha selecionada
+Filtrar dados na Planilha selecionada
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
 |ID da Planilha||ID da Planilha|
 |Nome da página||Página|
 |Coluna||Coluna|
-|Insira o valor||Valor para filtrar|
+|Valor||Valor para filtrar|
 
 ### Não filtrar dados
   
-Não filtrar dados da planilha selecionada
+Não filtrar dados na Planilha selecionada
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
 |ID da Planilha||ID da Planilha|
@@ -146,7 +157,7 @@ Não filtrar dados da planilha selecionada
 
 ### Obter células filtrdas
   
-Obter células filtrdas
+Obtenha as células filtradas
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
 |ID da Planilha||ID da Planilha|
