@@ -134,6 +134,7 @@ if module == "CreateSheet":
     if result:
         sheetId = response["replies"][0]["addSheet"]["properties"]["sheetId"]
         SetVar(result, sheetId)
+
 if module == "DeleteSheet":
     if not creds:
         raise Exception(
@@ -245,7 +246,6 @@ if module == "GetSheets":
             "No hay credenciales ni token válidos, por favor configure sus credenciales")
 
     ss_id = GetParams('ss_id')
-    sheet = GetParams('sheetName')
     result = GetParams('result')
     
     service = discovery.build('sheets', 'v4', credentials=creds)
@@ -267,18 +267,18 @@ if module == "CountCells":
 
     try:
         ss_id = GetParams('ss_id')
-        sheet_name = GetParams('sheetName')
+        sheet = GetParams('sheetName')
         result = GetParams('result')
         
-        range_ = sheet_name + "!A1:ZZZ999999"
+        range_ = sheet + "!A1:ZZZ999999"
 
         service = discovery.build('sheets', 'v4', credentials=creds)
         
         # Checks existence of the given sheet name and update the range
         data = service.spreadsheets().get(spreadsheetId=ss_id).execute()
         for element in data["sheets"]:
-            if element["properties"]["title"] == sheet_name:
-                range_ = sheet_name + "!" + range_ # Sheet1!A1:A10
+            if element["properties"]["title"] == sheet:
+                range_ = sheet + "!" + range_ # Sheet1!A1:A10
                 
         request = service.spreadsheets().values().get(spreadsheetId=ss_id, range=range_)
         response = request.execute()
