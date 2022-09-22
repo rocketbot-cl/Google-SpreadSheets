@@ -24,6 +24,7 @@ Para instalar librerias se debe ingresar por terminal a la carpeta "libs"
 
 """
 import os.path
+import sys
 
 base_path = tmp_global_obj["basepath"]
 cur_path = base_path + 'modules' + os.sep + \
@@ -49,7 +50,6 @@ if module == "GoogleSuite":
     credential_path = GetParams("credentials_path")
 
     try:
-        print(credential_path)
         if not os.path.exists(credential_path):
             raise Exception(
                 "El archivo de credenciales no existe en la ruta especificada")
@@ -130,7 +130,7 @@ if module == "CreateSheet":
     request = service.spreadsheets().batchUpdate(spreadsheetId=ss_id,
                                                  body=body)
     response = request.execute()
-    print(response)
+
     if result:
         sheetId = response["replies"][0]["addSheet"]["properties"]["sheetId"]
         SetVar(result, sheetId)
@@ -181,10 +181,7 @@ if module == "UpdateRange":
             text = text.replace('"', '\\\"')
             text = "[[ \"{}\" ]]".format(text)
         
-               
-        print(text)
         values = eval(text)
-        print(values)
         
         service = discovery.build('sheets', 'v4', credentials=creds)
 
@@ -197,7 +194,6 @@ if module == "UpdateRange":
         body = {
             "values": values
         }
-        print(body)
         
         request = service.spreadsheets().values().update(spreadsheetId=ss_id, range=range_,
                                                          valueInputOption="USER_ENTERED",
@@ -273,7 +269,7 @@ if module == "CountCells":
         ss_id = GetParams('ss_id')
         sheet_name = GetParams('sheetName')
         result = GetParams('result')
-
+        
         range_ = sheet_name + "!A1:ZZZ999999"
 
         service = discovery.build('sheets', 'v4', credentials=creds)
@@ -281,8 +277,8 @@ if module == "CountCells":
         # Checks existence of the given sheet name and update the range
         data = service.spreadsheets().get(spreadsheetId=ss_id).execute()
         for element in data["sheets"]:
-            if element["properties"]["title"] == sheet:
-                range_ = sheet + "!" + range_ # Sheet1!A1:A10
+            if element["properties"]["title"] == sheet_name:
+                range_ = sheet_name + "!" + range_ # Sheet1!A1:A10
                 
         request = service.spreadsheets().values().get(spreadsheetId=ss_id, range=range_)
         response = request.execute()
@@ -331,7 +327,6 @@ if module == "DeleteColumn":
         print("sheet id",sheet_id)
 
         col_index = get_column_index(col)
-        print(col_index)
 
         if blank is not None:
             blank = eval(blank)
@@ -380,7 +375,9 @@ if module == "DeleteRow":
         for element in data["sheets"]:
             if element["properties"]["title"] == sheet:
                 sheet_id = element["properties"]["sheetId"]
-
+        
+        print("sheet id",sheet_id)
+        
         if blank is not None:
             blank = eval(blank)
 
@@ -532,7 +529,7 @@ def get_existing_basic_filters(ss_id, service, startRow=0, endRow=1000) -> dict:
     params = {'spreadsheetId': ss_id,
               'fields': 'sheets(properties(sheetId,title),basicFilter)'}
     response = service.spreadsheets().get(**params).execute()
-    print(response)
+
     data = service.spreadsheets().get(spreadsheetId=ss_id).execute()
     values_range = []
     for sheet in response['sheets']:
@@ -585,8 +582,7 @@ def apply_filters(ss_id, filters, service):
             return
         params = {'spreadsheetId': ss_id,
                   'body': {'requests': requests}}
-        print("Params")
-        print(params)
+
         service.spreadsheets().batchUpdate(**params).execute()
     except Exception as e:
         PrintException()
@@ -655,7 +651,7 @@ if module == "filterData":
     valor_filtro = GetParams("valor_filtro")
     try:
         col_index = get_column_index(col)
-        print(col_index)
+
         service = discovery.build('sheets', 'v4', credentials=creds)
         data = service.spreadsheets().get(spreadsheetId=ss_id).execute()
         
@@ -665,8 +661,6 @@ if module == "filterData":
             for element in data["sheets"]:
                 if element["properties"]["title"] == sheet:
                     sheet_id = element["properties"]["sheetId"]
-                    
-        print(sheet_id)
         
         range_ = sheet+"!A:"+col
         req = service.spreadsheets().values().get(spreadsheetId=ss_id, range=range_).execute()
@@ -674,14 +668,12 @@ if module == "filterData":
         # It checks where the table that is going to be filtered starts and ends 
         first_row = 0
         values = req["values"]
-        print(values)
         for cell in values:
             if cell == []:
                 first_row += 1
             else:
                 break
         last_row = len(req['values'])
-        print(last_row)
         
         ranges = {
             "sheetId": sheet_id,
@@ -738,12 +730,13 @@ if module == "filterCells":
        
         # It makes sure that always start from the first row of the filter, so the row index vs hidden rows can be done
         range_first_row = range[1]
+        
         if range_first_row != filter_start:
             tmp = list(range)
             tmp[1] = filter_start + 1
-            print(tmp)
+            
             range = "".join(str(x) for x in tmp)
-            print(range)
+            
             
         range_ = sheet + "!" + range
         request = service.spreadsheets().values().get(spreadsheetId=ss_id, range=range_)
