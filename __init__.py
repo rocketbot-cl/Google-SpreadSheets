@@ -141,14 +141,14 @@ if module == "DeleteSheet":
             "No hay credenciales ni token válidos, por favor configure sus credenciales")
 
     ss_id = GetParams('ss_id')
-    sheet_name = GetParams('sheetName')
+    sheet = GetParams('sheetName')
     service = discovery.build('sheets', 'v4', credentials=creds)
 
     sheets = service.spreadsheets().get(
         spreadsheetId=ss_id).execute()["sheets"]
 
     for sheet in sheets:
-        if sheet["properties"]["title"] == sheet_name:
+        if sheet["properties"]["title"] == sheet:
             sheet_id = sheet["properties"]["sheetId"]
 
     body = {
