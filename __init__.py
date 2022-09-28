@@ -270,7 +270,7 @@ if module == "CountCells":
         sheet = GetParams('sheetName')
         result = GetParams('result')
         
-        range_ = sheet + "!A1:ZZZ999999"
+        range_ = "A1:ZZZ999999"
 
         service = discovery.build('sheets', 'v4', credentials=creds)
         
