@@ -10,10 +10,24 @@ Módulo para manejar Google SpreadSheet desde Rocketbot
   
 __Descarga__ e __instala__ el contenido en la carpeta 'modules' en la ruta de Rocketbot.  
 
+## Como usar este modulo
 
+Antes de usar este modulo, es necesario registrar tu aplicación en el portal de Google Cloud. 
+
+1. Ingresar con una cuenta de google al siguiente link: https://console.cloud.google.com/projectcreate?previousPage=%2Fhome%2Fdashboard
+2. Completar el formulario y luego presionar Crear
+3. Dentro del Menu de Navegación (Izquierdo), ingresar en API y Servicios
+4. En la sección superior, ingresar a "+ HABILITAR API Y SERVICIOS"
+5. Buscar "Google Sheets API", seleccionar y por ultimo habilitar
+6. Nuevamente dirigirse a Menu de Navegación (Izquierdo) > API y Servicios > Credenciales
+7. Presionas Crear Credenciales > ID de cliente de OAuth, seleccionar como Tipo de Aplicación: App de Escritorio, colocar un nombre y crear.
+8. Descargar el achivo JSON de credenciales.
+9. Por ultimo dirigirse a Menu de Navegación (Izquierdo) > Pantalla de Consentimiento y agregar usuario dentro de la seccion "Usuarios de prueba".
+
+Nota: Cuando se realice la primera conexión, se creará un archivo .pickle en la carpeta raíz de Rocketbot, para conectarse al mismo servicio desde otra cuenta, debe eliminar
+ese archivo Realice el mismo procedimiento para el caso en que caduquen las credenciales.
 
 ## Overview
-
 
 1. Configurar credenciales G-Suite  
 Obtiene los permisos para manejar Google SpreadSheet con Rocketbot
@@ -22,42 +36,42 @@ Obtiene los permisos para manejar Google SpreadSheet con Rocketbot
 Crea una nueva hoja de cálculo en Google SpreadSheet
 
 3. Crear Hoja  
-Crear una nueva hoja en la Hoja de cálculo seleccionada
+Crear una nueva hoja en la Hoja de Cálculo seleccionada
 
 4. Borrar Hoja  
-Elimina una hoja de la Hoja de cálculo seleccionada
+Elimina una hoja de la Hoja de Cálculo seleccionada
 
 5. Escribir en celdas  
-Escribe en una celda o rango de celdas desde una hoja de cálculo seleccionada
+Escribe en una celda o rango de celdas en la Hoja de Cálculo seleccionada
 
 6. Leer celdas  
-Lee celdas o rango de celdas desde una hoja de cálculo seleccionada, ejemplo A1 o A1:B5
+Lee una celda o rango de celdas desde la Hoja de Cálculo seleccionada, ejemplo A1 o A1:B5
 
 7. Obtener hojas  
-Obtener lista de hojas con su id desde una hoja de cálculo seleccionada
+Obtener lista de hojas con su ID de la Hoja de Cálculo seleccionada
 
 8. Contar filas  
-Cuenta las filas de una hoja seleccionada
+Cuenta las filas de la hoja seleccionada
 
 9. Agregar columna  
-Agrega una columna desde una hoja de cálculo seleccionada
+Agregar columnas a la Hoja de Cálculo seleccionada
 
 10. Agregar fila  
-Agregar una fila desde una hoja de cálculo seleccionada
+Agregar filas a la Hoja de Cálculo seleccionada
 
 11. Eliminar columna  
-Elimina una columna desde una hoja de cálculo seleccionada
+Elimina una columna de una Hoja de Cálculo seleccionada
 
 12. Eliminar fila  
-Elimina una fila desde una hoja de cálculo seleccionada
+Elimina una fila de una Hoja de Cálculo seleccionada
 
 13. Filtrar datos  
-Filtra datos en una hoja de cáclulo seleccionada
+Filtrar datos en la Hoja de Cálculo seleccionada
 
 14. Desfiltrar datos  
-Desfiltra datos en una hoja de cáclulo seleccionada
+Desfiltrar datos en la Hoja de Cálculo seleccionada
 
-15. Obtener celdas filtrdas  
+15. Obtener celdas filtradas  
 Obtiene las celdas filtradas  
 
 
