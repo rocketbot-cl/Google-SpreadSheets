@@ -37,6 +37,7 @@ from google.auth.transport.requests import Request
 
 import pickle
 import json
+import re
 
 """
     Obtengo el modulo que fueron invocados
@@ -205,6 +206,107 @@ if module == "UpdateRange":
         PrintException()
         raise e
 
+def get_column_index(col):
+    try:
+        abc = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u',
+               'v', 'w', 'x', 'y', 'z']
+        around_abc = len(col) - 1
+  
+        col = col[-1].lower()
+        col_index = around_abc * len(abc) + abc.index(col)
+        return col_index
+    except Exception as e:
+        PrintException()
+        raise e
+
+if module == "UpdateFormat":
+    
+    if not creds:
+        raise Exception(
+            "No hay credenciales ni token válidos, por favor configure sus credenciales")
+
+    ss_id = GetParams('ss_id')
+    sheet = GetParams("sheetName")
+    range_ = GetParams('range')
+    merge = GetParams('merge')
+    resize = GetParams('resize')
+    
+    try:
+        service = discovery.build('sheets', 'v4', credentials=creds)
+
+        # Checks existence of the given sheet name and update the range
+        data = service.spreadsheets().get(spreadsheetId=ss_id).execute()
+        for element in data["sheets"]:
+            if element["properties"]["title"] == sheet:
+                sheet_id = element["properties"]["sheetId"]
+            else:    
+                raise Exception("Sheet does not exists...")
+    
+        regex = r"([A-Z]+)([0-9]+):([A-Z]+)([0-9]+)"
+        range_re = re.findall(regex, range_)
+        
+        column_start = get_column_index(range_re[0][0])
+        column_end = get_column_index(range_re[0][2]) + 1
+        
+        row_start = int(range_re[0][1]) - 1
+        row_end = int(range_re[0][3]) 
+        
+        body = {
+                'requests': [
+                    
+                ]
+            }
+        
+        if merge:
+            if eval(merge) == True:
+
+                merge_ = {
+                        "mergeCells": {
+                            "range": {
+                            "sheetId": sheet_id,
+                            "startRowIndex": row_start,
+                            "endRowIndex": row_end,
+                            "startColumnIndex": column_start,
+                            "endColumnIndex": column_end
+                            },
+                            "mergeType": "MERGE_ALL"
+                        }
+                    }
+                body['requests'].append(merge_)
+            
+        if resize:
+            if eval(resize) == True:   
+                columms_ = {
+                            'autoResizeDimensions':{
+                                'dimensions': {
+                                    'sheetId': sheet_id,
+                                    'dimension': 'COLUMNS',
+                                    'startIndex': column_start,
+                                    'endIndex': column_end
+                                }  
+                            }            
+                        }
+                body['requests'].append(columms_)
+
+                rows_ = {
+                        'autoResizeDimensions':{
+                            'dimensions': {
+                                'sheetId': sheet_id,
+                                'dimension': 'ROWS',
+                                'startIndex': row_start,
+                                'endIndex': row_end   
+                            }  
+                        }            
+                    }
+                body['requests'].append(rows_)
+                    
+        request = service.spreadsheets().batchUpdate(spreadsheetId=ss_id, body=body)
+        response = request.execute()
+            
+    except Exception as e:
+        PrintException()
+        raise e
+
 if module == "ReadCells":
 
     if not creds:
@@ -291,20 +393,6 @@ if module == "CountCells":
         PrintException()
         raise e
 
-
-def get_column_index(col):
-    try:
-        abc = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u',
-               'v', 'w', 'x', 'y', 'z']
-        around_abc = len(col) - 1
-        col = col[-1]
-        col_index = around_abc * len(abc) + abc.index(col)
-        return col_index
-    except Exception as e:
-        PrintException()
-        raise e
-
-
 if module == "DeleteColumn":
     if not creds:
         raise Exception(
@@ -323,8 +411,6 @@ if module == "DeleteColumn":
         for element in data["sheets"]:
             if element["properties"]["title"] == sheet:
                 sheet_id = element["properties"]["sheetId"]
-        
-        print("sheet id",sheet_id)
 
         col_index = get_column_index(col)
 
@@ -375,9 +461,7 @@ if module == "DeleteRow":
         for element in data["sheets"]:
             if element["properties"]["title"] == sheet:
                 sheet_id = element["properties"]["sheetId"]
-        
-        print("sheet id",sheet_id)
-        
+ 
         if blank is not None:
             blank = eval(blank)
 
@@ -540,8 +624,6 @@ def get_existing_basic_filters(ss_id, service, startRow=0, endRow=1000) -> dict:
     col = col + str(values_range['startRowIndex']+1) + ":" + col + str(values_range['endRowIndex']+1)
     return col
 
-
-
 def apply_filters(ss_id, filters, service):
     try:
         # All requests are validated before any are applied, so bundling the set and clear filter
@@ -587,7 +669,6 @@ def apply_filters(ss_id, filters, service):
     except Exception as e:
         PrintException()
         raise e
-
 
 def create_filter_structure(ranges, values, sheet_id):
     try:
