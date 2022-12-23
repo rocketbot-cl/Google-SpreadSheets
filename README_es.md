@@ -4,11 +4,13 @@
 
 # Google SpreadSheet
   
-Módulo para manejar Google SpreadSheet desde Rocketbot  
+Módulo para utilizar Google SpreadSheets
 
 ## Como instalar este módulo
   
 __Descarga__ e __instala__ el contenido en la carpeta 'modules' en la ruta de Rocketbot.  
+
+
 
 ## Como usar este modulo
 
@@ -27,7 +29,9 @@ Antes de usar este modulo, es necesario registrar tu aplicación en el portal de
 Nota: Cuando se realice la primera conexión, se creará un archivo .pickle en la carpeta raíz de Rocketbot, para conectarse al mismo servicio desde otra cuenta, debe eliminar
 ese archivo Realice el mismo procedimiento para el caso en que caduquen las credenciales.
 
+
 ## Overview
+
 
 1. Configurar credenciales G-Suite  
 Obtiene los permisos para manejar Google SpreadSheet con Rocketbot
@@ -44,35 +48,44 @@ Elimina una hoja de la Hoja de Cálculo seleccionada
 5. Escribir en celdas  
 Escribe en una celda o rango de celdas en la Hoja de Cálculo seleccionada
 
-6. Leer celdas  
+6. Formatear celdas  
+Cambiar formato de una celda o rango de celdas en la hoja de cálculo seleccionada
+
+7. Leer celdas  
 Lee una celda o rango de celdas desde la Hoja de Cálculo seleccionada, ejemplo A1 o A1:B5
 
-7. Obtener hojas  
+8. Obtener hojas  
 Obtener lista de hojas con su ID de la Hoja de Cálculo seleccionada
 
-8. Contar filas  
+9. Contar filas  
 Cuenta las filas de la hoja seleccionada
 
-9. Agregar columna  
+10. Agregar columna  
 Agregar columnas a la Hoja de Cálculo seleccionada
 
-10. Agregar fila  
+11. Agregar fila  
 Agregar filas a la Hoja de Cálculo seleccionada
 
-11. Eliminar columna  
+12. Eliminar columna  
 Elimina una columna de una Hoja de Cálculo seleccionada
 
-12. Eliminar fila  
+13. Eliminar fila  
 Elimina una fila de una Hoja de Cálculo seleccionada
 
-13. Filtrar datos  
+14. Filtrar datos  
 Filtrar datos en la Hoja de Cálculo seleccionada
 
-14. Desfiltrar datos  
+15. Desfiltrar datos  
 Desfiltrar datos en la Hoja de Cálculo seleccionada
 
-15. Obtener celdas filtradas  
-Obtiene las celdas filtradas  
+16. Obtener celdas filtradas  
+Obtiene las celdas filtradas
+
+17. Duplicar hoja  
+Duplica la hoja seleccionada al mismo o a otro libro
+
+18. Texto a columnas  
+Divide una columna de texto en varias columnas, en función de un delimitador en cada celda.  
 
 
 

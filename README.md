@@ -4,11 +4,13 @@
 
 # Google SpreadSheet
   
-Módulo para manejar Google SpreadSheet desde Rocketbot  
+Module to use Google SpreadSheets  
 
 ## How to install this module
   
 __Download__ and __install__ the content in 'modules' folder in Rocketbot path  
+
+
 
 ## How to use this module
 
@@ -27,7 +29,9 @@ Before using this module, you must register your app into the Google Cloud Porta
 Note: When the first connection is made, a .pickle file will be created in the Rocketbot root folder, to connect to the same service from another account you must delete
 that file. Do the same procedure for the case in which the credentials expire.
 
+
 ## Overview
+
 
 1. Setup G-Suite credentials  
 Get permissions to handle Google SpreadSheet with Rocketbot
@@ -44,35 +48,44 @@ Delete a sheet from selected SpreadSheet
 5. Write cells  
 Write to a cell or range of cells in the selected Spreadsheet
 
-6. Read cells  
+6. Format cells  
+Change format of a cell or range of cells in the selected Spreadsheet
+
+7. Read cells  
 Read a cell or range of cells from the selected Spreadsheet, example A1 or A1:B5
 
-7. Get sheets  
+8. Get sheets  
 Get list of sheets with their ID of the selected Spreadsheet
 
-8. Contar filas  
+9. Contar filas  
 Count the rows of the selected sheet
 
-9. Add column  
+10. Add column  
 Add Columns to Selected Spreadsheet
 
-10. Add row  
+11. Add row  
 Add rows to the selected Spreadsheet
 
-11. Delete column  
+12. Delete column  
 Delete a column from a selected Spreadsheet
 
-12. Delete row  
+13. Delete row  
 Delete a row from a selected Spreadsheet
 
-13. Filter data  
+14. Filter data  
 Filter data in the selected Spreadsheet
 
-14. Unfilter data  
+15. Unfilter data  
 Unfilter data in the selected Spreadsheet
 
-15. Get filtered cells  
-Get the filtered cells  
+16. Get filtered cells  
+Get the filtered cells
+
+17. Duplicate sheet  
+Duplicates the selected sheet to the same or another workbook
+
+18. Text to columns  
+Splits a column of text into multiple columns, based on a delimiter in each cell.  
 
 
 

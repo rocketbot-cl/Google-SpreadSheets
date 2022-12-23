@@ -4,12 +4,14 @@
 
 # Google SpreadSheet
   
-Módulo para manejar Google SpreadSheet desde Rocketbot  
+Módulo para utilizar Google SpreadSheets 
   
 ![banner](imgs/Banner_Google-SpreadSheets.png)
 ## Como instalar este módulo
   
 __Descarga__ e __instala__ el contenido en la carpeta 'modules' en la ruta de Rocketbot.  
+
+
 
 ## Como usar este modulo
 
@@ -27,6 +29,7 @@ Antes de usar este modulo, es necesario registrar tu aplicación en el portal de
 
 Nota: Cuando se realice la primera conexión, se creará un archivo .pickle en la carpeta raíz de Rocketbot, para conectarse al mismo servicio desde otra cuenta, debe eliminar
 ese archivo Realice el mismo procedimiento para el caso en que caduquen las credenciales.
+
 
 ## Descripción de los comandos
 
@@ -67,9 +70,20 @@ Escribe en una celda o rango de celdas en la Hoja de Cálculo seleccionada
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Spreadsheet ID||Spreadsheet ID|
-|Nombre de la hoja||Hoja|
+|Nombre de la hoja||Hoja1|
 |Celda a escribir ||A1|
 |Texto ||[["data","data"],["data","data"]]|
+
+### Formatear celdas
+  
+Cambiar formato de una celda o rango de celdas en la hoja de cálculo seleccionada
+|Parámetros|Descripción|ejemplo|
+| --- | --- | --- |
+|Spreadsheet ID||Spreadsheet ID|
+|Nombre de la hoja||Hoja1|
+|Celdas a formatear ||A1:C1|
+|Combinar celdas|||
+|Ajustar tamaño de columnas|||
 
 ### Leer celdas
   
@@ -77,7 +91,7 @@ Lee una celda o rango de celdas desde la Hoja de Cálculo seleccionada, ejemplo 
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Spreadsheet ID||Spreadsheet ID|
-|Nombre de la hoja||Hoja|
+|Nombre de la hoja||Hoja1|
 |Celda o rango de celdas ||A1|
 |Resultado||Variable|
 
@@ -95,7 +109,7 @@ Cuenta las filas de la hoja seleccionada
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Spreadsheet ID||Spreadsheet ID|
-|Nombre de la hoja||Hoja|
+|Nombre de la hoja||Hoja1|
 |Resultado||Variable|
 
 ### Agregar columna
@@ -104,7 +118,7 @@ Agregar columnas a la Hoja de Cálculo seleccionada
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Spreadsheet ID||Spreadsheet ID|
-|Nombre de la hoja||Hoja|
+|Nombre de la hoja||Hoja1|
 |Columna||A|
 |Cantidad||Cantidad|
 |Mantener formato|||
@@ -115,7 +129,7 @@ Agregar filas a la Hoja de Cálculo seleccionada
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Spreadsheet ID||Spreadsheet ID|
-|Nombre de la hoja||Hoja|
+|Nombre de la hoja||Hoja1|
 |Fila||5|
 |Cantidad||Cantidad|
 |Mantener formato|||
@@ -126,7 +140,7 @@ Elimina una columna de una Hoja de Cálculo seleccionada
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Spreadsheet ID||Spreadsheet ID|
-|Nombre de la hoja||Hoja|
+|Nombre de la hoja||Hoja1|
 |Columna||A|
 |Dejar en blanco|||
 
@@ -136,7 +150,7 @@ Elimina una fila de una Hoja de Cálculo seleccionada
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Spreadsheet ID||Spreadsheet ID|
-|Nombre de la hoja||Hoja|
+|Nombre de la hoja||Hoja1|
 |Fila||5-7|
 |Dejar en blanco|||
 
@@ -146,7 +160,7 @@ Filtrar datos en la Hoja de Cálculo seleccionada
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Spreadsheet ID||Spreadsheet ID|
-|Nombre de la hoja||Hoja|
+|Nombre de la hoja||Hoja1|
 |Columna||Columna|
 |Valor||Valor a filtrar|
 
@@ -156,7 +170,7 @@ Desfiltrar datos en la Hoja de Cálculo seleccionada
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Spreadsheet ID||Spreadsheet ID|
-|Nombre de la hoja||Hoja|
+|Nombre de la hoja||Hoja1|
 
 ### Obtener celdas filtradas
   
@@ -164,6 +178,26 @@ Obtiene las celdas filtradas
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Spreadsheet ID||Spreadsheet ID|
-|Nombre de la hoja||Hoja:|
+|Nombre de la hoja||Hoja1|
 |Rango||A1:B2|
+|Resultado||Variable|
+
+### Duplicar hoja
+  
+Duplica la hoja seleccionada al mismo o a otro libro
+|Parámetros|Descripción|ejemplo|
+| --- | --- | --- |
+|Spreadsheet ID||Spreadsheet ID|
+|Nombre de la hoja||Hoja1|
+|Spreadsheet ID||Spreadsheet ID|
+|Resultado||Variable|
+
+### Texto a columnas
+  
+Divide una columna de texto en varias columnas, en función de un delimitador en cada celda.
+|Parámetros|Descripción|ejemplo|
+| --- | --- | --- |
+|Spreadsheet ID||Spreadsheet ID|
+|Nombre de la hoja||Hoja1|
+|Separador||---- Select separator ----|
 |Resultado||Variable|

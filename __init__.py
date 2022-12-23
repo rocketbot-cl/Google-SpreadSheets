@@ -145,12 +145,11 @@ if module == "DeleteSheet":
     sheet = GetParams('sheetName')
     service = discovery.build('sheets', 'v4', credentials=creds)
 
-    sheets = service.spreadsheets().get(
-        spreadsheetId=ss_id).execute()["sheets"]
-
-    for sheet in sheets:
-        if sheet["properties"]["title"] == sheet:
-            sheet_id = sheet["properties"]["sheetId"]
+    data = service.spreadsheets().get(spreadsheetId=ss_id).execute()
+        
+    for element in data["sheets"]:
+        if element["properties"]["title"] == sheet:
+            sheet_id = element["properties"]["sheetId"]
 
     body = {
         "requests": [
@@ -831,5 +830,78 @@ if module == "filterCells":
                 final_cells.append(item)
         SetVar(res, final_cells)
     except Exception as e:
+        PrintException()
+        raise e
+    
+if module == "CopySheet":
+    if not creds:
+        raise Exception(
+            "No hay credenciales ni token válidos, por favor configure sus credenciales")
+    try:
+        ss_id = GetParams('ss_id')
+        sheet = GetParams("sheetName")
+        ss_id_2 = GetParams('ss_id_2')
+        result = GetParams('res')
+
+        service = discovery.build('sheets', 'v4', credentials=creds)
+
+        data = service.spreadsheets().get(spreadsheetId=ss_id).execute()
+        
+        for element in data["sheets"]:
+            if element["properties"]["title"] == sheet:
+                sheet_id = element["properties"]["sheetId"]
+        
+        body =  {
+            'destination_spreadsheet_id': ss_id_2
+            }
+        
+        request = service.spreadsheets().sheets().copyTo(spreadsheetId=ss_id, sheetId=sheet_id, body=body)
+        response = request.execute()
+
+        SetVar(res, True)
+    except Exception as e:
+        SetVar(res, False)
+        PrintException()
+        raise e
+    
+if module == "TextToColumns":
+    if not creds:
+        raise Exception(
+            "No hay credenciales ni token válidos, por favor configure sus credenciales")
+    try:
+        ss_id = GetParams('ss_id')
+        sheet = GetParams("sheetName")
+        separator = GetParams('separator')
+        result = GetParams('res')
+
+        service = discovery.build('sheets', 'v4', credentials=creds)
+
+        data = service.spreadsheets().get(spreadsheetId=ss_id).execute()
+        
+        for element in data["sheets"]:
+            if element["properties"]["title"] == sheet:
+                sheet_id = element["properties"]["sheetId"]
+        
+        body =  {
+            'requests':[
+                {
+                    'textToColumns':  {
+                        'source': {
+                            'sheetId': sheet_id,
+                            'startColumnIndex': 0,
+                            'endColumnIndex': 1
+                        },
+                        'delimiterType': separator
+                    }
+                }
+            ]
+        }
+        
+        request = service.spreadsheets().batchUpdate(spreadsheetId=ss_id, body=body)
+        response = request.execute()
+
+        SetVar(res, True)
+    except Exception as e:
+        SetVar(res, False)
         PrintException()
         raise e
