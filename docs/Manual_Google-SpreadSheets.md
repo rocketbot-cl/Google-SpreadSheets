@@ -4,12 +4,14 @@
 
 # Google SpreadSheet
   
-Módulo para manejar Google SpreadSheet desde Rocketbot  
+Module to use Google SpreadSheets  
   
 ![banner](imgs/Banner_Google-SpreadSheets.png)
 ## How to install this module
   
 __Download__ and __install__ the content in 'modules' folder in Rocketbot path  
+
+
 
 ## How to use this module
 
@@ -27,6 +29,7 @@ Before using this module, you must register your app into the Google Cloud Porta
 
 Note: When the first connection is made, a .pickle file will be created in the Rocketbot root folder, to connect to the same service from another account you must delete
 that file. Do the same procedure for the case in which the credentials expire.
+
 
 ## Description of the commands
 
@@ -67,9 +70,20 @@ Write to a cell or range of cells in the selected Spreadsheet
 |Parameters|Description|example|
 | --- | --- | --- |
 |Spreadsheet ID||Spreadsheet ID|
-|Sheet name||Sheet|
+|Sheet name||Sheet1|
 |Cell to write ||A1|
 |Text ||[["data","data"],["data","data"]]|
+
+### Format cells
+  
+Change format of a cell or range of cells in the selected Spreadsheet
+|Parameters|Description|example|
+| --- | --- | --- |
+|Spreadsheet ID||Spreadsheet ID|
+|Sheet name||Sheet1|
+|Cells to format ||A1:C1|
+|Merge cells|||
+|Adjust columns size|||
 
 ### Read cells
   
@@ -77,7 +91,7 @@ Read a cell or range of cells from the selected Spreadsheet, example A1 or A1:B5
 |Parameters|Description|example|
 | --- | --- | --- |
 |Spreadsheet ID||Spreadsheet ID|
-|Sheet name||Sheet|
+|Sheet name||Sheet1|
 |Cell or range of cells ||A1|
 |Result||Variable|
 
@@ -95,7 +109,7 @@ Count the rows of the selected sheet
 |Parameters|Description|example|
 | --- | --- | --- |
 |Spreadsheet ID||Spreadsheet ID|
-|Sheet name||Sheet|
+|Sheet name||Sheet1|
 |Result||Variable|
 
 ### Add column
@@ -104,7 +118,7 @@ Add Columns to Selected Spreadsheet
 |Parameters|Description|example|
 | --- | --- | --- |
 |Spreadsheet ID||Spreadsheet ID|
-|Sheet name||Sheet|
+|Sheet name||Sheet1|
 |Column||A|
 |Quantity||Quantity|
 |Keep format|||
@@ -115,7 +129,7 @@ Add rows to the selected Spreadsheet
 |Parameters|Description|example|
 | --- | --- | --- |
 |Spreadsheet ID||Spreadsheet ID|
-|Sheet name||Sheet|
+|Sheet name||Sheet1|
 |Row||5|
 |Quantity||Quantity|
 |Keep format|||
@@ -126,7 +140,7 @@ Delete a column from a selected Spreadsheet
 |Parameters|Description|example|
 | --- | --- | --- |
 |Spreadsheet ID||Spreadsheet ID|
-|Sheet name||Sheet|
+|Sheet name||Sheet1|
 |Column||A|
 |Blank|||
 
@@ -136,7 +150,7 @@ Delete a row from a selected Spreadsheet
 |Parameters|Description|example|
 | --- | --- | --- |
 |Spreadsheet ID||Spreadsheet ID|
-|Sheet name||Sheet|
+|Sheet name||Sheet1|
 |Row||5-7|
 |Blank|||
 
@@ -146,7 +160,7 @@ Filter data in the selected Spreadsheet
 |Parameters|Description|example|
 | --- | --- | --- |
 |Spreadsheet ID||Spreadsheet ID|
-|Sheet name||Sheet|
+|Sheet name||Sheet1|
 |Column||Column|
 |Value||Value to filter|
 
@@ -156,7 +170,7 @@ Unfilter data in the selected Spreadsheet
 |Parameters|Description|example|
 | --- | --- | --- |
 |Spreadsheet ID||Spreadsheet ID|
-|Sheet name||Sheet|
+|Sheet name||Sheet1|
 
 ### Get filtered cells
   
@@ -164,6 +178,26 @@ Get the filtered cells
 |Parameters|Description|example|
 | --- | --- | --- |
 |Spreadsheet ID||Spreadsheet ID|
-|Sheet name||Sheet:|
+|Sheet name||Sheet1|
 |Range ||A1:B2|
+|Result||Variable|
+
+### Duplicate sheet
+  
+Duplicates the selected sheet to the same or another workbook
+|Parameters|Description|example|
+| --- | --- | --- |
+|Spreadsheet ID||Spreadsheet ID|
+|Sheet name||Sheet1|
+|Spreadsheet ID||Spreadsheet ID|
+|Result||Variable|
+
+### Text to columns
+  
+Splits a column of text into multiple columns, based on a delimiter in each cell.
+|Parameters|Description|example|
+| --- | --- | --- |
+|Spreadsheet ID||Spreadsheet ID|
+|Sheet name||Sheet1|
+|separator||---- Select separator ----|
 |Result||Variable|
