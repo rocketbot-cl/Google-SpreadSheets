@@ -469,7 +469,22 @@
             },
             "id": "merge",
             "css": "col-md-3"
-          },        
+          },
+          {
+            "type": "checkbox",
+            "placeholder": {
+              "es": "",
+              "en": "",
+              "pr": ""
+            },
+            "title": {
+              "es": "Separar celdas",
+              "en": "Unmerge cells",
+              "pr": "Separar células"
+            },
+            "id": "unmerge",
+            "css": "col-md-3"
+          },  
           {
             "type": "checkbox",
             "placeholder": {
@@ -676,7 +691,7 @@
     },
     {
       "en": {
-        "title": "Contar filas",
+        "title": "Count rows",
         "description": "Count the rows of the selected sheet",
         "title_options": null,
         "options": null
@@ -1060,14 +1075,14 @@
           {
             "type": "input",
             "placeholder": {
-              "es": "A",
-              "en": "A",
-              "pr": "A"
+              "es": "A:C",
+              "en": "A:C",
+              "pr": "A:C"
             },
             "title": {
-              "es": "Columna:",
-              "en": "Column:",
-              "pr": "Coluna:"
+              "es": "Columna/as:",
+              "en": "Column/s:",
+              "pr": "Coluna/as:"
             },
             "id": "column",
             "css": "col-md-4"
@@ -1162,9 +1177,9 @@
           {
             "type": "input",
             "placeholder": {
-              "es": "5-7",
-              "en": "5-7",
-              "pr": "5-7"
+              "es": "5:7",
+              "en": "5:7",
+              "pr": "5:7"
             },
             "title": {
               "es": "Fila:",

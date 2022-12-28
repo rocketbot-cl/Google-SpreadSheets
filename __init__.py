@@ -228,6 +228,7 @@ if module == "UpdateFormat":
     sheet = GetParams("sheetName")
     range_ = GetParams('range')
     merge = GetParams('merge')
+    unmerge = GetParams('unmerge')
     resize = GetParams('resize')
     
     try:
@@ -238,8 +239,6 @@ if module == "UpdateFormat":
         for element in data["sheets"]:
             if element["properties"]["title"] == sheet:
                 sheet_id = element["properties"]["sheetId"]
-            else:    
-                raise Exception("Sheet does not exists...")
     
         regex = r"([A-Z]+)([0-9]+):([A-Z]+)([0-9]+)"
         range_re = re.findall(regex, range_)
@@ -272,7 +271,23 @@ if module == "UpdateFormat":
                         }
                     }
                 body['requests'].append(merge_)
-            
+        
+        if unmerge:
+            if eval(unmerge) == True:
+
+                unmerge_ = {
+                        "unmergeCells": {
+                            "range": {
+                            "sheetId": sheet_id,
+                            "startRowIndex": row_start,
+                            "endRowIndex": row_end,
+                            "startColumnIndex": column_start,
+                            "endColumnIndex": column_end
+                            }
+                        }
+                    }
+                body['requests'].append(unmerge_)
+        
         if resize:
             if eval(resize) == True:   
                 columms_ = {
@@ -411,8 +426,15 @@ if module == "DeleteColumn":
             if element["properties"]["title"] == sheet:
                 sheet_id = element["properties"]["sheetId"]
 
-        col_index = get_column_index(col)
-
+        sep = col.find(":")
+        if sep == -1:
+            col_index_1 = get_column_index(col)
+            col_index_2 = col_index_1 + 1
+        else:            
+            cols = col.split(":")
+            col_index_1 = get_column_index(cols[0])
+            col_index_2 = get_column_index(cols[1]) + 1
+        
         if blank is not None:
             blank = eval(blank)
 
@@ -426,8 +448,8 @@ if module == "DeleteColumn":
                 "deleteRange": {
                     "range": {
                         "sheetId": sheet_id,
-                        "startColumnIndex": col_index,
-                        "endColumnIndex": col_index + 1
+                        "startColumnIndex": col_index_1,
+                        "endColumnIndex": col_index_2
                     },
                     "shiftDimension": shiftDimension
                 }
@@ -461,6 +483,15 @@ if module == "DeleteRow":
             if element["properties"]["title"] == sheet:
                 sheet_id = element["properties"]["sheetId"]
  
+        sep = row.find(":")
+        if sep == -1:
+            row_index_1 = int(row) - 1
+            row_index_2 = int(row)
+        else:            
+            rows = row.split(":")
+            row_index_1 = int(rows[0])-1
+            row_index_2 = int(rows[1])
+        
         if blank is not None:
             blank = eval(blank)
 
@@ -469,34 +500,18 @@ if module == "DeleteRow":
         else:
             shiftDimension = "ROWS"
 
-        if row.find("-") == -1:
-            row = int(row)
-            body = {
-                "requests": [{
-                    "deleteRange": {
-                        "range": {
-                            "sheetId": sheet_id,
-                            "startRowIndex": row - 1,
-                            "endRowIndex": row
-                        },
-                        "shiftDimension": shiftDimension
-                    }
-                }]
-            }
-        else:
-            row = row.split("-")
-            body = {
-                "requests": [{
-                    "deleteRange": {
-                        "range": {
-                            "sheetId": sheet_id,
-                            "startRowIndex": int(row[0]) - 1,
-                            "endRowIndex": int(row[1])
-                        },
-                        "shiftDimension": shiftDimension
-                    }
-                }]
-            }
+        body = {
+            "requests": [{
+                "deleteRange": {
+                    "range": {
+                        "sheetId": sheet_id,
+                        "startRowIndex": row_index_1,
+                        "endRowIndex": row_index_2
+                    },
+                    "shiftDimension": shiftDimension
+                }
+            }]
+        }
 
         request = service.spreadsheets().batchUpdate(spreadsheetId=ss_id, body=body)
         response = request.execute()
