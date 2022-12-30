@@ -1,6 +1,4 @@
-
-
-
+## Google-SpreadSheets
 
 # Google SpreadSheet
   
@@ -201,3 +199,4 @@ Splits a column of text into multiple columns, based on a delimiter in each cell
 |Sheet name||Sheet1|
 |separator||---- Select separator ----|
 |Result||Variable|
+
