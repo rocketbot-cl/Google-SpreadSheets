@@ -4,12 +4,14 @@
 
 # Planilhas Google
   
-Módulo para manejar Google SpreadSheet desde Rocketbot  
+Módulo para usar Google SpreadSheets  
   
 ![banner](imgs/Banner_Google-SpreadSheets.png)
 ## Como instalar este módulo
   
 __Baixe__ e __instale__ o conteúdo na pasta 'modules' no caminho do Rocketbot  
+
+
 
 ## Como usar este módulo
 
@@ -27,6 +29,7 @@ Antes de usar este módulo, você deve registrar seu aplicativo no Google Cloud 
 
 Nota: Quando a primeira conexão for feita, um arquivo .pickle será criado na pasta raiz do Rocketbot, para conectar ao mesmo serviço de outra conta, você precisa deletar
 esse arquivo Faça o mesmo procedimento caso as credenciais expirem.
+
 
 ## Descrição do comando
 
@@ -51,15 +54,15 @@ Cria uma nova página na Planilha selecionada
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
 |ID da Planilha||ID da Planilha|
-|Nome da página||Nome|
+|Nome da folha||Nome|
 
 ### Excluir Página
   
-Excluir uma página na Planilha selecionada
+Excluir uma folha na Planilha selecionada
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
 |ID da Planilha||ID da Planilha|
-|Nome da página a ser excluida||Nome da Página|
+|Nome da folha a ser excluida||Nome da folha|
 
 ### Escrever em células
   
@@ -67,9 +70,20 @@ Gravar em uma célula ou intervalo de células na Planilha selecionada
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
 |ID da Planilha||ID da Planilha|
-|Nome da página||Página|
+|Nome da folha||Folha1|
 |Célula para escrever||A1|
 |Texto ||[["data","data"],["data","data"]]|
+
+### Formatar células
+  
+Alterar o formato de uma célula ou intervalo de células na planilha selecionada
+|Parâmetros|Descrição|exemplo|
+| --- | --- | --- |
+|ID da Planilha||ID da Planilha|
+|Nome da folha||Folha1|
+|Células para formatar||A1:C1|
+|Mesclar células|||
+|Ajustar o tamanho da coluna|||
 
 ### Ler células
   
@@ -77,11 +91,11 @@ Ler uma célula ou intervalo de células da planilha selecionada, exemplo A1 ou 
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
 |ID da Planilha||ID da Planilha|
-|Nome da página||Página|
+|Nome da folha||Folha1|
 |Célula ou intervalo de células ||A1|
 |Resultado||Variável|
 
-### Obter páginas
+### Obter folhas
   
 Obter lista de planilhas com o ID da Planilha selecionada
 |Parâmetros|Descrição|exemplo|
@@ -95,7 +109,7 @@ Contar as linhas da planilha selecionada
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
 |ID da Planilha||ID da Planilha|
-|Nome da página||Página|
+|Nome da folha||Folha1|
 |Resultado||Variável|
 
 ### Adicionar Coluna
@@ -104,7 +118,7 @@ Adicionar colunas à Planilha selecionada
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
 |ID da Planilha||ID da Planilha|
-|Nome da página||Página|
+|Nome da folha||Folha1|
 |Coluna||A|
 |Quantidade||Quantidade|
 |manter o formato|||
@@ -115,7 +129,7 @@ Adicionar linhas à Planilha selecionada
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
 |ID da Planilha||ID da Planilha|
-|Nome da página||Página|
+|Nome da folha||Folha1|
 |Linha||5|
 |Quantidade||Quantidade|
 |Manter o formato|||
@@ -126,7 +140,7 @@ Excluir uma coluna de uma Planilha selecionada
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
 |ID da Planilha||ID da Planilha|
-|Nome da página||Página|
+|Nome da folha||Folha1|
 |Coluna||A|
 |Deixar vazio|||
 
@@ -136,7 +150,7 @@ Excluir uma linha de uma planilha selecionada
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
 |ID da Planilha||ID da Planilha|
-|Nome da página||Página|
+|Nome da folha||Folha1|
 |Linha||5-7|
 |Deixar vazio|||
 
@@ -146,7 +160,7 @@ Filtrar dados na Planilha selecionada
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
 |ID da Planilha||ID da Planilha|
-|Nome da página||Página|
+|Nome da folha||Folha1|
 |Coluna||Coluna|
 |Valor||Valor para filtrar|
 
@@ -156,7 +170,7 @@ Não filtrar dados na Planilha selecionada
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
 |ID da Planilha||ID da Planilha|
-|Nome da página||Página|
+|Nome da folha||Folha1|
 
 ### Obter células filtrdas
   
@@ -164,6 +178,26 @@ Obtenha as células filtradas
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
 |ID da Planilha||ID da Planilha|
-|Nome da página||Página:|
+|Nome da folha||Folha1|
 |Intervalo ||A1:B2|
+|Resultado||Variável|
+
+### Duplicar folha
+  
+Duplica a folha selecionada para a mesma ou outra pasta de trabalho
+|Parâmetros|Descrição|exemplo|
+| --- | --- | --- |
+|ID da Planilha||ID da Planilha|
+|Nome da folha||Folha1|
+|ID da Planilha||ID da Planilha|
+|Resultado||Variável|
+
+### Texto para colunas
+  
+Divide uma coluna de texto em várias colunas, com base em um delimitador em cada célula.
+|Parâmetros|Descrição|exemplo|
+| --- | --- | --- |
+|ID da Planilha||ID da Planilha|
+|Nome da folha||Folha1|
+|Separador||---- Select separator ----|
 |Resultado||Variável|

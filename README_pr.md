@@ -4,11 +4,13 @@
 
 # Planilhas Google
   
-Módulo para manejar Google SpreadSheet desde Rocketbot  
+Módulo para usar Google SpreadSheets  
 
 ## Como instalar este módulo
   
 __Baixe__ e __instale__ o conteúdo na pasta 'modules' no caminho do Rocketbot  
+
+
 
 ## Como usar este módulo
 
@@ -27,7 +29,9 @@ Antes de usar este módulo, você deve registrar seu aplicativo no Google Cloud 
 Nota: Quando a primeira conexão for feita, um arquivo .pickle será criado na pasta raiz do Rocketbot, para conectar ao mesmo serviço de outra conta, você precisa deletar
 esse arquivo Faça o mesmo procedimento caso as credenciais expirem.
 
+
 ## Overview
+
 
 1. Configurar credenciais G-Suite  
 Obtém permissão para trabalhar no Google SpreadSheet com o Rocketbot
@@ -39,40 +43,49 @@ Cria uma nova Planilha do google
 Cria uma nova página na Planilha selecionada
 
 4. Excluir Página  
-Excluir uma página na Planilha selecionada
+Excluir uma folha na Planilha selecionada
 
 5. Escrever em células  
 Gravar em uma célula ou intervalo de células na Planilha selecionada
 
-6. Ler células  
+6. Formatar células  
+Alterar o formato de uma célula ou intervalo de células na planilha selecionada
+
+7. Ler células  
 Ler uma célula ou intervalo de células da planilha selecionada, exemplo A1 ou A1:B5
 
-7. Obter páginas  
+8. Obter folhas  
 Obter lista de planilhas com o ID da Planilha selecionada
 
-8. Contar linhas  
+9. Contar linhas  
 Contar as linhas da planilha selecionada
 
-9. Adicionar Coluna  
+10. Adicionar Coluna  
 Adicionar colunas à Planilha selecionada
 
-10. Adicionar linha  
+11. Adicionar linha  
 Adicionar linhas à Planilha selecionada
 
-11. Excluir Coluna  
+12. Excluir Coluna  
 Excluir uma coluna de uma Planilha selecionada
 
-12. Excluir linha  
+13. Excluir linha  
 Excluir uma linha de uma planilha selecionada
 
-13. Filtrar dados  
+14. Filtrar dados  
 Filtrar dados na Planilha selecionada
 
-14. Não filtrar dados  
+15. Não filtrar dados  
 Não filtrar dados na Planilha selecionada
 
-15. Obter células filtrdas  
-Obtenha as células filtradas  
+16. Obter células filtrdas  
+Obtenha as células filtradas
+
+17. Duplicar folha  
+Duplica a folha selecionada para a mesma ou outra pasta de trabalho
+
+18. Texto para colunas  
+Divide uma coluna de texto em várias colunas, com base em um delimitador em cada célula.  
 
 
 

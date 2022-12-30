@@ -45,7 +45,7 @@ Antes de usar este módulo, você deve registrar seu aplicativo no Google Cloud 
 2. Preencha o formulário e pressione Criar
 3. No Menu de Navegação (Esquerda), insira API e Serviços
 4. Na seção superior, vá para "+ ATIVAR API E SERVIÇOS"
-5. Pesquise "API do Planilhas Google", selecione-o e, finalmente, ative-o
+5. Pesquise "Google Sheets API", selecione-o e, finalmente, ative-o
 6. Novamente, vá para o Menu de Navegação (Esquerda) > API e Serviços > Credenciais
 7. Pressione Create Credentials > OAuth Client ID, selecione Application Type: Desktop App, digite um nome e crie.
 8. Baixe o arquivo JSON de credenciais.
