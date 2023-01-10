@@ -53,3 +53,4 @@ Antes de usar este módulo, você deve registrar seu aplicativo no Google Cloud 
 
 Nota: Quando a primeira conexão for feita, um arquivo .pickle será criado na pasta raiz do Rocketbot, para conectar ao mesmo serviço de outra conta, você precisa deletar
 esse arquivo Faça o mesmo procedimento caso as credenciais expirem.
+

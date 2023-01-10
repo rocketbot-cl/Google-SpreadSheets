@@ -1,10 +1,6 @@
-
-
-
-
 # Google SpreadSheet
   
-Módulo para utilizar Google SpreadSheets 
+Módulo para utilizar Google SpreadSheets  
   
 ![banner](imgs/Banner_Google-SpreadSheets.png)
 ## Como instalar este módulo
@@ -15,7 +11,7 @@ __Descarga__ e __instala__ el contenido en la carpeta 'modules' en la ruta de Ro
 
 ## Como usar este modulo
 
-Antes de usar este modulo, es necesario registrar tu aplicación en el portal de Google Cloud. Registration
+Antes de usar este modulo, es necesario registrar tu aplicación en el portal de Google Cloud. 
 
 1. Ingresar con una cuenta de google al siguiente link: https://console.cloud.google.com/projectcreate?previousPage=%2Fhome%2Fdashboard
 2. Completar el formulario y luego presionar Crear
@@ -23,8 +19,8 @@ Antes de usar este modulo, es necesario registrar tu aplicación en el portal de
 4. En la sección superior, ingresar a "+ HABILITAR API Y SERVICIOS"
 5. Buscar "Google Sheets API", seleccionar y por ultimo habilitar
 6. Nuevamente dirigirse a Menu de Navegación (Izquierdo) > API y Servicios > Credenciales
-7. Presionas Crear Credenciales > ID de cliente de OAuth, seleccionar como Tipo de Aplicación: App de Escritorio, colocar un nombre y crear
-8. Descargar el achivo JSON de credenciales
+7. Presionas Crear Credenciales > ID de cliente de OAuth, seleccionar como Tipo de Aplicación: App de Escritorio, colocar un nombre y crear.
+8. Descargar el achivo JSON de credenciales.
 9. Por ultimo dirigirse a Menu de Navegación (Izquierdo) > Pantalla de Consentimiento y agregar usuario dentro de la seccion "Usuarios de prueba"
 
 Nota: Cuando se realice la primera conexión, se creará un archivo .pickle en la carpeta raíz de Rocketbot, para conectarse al mismo servicio desde otra cuenta, debe eliminar
@@ -56,6 +52,16 @@ Crear una nueva hoja en la Hoja de Cálculo seleccionada
 |Spreadsheet ID||Spreadsheet ID|
 |Nombre de la hoja||Nombre|
 
+### Actualizar propiedades de Hoja
+  
+Actualiza las propiedades de una hoja de la Hoja de Cálculo seleccionada
+|Parámetros|Descripción|ejemplo|
+| --- | --- | --- |
+|Spreadsheet ID||Spreadsheet ID|
+|Nombre de la hoja a actualizar||Nombre de la hoja|
+|Nuevo Nombre (Opcional)||Nuevo|
+|Ocultar hoja||False|
+
 ### Borrar Hoja
   
 Elimina una hoja de la Hoja de Cálculo seleccionada
@@ -83,6 +89,7 @@ Cambiar formato de una celda o rango de celdas en la hoja de cálculo selecciona
 |Nombre de la hoja||Hoja1|
 |Celdas a formatear ||A1:C1|
 |Combinar celdas|||
+|Separar celdas|||
 |Ajustar tamaño de columnas|||
 
 ### Leer celdas
@@ -94,6 +101,20 @@ Lee una celda o rango de celdas desde la Hoja de Cálculo seleccionada, ejemplo 
 |Nombre de la hoja||Hoja1|
 |Celda o rango de celdas ||A1|
 |Resultado||Variable|
+
+### Copiar/cortar y pegar
+  
+Copie o corte y pegue una celda o rango de celdas en la Hoja de Cálculo seleccionada
+|Parámetros|Descripción|ejemplo|
+| --- | --- | --- |
+|Spreadsheet ID||Spreadsheet ID|
+|Nombre de la hoja origen||Hoja1|
+|Celdas origen ||A1:C1|
+|Nombre de la hoja destino||Hoja2|
+|Celdas destino ||A2:C2|
+|Tipo de pegado||---- Select type ----|
+|Transponer|||
+|Cortar|||
 
 ### Obtener hojas
   
@@ -141,7 +162,7 @@ Elimina una columna de una Hoja de Cálculo seleccionada
 | --- | --- | --- |
 |Spreadsheet ID||Spreadsheet ID|
 |Nombre de la hoja||Hoja1|
-|Columna||A|
+|Columna/as||A:C|
 |Dejar en blanco|||
 
 ### Eliminar fila
@@ -151,7 +172,7 @@ Elimina una fila de una Hoja de Cálculo seleccionada
 | --- | --- | --- |
 |Spreadsheet ID||Spreadsheet ID|
 |Nombre de la hoja||Hoja1|
-|Fila||5-7|
+|Fila||5:7|
 |Dejar en blanco|||
 
 ### Filtrar datos

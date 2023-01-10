@@ -1,7 +1,3 @@
-
-
-
-
 # Planilhas Google
   
 Módulo para usar Google SpreadSheets  
@@ -21,10 +17,10 @@ Antes de usar este módulo, você deve registrar seu aplicativo no Google Cloud 
 2. Preencha o formulário e pressione Criar
 3. No Menu de Navegação (Esquerda), insira API e Serviços
 4. Na seção superior, vá para "+ ATIVAR API E SERVIÇOS"
-5. Pesquise "API do Planilhas Google", selecione-o e, finalmente, ative-o
+5. Pesquise "Google Sheets API", selecione-o e, finalmente, ative-o
 6. Novamente, vá para o Menu de Navegação (Esquerda) > API e Serviços > Credenciais
-7. Pressione Create Credentials > OAuth Client ID, selecione Application Type: Desktop App, digite um nome e crie
-8. Baixe o arquivo JSON de credenciais
+7. Pressione Create Credentials > OAuth Client ID, selecione Application Type: Desktop App, digite um nome e crie.
+8. Baixe o arquivo JSON de credenciais.
 9. Por fim, vá para o Menu de Navegação (Esquerda) > Tela de Consentimento e adicione um usuário na seção "Testar usuários"
 
 Nota: Quando a primeira conexão for feita, um arquivo .pickle será criado na pasta raiz do Rocketbot, para conectar ao mesmo serviço de outra conta, você precisa deletar
@@ -56,6 +52,16 @@ Cria uma nova página na Planilha selecionada
 |ID da Planilha||ID da Planilha|
 |Nome da folha||Nome|
 
+### Atualizar propriedades da Folha
+  
+Atualiza as propriedades de uma folha da Planilha selecionada
+|Parâmetros|Descrição|exemplo|
+| --- | --- | --- |
+|ID da Planilha||ID da Planilha|
+|Nome da folha para atualizar||Nome da folha|
+|Novo Nome (Opcional)||Novo|
+|Ocultar folha||False|
+
 ### Excluir Página
   
 Excluir uma folha na Planilha selecionada
@@ -83,6 +89,7 @@ Alterar o formato de uma célula ou intervalo de células na planilha selecionad
 |Nome da folha||Folha1|
 |Células para formatar||A1:C1|
 |Mesclar células|||
+|Separar células|||
 |Ajustar o tamanho da coluna|||
 
 ### Ler células
@@ -94,6 +101,20 @@ Ler uma célula ou intervalo de células da planilha selecionada, exemplo A1 ou 
 |Nome da folha||Folha1|
 |Célula ou intervalo de células ||A1|
 |Resultado||Variável|
+
+### Copiar/Cortar e colar
+  
+Copie ou recorte e cole uma célula ou intervalo de células na Planilha selecionada
+|Parâmetros|Descrição|exemplo|
+| --- | --- | --- |
+|ID da Planilha||ID da Planilha|
+|Nome da folha de origem||Folha1|
+|Células de origem||A1:C1|
+|Nome da folha de destino||Folha2|
+|Células de destino||A2:C2|
+|Tipo de pasta||---- Select type ----|
+|Transpor|||
+|Cortar|||
 
 ### Obter folhas
   
@@ -141,7 +162,7 @@ Excluir uma coluna de uma Planilha selecionada
 | --- | --- | --- |
 |ID da Planilha||ID da Planilha|
 |Nome da folha||Folha1|
-|Coluna||A|
+|Coluna/as||A:C|
 |Deixar vazio|||
 
 ### Excluir linha
@@ -151,7 +172,7 @@ Excluir uma linha de uma planilha selecionada
 | --- | --- | --- |
 |ID da Planilha||ID da Planilha|
 |Nome da folha||Folha1|
-|Linha||5-7|
+|Linha||5:7|
 |Deixar vazio|||
 
 ### Filtrar dados

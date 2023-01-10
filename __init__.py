@@ -136,6 +136,51 @@ if module == "CreateSheet":
         sheetId = response["replies"][0]["addSheet"]["properties"]["sheetId"]
         SetVar(result, sheetId)
 
+if module == "UpdateSheetProperties":
+    if not creds:
+        raise Exception(
+            "No hay credenciales ni token válidos, por favor configure sus credenciales")
+
+    ss_id = GetParams('ss_id')
+    sheet = GetParams('sheetName')
+    newName = GetParams('newName')
+    hidden = GetParams('hidden')
+    
+    service = discovery.build('sheets', 'v4', credentials=creds)
+
+    data = service.spreadsheets().get(spreadsheetId=ss_id).execute()
+        
+    for element in data["sheets"]:
+        if element["properties"]["title"] == sheet:
+            sheet_id = element["properties"]["sheetId"]
+    
+    if not newName:
+        newName = sheet
+    
+    if not hidden:
+        hidden = False
+    else:
+        hidden = eval(hidden)
+    
+    body = {
+        "requests": [
+            {
+                "updateSheetProperties": {
+                    "properties": {
+                        "sheetId": sheet_id,
+                        "title": newName,
+                        "hidden": hidden
+                        },
+                    "fields": "title, hidden",
+                    }
+                }
+            ]
+        }
+
+    request = service.spreadsheets().batchUpdate(spreadsheetId=ss_id,
+                                                 body=body)
+    response = request.execute()
+
 if module == "DeleteSheet":
     if not creds:
         raise Exception(
@@ -232,6 +277,12 @@ if module == "UpdateFormat":
     resize = GetParams('resize')
     
     try:
+        
+        if ":" in range_:
+            range_
+        else:
+            range_ = range_ + ":" + range_
+        
         service = discovery.build('sheets', 'v4', credentials=creds)
 
         # Checks existence of the given sheet name and update the range
@@ -354,6 +405,123 @@ if module == "ReadCells":
     except Exception as e:
         PrintException()
         raise e
+
+
+if module == "copyPaste":
+    
+    if not creds:
+        raise Exception(
+            "No hay credenciales ni token válidos, por favor configure sus credenciales")
+
+    ss_id = GetParams('ss_id')
+    sheet = GetParams("sheetName")
+    range_ = GetParams('range')
+    
+    sheet2 = GetParams("sheetName2")
+    range_2 = GetParams('range2')
+    
+    type_ = GetParams('type')
+    transponse = GetParams('transponse')
+    cut = GetParams('cut')
+       
+    try:
+        
+        if ":" in range_:
+            range_
+        else:
+            range_ = range_ + ":" + range_
+        
+        if ":" in range_2:
+            range_2 
+        else:
+            range_2 = range_2 + ":" + range_2
+        
+        service = discovery.build('sheets', 'v4', credentials=creds)
+
+        # Checks existence of the given sheet name and update the range
+        data = service.spreadsheets().get(spreadsheetId=ss_id).execute()
+        for element in data["sheets"]:
+            if element["properties"]["title"] == sheet:
+                sheet_id = element["properties"]["sheetId"]
+            if element["properties"]["title"] == sheet2:
+                sheet_id2 = element["properties"]["sheetId"]
+    
+        regex = r"([A-Z]+)([0-9]+):([A-Z]+)([0-9]+)"
+        # <----- Data Origin ----->
+        range_re = re.findall(regex, range_)
+        
+        column_start = get_column_index(range_re[0][0])
+        column_end = get_column_index(range_re[0][2]) + 1
+        
+        row_start = int(range_re[0][1]) - 1
+        row_end = int(range_re[0][3]) 
+        
+        # <----- Data Destination ----->
+        range_re2 = re.findall(regex, range_2)
+        
+        column_start2 = get_column_index(range_re2[0][0])
+        column_end2 = get_column_index(range_re2[0][2]) + 1
+        
+        row_start2 = int(range_re2[0][1]) - 1
+        row_end2 = int(range_re2[0][3]) 
+        
+        orientation = "NORMAL"
+        if transponse:
+            if eval(transponse) == True:
+                orientation = 'TRANSPOSE'
+        
+        body = {
+                'requests': [
+                    ]
+                }
+        
+        if not cut or eval(cut) == False:
+            body['requests'] = {
+                        "copyPaste": {
+                            "source": {
+                            "sheetId": sheet_id,
+                            "startRowIndex": row_start,
+                            "endRowIndex": row_end,
+                            "startColumnIndex": column_start,
+                            "endColumnIndex": column_end,
+                            },
+                            "destination": {
+                                "sheetId": sheet_id2,
+                                "startRowIndex": row_start2,
+                                "endRowIndex": row_end2,
+                                "startColumnIndex": column_start2,
+                                "endColumnIndex": column_end2,
+                                },
+                            "pasteType": type_,
+                            "pasteOrientation": orientation,
+                            }
+                        }
+        else:
+            body['requests'] = {
+                    "cutPaste": {
+                        "source": {
+                        "sheetId": sheet_id,
+                        "startRowIndex": row_start,
+                        "endRowIndex": row_end,
+                        "startColumnIndex": column_start,
+                        "endColumnIndex": column_end,
+                        },
+                        "destination": {
+                            "sheetId": sheet_id2,
+                            "rowIndex": row_start2,
+                            "columnIndex": column_start2,
+                            },
+                        "pasteType": type_,
+                        }
+                    }
+        
+        request = service.spreadsheets().batchUpdate(spreadsheetId=ss_id, body=body)
+        response = request.execute()
+    
+    except Exception as e:
+        PrintException()
+        raise e
+        
 
 if module == "GetSheets":
 

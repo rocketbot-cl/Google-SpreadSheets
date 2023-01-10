@@ -1,10 +1,6 @@
-
-
-
-
 # Google SpreadSheet
   
-Módulo para utilizar Google SpreadSheets
+Módulo para utilizar Google SpreadSheets  
 
 ## Como instalar este módulo
   
@@ -24,7 +20,7 @@ Antes de usar este modulo, es necesario registrar tu aplicación en el portal de
 6. Nuevamente dirigirse a Menu de Navegación (Izquierdo) > API y Servicios > Credenciales
 7. Presionas Crear Credenciales > ID de cliente de OAuth, seleccionar como Tipo de Aplicación: App de Escritorio, colocar un nombre y crear.
 8. Descargar el achivo JSON de credenciales.
-9. Por ultimo dirigirse a Menu de Navegación (Izquierdo) > Pantalla de Consentimiento y agregar usuario dentro de la seccion "Usuarios de prueba".
+9. Por ultimo dirigirse a Menu de Navegación (Izquierdo) > Pantalla de Consentimiento y agregar usuario dentro de la seccion "Usuarios de prueba"
 
 Nota: Cuando se realice la primera conexión, se creará un archivo .pickle en la carpeta raíz de Rocketbot, para conectarse al mismo servicio desde otra cuenta, debe eliminar
 ese archivo Realice el mismo procedimiento para el caso en que caduquen las credenciales.
@@ -42,49 +38,55 @@ Crea una nueva hoja de cálculo en Google SpreadSheet
 3. Crear Hoja  
 Crear una nueva hoja en la Hoja de Cálculo seleccionada
 
-4. Borrar Hoja  
+4. Actualizar propiedades de Hoja  
+Actualiza las propiedades de una hoja de la Hoja de Cálculo seleccionada
+
+5. Borrar Hoja  
 Elimina una hoja de la Hoja de Cálculo seleccionada
 
-5. Escribir en celdas  
+6. Escribir en celdas  
 Escribe en una celda o rango de celdas en la Hoja de Cálculo seleccionada
 
-6. Formatear celdas  
+7. Formatear celdas  
 Cambiar formato de una celda o rango de celdas en la hoja de cálculo seleccionada
 
-7. Leer celdas  
+8. Leer celdas  
 Lee una celda o rango de celdas desde la Hoja de Cálculo seleccionada, ejemplo A1 o A1:B5
 
-8. Obtener hojas  
+9. Copiar/cortar y pegar  
+Copie o corte y pegue una celda o rango de celdas en la Hoja de Cálculo seleccionada
+
+10. Obtener hojas  
 Obtener lista de hojas con su ID de la Hoja de Cálculo seleccionada
 
-9. Contar filas  
+11. Contar filas  
 Cuenta las filas de la hoja seleccionada
 
-10. Agregar columna  
+12. Agregar columna  
 Agregar columnas a la Hoja de Cálculo seleccionada
 
-11. Agregar fila  
+13. Agregar fila  
 Agregar filas a la Hoja de Cálculo seleccionada
 
-12. Eliminar columna  
+14. Eliminar columna  
 Elimina una columna de una Hoja de Cálculo seleccionada
 
-13. Eliminar fila  
+15. Eliminar fila  
 Elimina una fila de una Hoja de Cálculo seleccionada
 
-14. Filtrar datos  
+16. Filtrar datos  
 Filtrar datos en la Hoja de Cálculo seleccionada
 
-15. Desfiltrar datos  
+17. Desfiltrar datos  
 Desfiltrar datos en la Hoja de Cálculo seleccionada
 
-16. Obtener celdas filtradas  
+18. Obtener celdas filtradas  
 Obtiene las celdas filtradas
 
-17. Duplicar hoja  
+19. Duplicar hoja  
 Duplica la hoja seleccionada al mismo o a otro libro
 
-18. Texto a columnas  
+20. Texto a columnas  
 Divide una columna de texto en varias columnas, en función de un delimitador en cada celda.  
 
 
