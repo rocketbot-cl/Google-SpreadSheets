@@ -201,6 +201,7 @@ Obtenha as células filtradas
 |ID da Planilha||ID da Planilha|
 |Nome da folha||Folha1|
 |Intervalo ||A1:B2|
+|Obter dados com o número da linha|||
 |Resultado||Variável|
 
 ### Duplicar folha

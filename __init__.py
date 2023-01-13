@@ -969,6 +969,8 @@ if module == "filterCells":
     sheet = GetParams("sheetName")
     res = GetParams("res")
     range = GetParams("range_")
+    row_info = GetParams("row_info")
+    
     try:
         service = discovery.build('sheets', 'v4', credentials=creds)
         
@@ -1007,11 +1009,17 @@ if module == "filterCells":
         value = response["values"]
         
         final_cells = []
+        final_cells_row = {}
         for row_index, item in enumerate(value):
             row_index = (row_index + filter_start)
-            if row_index not in list_hidden_rows:
-                final_cells.append(item)
-        SetVar(res, final_cells)
+            if row_info and eval(row_info) == True:
+                if row_index not in list_hidden_rows:
+                    final_cells_row[row_index+1] = item   
+                SetVar(res, final_cells_row)
+            else:
+                if row_index not in list_hidden_rows:
+                    final_cells.append(item)                      
+                SetVar(res, final_cells)
     except Exception as e:
         PrintException()
         raise e

@@ -1751,7 +1751,7 @@
               "pr": "Nome da folha:"
             },
             "id": "sheetName",
-            "css": "col-md-4"
+            "css": "col-md-6"
           },
           {
             "type": "input",
@@ -1766,7 +1766,27 @@
               "pr": "Intervalo: "
             },
             "id": "range_",
-            "css": "col-md-4"
+            "css": "col-md-6"
+          },
+          {
+            "type": "checkbox",
+            "placeholder": {
+              "es": "",
+              "en": "",
+              "pr": ""
+            },
+            "title": {
+              "es": "Obtener datos con número de fila:",
+              "en": "Get data with row number:",
+              "pr": "Obter dados com o número da linha:"
+            },
+            "help": {
+              "es": "Obtendra un diccionario donde la Key será el número de fila.",
+              "en": "You will be a dictionary where the Key will be the row number.",
+              "pr": "Você obterá um dicionário onde a Key será o número da linha."
+            },
+            "id": "row_info",
+            "css": "col-md-6"
           },
           {
             "type": "input",

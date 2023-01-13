@@ -201,6 +201,7 @@ Obtiene las celdas filtradas
 |Spreadsheet ID||Spreadsheet ID|
 |Nombre de la hoja||Hoja1|
 |Rango||A1:B2|
+|Obtener datos con número de fila|||
 |Resultado||Variable|
 
 ### Duplicar hoja

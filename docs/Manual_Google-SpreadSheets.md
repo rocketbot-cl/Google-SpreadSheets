@@ -201,6 +201,7 @@ Get the filtered cells
 |Spreadsheet ID||Spreadsheet ID|
 |Sheet name||Sheet1|
 |Range ||A1:B2|
+|Get data with row number|||
 |Result||Variable|
 
 ### Duplicate sheet
