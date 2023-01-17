@@ -1,7 +1,3 @@
-
-
-
-
 # Planilhas Google
   
 Módulo para usar Google SpreadSheets  
@@ -20,11 +16,11 @@ Antes de usar este módulo, você deve registrar seu aplicativo no Google Cloud 
 2. Preencha o formulário e pressione Criar
 3. No Menu de Navegação (Esquerda), insira API e Serviços
 4. Na seção superior, vá para "+ ATIVAR API E SERVIÇOS"
-5. Pesquise "API do Planilhas Google", selecione-o e, finalmente, ative-o
+5. Pesquise "Google Sheets API", selecione-o e, finalmente, ative-o
 6. Novamente, vá para o Menu de Navegação (Esquerda) > API e Serviços > Credenciais
 7. Pressione Create Credentials > OAuth Client ID, selecione Application Type: Desktop App, digite um nome e crie.
 8. Baixe o arquivo JSON de credenciais.
-9. Por fim, vá para o Menu de Navegação (Esquerda) > Tela de Consentimento e adicione um usuário na seção "Testar usuários".
+9. Por fim, vá para o Menu de Navegação (Esquerda) > Tela de Consentimento e adicione um usuário na seção "Testar usuários"
 
 Nota: Quando a primeira conexão for feita, um arquivo .pickle será criado na pasta raiz do Rocketbot, para conectar ao mesmo serviço de outra conta, você precisa deletar
 esse arquivo Faça o mesmo procedimento caso as credenciais expirem.
@@ -42,49 +38,55 @@ Cria uma nova Planilha do google
 3. Ciar Página  
 Cria uma nova página na Planilha selecionada
 
-4. Excluir Página  
+4. Atualizar propriedades da Folha  
+Atualiza as propriedades de uma folha da Planilha selecionada
+
+5. Excluir Página  
 Excluir uma folha na Planilha selecionada
 
-5. Escrever em células  
+6. Escrever em células  
 Gravar em uma célula ou intervalo de células na Planilha selecionada
 
-6. Formatar células  
+7. Formatar células  
 Alterar o formato de uma célula ou intervalo de células na planilha selecionada
 
-7. Ler células  
+8. Ler células  
 Ler uma célula ou intervalo de células da planilha selecionada, exemplo A1 ou A1:B5
 
-8. Obter folhas  
+9. Copiar/Cortar e colar  
+Copie ou recorte e cole uma célula ou intervalo de células na Planilha selecionada
+
+10. Obter folhas  
 Obter lista de planilhas com o ID da Planilha selecionada
 
-9. Contar linhas  
+11. Contar linhas  
 Contar as linhas da planilha selecionada
 
-10. Adicionar Coluna  
+12. Adicionar Coluna  
 Adicionar colunas à Planilha selecionada
 
-11. Adicionar linha  
+13. Adicionar linha  
 Adicionar linhas à Planilha selecionada
 
-12. Excluir Coluna  
+14. Excluir Coluna  
 Excluir uma coluna de uma Planilha selecionada
 
-13. Excluir linha  
+15. Excluir linha  
 Excluir uma linha de uma planilha selecionada
 
-14. Filtrar dados  
+16. Filtrar dados  
 Filtrar dados na Planilha selecionada
 
-15. Não filtrar dados  
+17. Não filtrar dados  
 Não filtrar dados na Planilha selecionada
 
-16. Obter células filtrdas  
+18. Obter células filtrdas  
 Obtenha as células filtradas
 
-17. Duplicar folha  
+19. Duplicar folha  
 Duplica a folha selecionada para a mesma ou outra pasta de trabalho
 
-18. Texto para colunas  
+20. Texto para colunas  
 Divide uma coluna de texto em várias colunas, com base em um delimitador em cada célula.  
 
 

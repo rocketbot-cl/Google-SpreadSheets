@@ -1,7 +1,3 @@
-
-
-
-
 # Google SpreadSheet
   
 Module to use Google SpreadSheets  
@@ -42,49 +38,55 @@ Create a new spreadsheet in Google SpreadSheet
 3. Create Sheet  
 Create a new sheet in selected SpreadSheet
 
-4. Delete Sheet  
+4. Update Sheet properties  
+Update a sheet properties from selected SpreadSheet
+
+5. Delete Sheet  
 Delete a sheet from selected SpreadSheet
 
-5. Write cells  
+6. Write cells  
 Write to a cell or range of cells in the selected Spreadsheet
 
-6. Format cells  
+7. Format cells  
 Change format of a cell or range of cells in the selected Spreadsheet
 
-7. Read cells  
+8. Read cells  
 Read a cell or range of cells from the selected Spreadsheet, example A1 or A1:B5
 
-8. Get sheets  
+9. Copy/Cut and paste  
+Copy or cut and paste a cell or range of cells in the selected Spreadsheet
+
+10. Get sheets  
 Get list of sheets with their ID of the selected Spreadsheet
 
-9. Contar filas  
+11. Count rows  
 Count the rows of the selected sheet
 
-10. Add column  
+12. Add column  
 Add Columns to Selected Spreadsheet
 
-11. Add row  
+13. Add row  
 Add rows to the selected Spreadsheet
 
-12. Delete column  
+14. Delete column  
 Delete a column from a selected Spreadsheet
 
-13. Delete row  
+15. Delete row  
 Delete a row from a selected Spreadsheet
 
-14. Filter data  
+16. Filter data  
 Filter data in the selected Spreadsheet
 
-15. Unfilter data  
+17. Unfilter data  
 Unfilter data in the selected Spreadsheet
 
-16. Get filtered cells  
+18. Get filtered cells  
 Get the filtered cells
 
-17. Duplicate sheet  
+19. Duplicate sheet  
 Duplicates the selected sheet to the same or another workbook
 
-18. Text to columns  
+20. Text to columns  
 Splits a column of text into multiple columns, based on a delimiter in each cell.  
 
 

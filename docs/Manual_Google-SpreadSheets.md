@@ -1,5 +1,3 @@
-## Google-SpreadSheets
-
 # Google SpreadSheet
   
 Module to use Google SpreadSheets  
@@ -54,6 +52,16 @@ Create a new sheet in selected SpreadSheet
 |Spreadsheet ID||Spreadsheet ID|
 |Sheet name||Name|
 
+### Update Sheet properties
+  
+Update a sheet properties from selected SpreadSheet
+|Parameters|Description|example|
+| --- | --- | --- |
+|Spreadsheet ID||Spreadsheet ID|
+|Name of the sheet to update||Sheet Name|
+|New Name (Optional)||New|
+|Hide sheet||False|
+
 ### Delete Sheet
   
 Delete a sheet from selected SpreadSheet
@@ -81,6 +89,7 @@ Change format of a cell or range of cells in the selected Spreadsheet
 |Sheet name||Sheet1|
 |Cells to format ||A1:C1|
 |Merge cells|||
+|Unmerge cells|||
 |Adjust columns size|||
 
 ### Read cells
@@ -93,6 +102,20 @@ Read a cell or range of cells from the selected Spreadsheet, example A1 or A1:B5
 |Cell or range of cells ||A1|
 |Result||Variable|
 
+### Copy/Cut and paste
+  
+Copy or cut and paste a cell or range of cells in the selected Spreadsheet
+|Parameters|Description|example|
+| --- | --- | --- |
+|Spreadsheet ID||Spreadsheet ID|
+|Source sheet name||Sheet1|
+|Source cells ||A1:C1|
+|Destination sheet name||Sheet2|
+|Destination cells ||A2:C2|
+|Paste type||---- Select type ----|
+|Transponse|||
+|Cut|||
+
 ### Get sheets
   
 Get list of sheets with their ID of the selected Spreadsheet
@@ -101,7 +124,7 @@ Get list of sheets with their ID of the selected Spreadsheet
 |Spreadsheet ID||Spreadsheet ID|
 |Result||Variable|
 
-### Contar filas
+### Count rows
   
 Count the rows of the selected sheet
 |Parameters|Description|example|
@@ -139,7 +162,7 @@ Delete a column from a selected Spreadsheet
 | --- | --- | --- |
 |Spreadsheet ID||Spreadsheet ID|
 |Sheet name||Sheet1|
-|Column||A|
+|Column/s||A:C|
 |Blank|||
 
 ### Delete row
@@ -149,7 +172,7 @@ Delete a row from a selected Spreadsheet
 | --- | --- | --- |
 |Spreadsheet ID||Spreadsheet ID|
 |Sheet name||Sheet1|
-|Row||5-7|
+|Row||5:7|
 |Blank|||
 
 ### Filter data
@@ -178,6 +201,7 @@ Get the filtered cells
 |Spreadsheet ID||Spreadsheet ID|
 |Sheet name||Sheet1|
 |Range ||A1:B2|
+|Get data with row number|||
 |Result||Variable|
 
 ### Duplicate sheet
