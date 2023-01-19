@@ -87,7 +87,7 @@ if module == "CreateSpreadSheet":
 
     if not creds:
         raise Exception(
-            "No hay credenciales ni token válidos, por favor configure sus credenciales")
+            "There's no credentials, nor valid token. Please, generate your credentials.")
 
     ss_name = GetParams('ss_name')
     result = GetParams('result')
@@ -108,7 +108,7 @@ if module == "CreateSpreadSheet":
 if module == "CreateSheet":
     if not creds:
         raise Exception(
-            "No hay credenciales ni token válidos, por favor configure sus credenciales")
+            "There's no credentials, nor valid token. Please, generate your credentials.")
 
     ss_id = GetParams('ss_id')
     name = GetParams('name')
@@ -139,7 +139,7 @@ if module == "CreateSheet":
 if module == "UpdateSheetProperties":
     if not creds:
         raise Exception(
-            "No hay credenciales ni token válidos, por favor configure sus credenciales")
+            "There's no credentials, nor valid token. Please, generate your credentials.")
 
     ss_id = GetParams('ss_id')
     sheet = GetParams('sheetName')
@@ -153,6 +153,9 @@ if module == "UpdateSheetProperties":
     for element in data["sheets"]:
         if element["properties"]["title"] == sheet:
             sheet_id = element["properties"]["sheetId"]
+    
+    if not 'sheet_id' in locals():
+        raise Exception("Sheet could't be found...")
     
     if not newName:
         newName = sheet
@@ -184,7 +187,7 @@ if module == "UpdateSheetProperties":
 if module == "DeleteSheet":
     if not creds:
         raise Exception(
-            "No hay credenciales ni token válidos, por favor configure sus credenciales")
+            "There's no credentials, nor valid token. Please, generate your credentials.")
 
     ss_id = GetParams('ss_id')
     sheet = GetParams('sheetName')
@@ -196,6 +199,9 @@ if module == "DeleteSheet":
         if element["properties"]["title"] == sheet:
             sheet_id = element["properties"]["sheetId"]
 
+    if not 'sheet_id' in locals():
+        raise Exception("Sheet could't be found...")
+    
     body = {
         "requests": [
             {
@@ -215,7 +221,7 @@ if module == "UpdateRange":
 
     if not creds:
         raise Exception(
-            "No hay credenciales ni token válidos, por favor configure sus credenciales")
+            "There's no credentials, nor valid token. Please, generate your credentials.")
 
     ss_id = GetParams('ss_id')
     sheet = GetParams("sheetName")
@@ -236,6 +242,9 @@ if module == "UpdateRange":
         for element in data["sheets"]:
             if element["properties"]["title"] == sheet:
                 range_ = sheet + "!" + range_ # Sheet1!A1:A10
+        
+        if not 'range_' in locals():
+            raise Exception("Sheet could't be found...")
         
         body = {
             "values": values
@@ -267,7 +276,7 @@ if module == "UpdateFormat":
     
     if not creds:
         raise Exception(
-            "No hay credenciales ni token válidos, por favor configure sus credenciales")
+            "There's no credentials, nor valid token. Please, generate your credentials.")
 
     ss_id = GetParams('ss_id')
     sheet = GetParams("sheetName")
@@ -290,7 +299,10 @@ if module == "UpdateFormat":
         for element in data["sheets"]:
             if element["properties"]["title"] == sheet:
                 sheet_id = element["properties"]["sheetId"]
-    
+
+        if not 'sheet_id' in locals():
+            raise Exception("Sheet could't be found...")
+        
         regex = r"([A-Z]+)([0-9]+):([A-Z]+)([0-9]+)"
         range_re = re.findall(regex, range_)
         
@@ -376,7 +388,7 @@ if module == "ReadCells":
 
     if not creds:
         raise Exception(
-            "No hay credenciales ni token válidos, por favor configure sus credenciales")
+            "There's no credentials, nor valid token. Please, generate your credentials.")
 
     ss_id = GetParams('ss_id')
     sheet = GetParams("sheetName")
@@ -391,6 +403,9 @@ if module == "ReadCells":
         for element in data["sheets"]:
             if element["properties"]["title"] == sheet:
                 range_ = sheet + "!" + range_ # Sheet1!A1:A10
+        
+        if not 'range_' in locals():
+            raise Exception("Sheet could't be found...")
                 
         request = service.spreadsheets().values().get(spreadsheetId=ss_id, range=range_)
 
@@ -411,7 +426,7 @@ if module == "copyPaste":
     
     if not creds:
         raise Exception(
-            "No hay credenciales ni token válidos, por favor configure sus credenciales")
+            "There's no credentials, nor valid token. Please, generate your credentials.")
 
     ss_id = GetParams('ss_id')
     sheet = GetParams("sheetName")
@@ -445,7 +460,13 @@ if module == "copyPaste":
                 sheet_id = element["properties"]["sheetId"]
             if element["properties"]["title"] == sheet2:
                 sheet_id2 = element["properties"]["sheetId"]
-    
+
+        if not 'sheet_id' in locals():
+            raise Exception("Source sheet could't be found...")
+        
+        if not 'sheet_id2' in locals():
+            raise Exception("Target sheet could't be found...")
+            
         regex = r"([A-Z]+)([0-9]+):([A-Z]+)([0-9]+)"
         # <----- Data Origin ----->
         range_re = re.findall(regex, range_)
@@ -527,7 +548,7 @@ if module == "GetSheets":
 
     if not creds:
         raise Exception(
-            "No hay credenciales ni token válidos, por favor configure sus credenciales")
+            "There's no credentials, nor valid token. Please, generate your credentials.")
 
     ss_id = GetParams('ss_id')
     result = GetParams('result')
@@ -547,7 +568,7 @@ if module == "CountCells":
 
     if not creds:
         raise Exception(
-            "No hay credenciales ni token válidos, por favor configure sus credenciales")
+            "There's no credentials, nor valid token. Please, generate your credentials.")
 
     try:
         ss_id = GetParams('ss_id')
@@ -564,6 +585,9 @@ if module == "CountCells":
             if element["properties"]["title"] == sheet:
                 range_ = sheet + "!" + range_ # Sheet1!A1:A10
                 
+        if not 'range_' in locals():
+            raise Exception("Sheet could't be found...")
+        
         request = service.spreadsheets().values().get(spreadsheetId=ss_id, range=range_)
         response = request.execute()
 
@@ -578,7 +602,7 @@ if module == "CountCells":
 if module == "DeleteColumn":
     if not creds:
         raise Exception(
-            "No hay credenciales ni token válidos, por favor configure sus credenciales")
+            "There's no credentials, nor valid token. Please, generate your credentials.")
 
     ss_id = GetParams('ss_id')
     sheet = GetParams("sheetName")
@@ -593,7 +617,10 @@ if module == "DeleteColumn":
         for element in data["sheets"]:
             if element["properties"]["title"] == sheet:
                 sheet_id = element["properties"]["sheetId"]
-
+        
+        if not 'sheet_id' in locals():
+            raise Exception("Sheet could't be found...")
+        
         sep = col.find(":")
         if sep == -1:
             col_index_1 = get_column_index(col)
@@ -634,7 +661,7 @@ if module == "DeleteColumn":
 if module == "DeleteRow":
     if not creds:
         raise Exception(
-            "No hay credenciales ni token válidos, por favor configure sus credenciales")
+            "There's no credentials, nor valid token. Please, generate your credentials.")
 
     ss_id = GetParams('ss_id')
     sheet = GetParams("sheetName")
@@ -650,6 +677,9 @@ if module == "DeleteRow":
         for element in data["sheets"]:
             if element["properties"]["title"] == sheet:
                 sheet_id = element["properties"]["sheetId"]
+
+        if not 'sheet_id' in locals():
+            raise Exception("Sheet could't be found...")
  
         sep = row.find(":")
         if sep == -1:
@@ -691,7 +721,7 @@ if module == "DeleteRow":
 if module == "AddColumn":
     if not creds:
         raise Exception(
-            "No hay credenciales ni token válidos, por favor configure sus credenciales")
+            "There's no credentials, nor valid token. Please, generate your credentials.")
 
     ss_id = GetParams('ss_id')
     sheet = GetParams("sheetName")
@@ -707,6 +737,9 @@ if module == "AddColumn":
         for element in data["sheets"]:
             if element["properties"]["title"] == sheet:
                 sheet_id = element["properties"]["sheetId"]
+
+        if not 'sheet_id' in locals():
+            raise Exception("Sheet could't be found...")
 
         col_index = get_column_index(col)
         
@@ -742,7 +775,7 @@ if module == "AddColumn":
 if module == "AddRow":
     if not creds:
         raise Exception(
-            "No hay credenciales ni token válidos, por favor configure sus credenciales")
+            "There's no credentials, nor valid token. Please, generate your credentials.")
 
     ss_id = GetParams('ss_id')
     sheet = GetParams("sheetName")
@@ -759,7 +792,10 @@ if module == "AddRow":
         for element in data["sheets"]:
             if element["properties"]["title"] == sheet:
                 sheet_id = element["properties"]["sheetId"]
-
+        
+        if not 'sheet_id' in locals():
+            raise Exception("Sheet could't be found...")
+        
         if blank is not None:
             blank = eval(blank)
             
@@ -878,7 +914,7 @@ def create_filter_structure(ranges, values, sheet_id):
 if module == "unfilterData":
     if not creds:
         raise Exception(
-            "No hay credenciales ni token válidos, por favor configure sus credenciales")
+            "There's no credentials, nor valid token. Please, generate your credentials.")
     ss_id = GetParams('ss_id')
     sheet = GetParams("sheetName")
     try:
@@ -891,7 +927,10 @@ if module == "unfilterData":
             for element in data["sheets"]:
                 if element["properties"]["title"] == sheet:
                     sheet_id = element["properties"]["sheetId"]
-        
+
+            if not 'sheet_id' in locals():
+                raise Exception("Sheet could't be found...")
+            
         requests = []
         requests.append({'clearBasicFilter': {'sheetId': sheet_id}})
         
@@ -907,7 +946,7 @@ if module == "unfilterData":
 if module == "filterData":
     if not creds:
         raise Exception(
-            "No hay credenciales ni token válidos, por favor configure sus credenciales")
+            "There's no credentials, nor valid token. Please, generate your credentials.")
     ss_id = GetParams('ss_id')
     sheet = GetParams("sheetName")
     col = GetParams("col").lower()
@@ -924,6 +963,9 @@ if module == "filterData":
             for element in data["sheets"]:
                 if element["properties"]["title"] == sheet:
                     sheet_id = element["properties"]["sheetId"]
+
+            if not 'sheet_id' in locals():
+                raise Exception("Sheet could't be found...")
         
         range_ = sheet+"!A:"+col
         req = service.spreadsheets().values().get(spreadsheetId=ss_id, range=range_).execute()
@@ -964,7 +1006,7 @@ if module == "filterData":
 if module == "filterCells":
     if not creds:
         raise Exception(
-            "No hay credenciales ni token válidos, por favor configure sus credenciales")
+            "There's no credentials, nor valid token. Please, generate your credentials.")
     ss_id = GetParams('ss_id')
     sheet = GetParams("sheetName")
     res = GetParams("res")
@@ -981,6 +1023,10 @@ if module == "filterCells":
                     sheet = data_["sheets"][0]["properties"]["title"]
             if element["properties"]["title"] == sheet:
                 sheet_id = element["properties"]["sheetId"]
+                
+                if not 'sheet_id' in locals():
+                    raise Exception("Sheet could't be found...")
+                
                 filter_start = element["basicFilter"]["range"]["startRowIndex"]
                 
         data = service.spreadsheets().get(spreadsheetId=ss_id, fields="sheets(data(rowMetadata(hiddenByFilter)),properties/sheetId)").execute()
@@ -1027,7 +1073,7 @@ if module == "filterCells":
 if module == "CopySheet":
     if not creds:
         raise Exception(
-            "No hay credenciales ni token válidos, por favor configure sus credenciales")
+            "There's no credentials, nor valid token. Please, generate your credentials.")
     try:
         ss_id = GetParams('ss_id')
         sheet = GetParams("sheetName")
@@ -1041,6 +1087,9 @@ if module == "CopySheet":
         for element in data["sheets"]:
             if element["properties"]["title"] == sheet:
                 sheet_id = element["properties"]["sheetId"]
+        
+        if not 'sheet_id' in locals():
+            raise Exception("Sheet could't be found...")
         
         body =  {
             'destination_spreadsheet_id': ss_id_2
@@ -1058,7 +1107,7 @@ if module == "CopySheet":
 if module == "TextToColumns":
     if not creds:
         raise Exception(
-            "No hay credenciales ni token válidos, por favor configure sus credenciales")
+            "There's no credentials, nor valid token. Please, generate your credentials.")
     try:
         ss_id = GetParams('ss_id')
         sheet = GetParams("sheetName")
@@ -1072,6 +1121,9 @@ if module == "TextToColumns":
         for element in data["sheets"]:
             if element["properties"]["title"] == sheet:
                 sheet_id = element["properties"]["sheetId"]
+        
+        if not 'sheet_id' in locals():
+            raise Exception("Sheet could't be found...")
         
         body =  {
             'requests':[
