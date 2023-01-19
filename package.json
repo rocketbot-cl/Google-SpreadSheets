@@ -800,7 +800,7 @@
             },
             "title": {
               "es": "Nombre de la hoja destino:",
-              "en": "Target sheet name:",
+              "en": "Destination sheet name:",
               "pr": "Nome da folha de destino:"
             },
             "id": "sheetName2",
