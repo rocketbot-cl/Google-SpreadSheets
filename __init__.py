@@ -34,9 +34,9 @@ sys.path.append(cur_path)
 from googleapiclient import discovery
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
+from openpyxl.utils.cell import get_column_letter
 
 import pickle
-import json
 import re
 
 """
@@ -284,6 +284,17 @@ if module == "UpdateFormat":
     merge = GetParams('merge')
     unmerge = GetParams('unmerge')
     resize = GetParams('resize')
+    number_format = GetParams('format') # select
+    pattern = GetParams('pattern') # string
+    
+    foreground = GetParams('foreground') # touple
+    font_family = GetParams('fontFamily') # string
+    font_size = GetParams('fontSize') # int
+    
+    bold = GetParams('bold') # bool
+    italic = GetParams('italic') # bool
+    strikethrough = GetParams('strikethrough') # bool
+    underline = GetParams('underline') # bool
     
     try:
         
@@ -376,7 +387,90 @@ if module == "UpdateFormat":
                         }            
                     }
                 body['requests'].append(rows_)
-                    
+                
+        uef = {}
+        fields = []
+               
+        if number_format != '':
+            uef['numberFormat'] = {'type': number_format, 'pattern': ''}          
+            if pattern != '':
+                uef['numberFormat']['pattern'] = pattern     
+            fields.append('numberFormat')
+            
+        if foreground:
+            if not uef.get('textFormat'):
+                uef['textFormat'] = {}
+                fields.append('textFormat')
+            
+            c = foreground.split(',')
+            # To use RGB format, the API expects a proportion of each over the 255
+            uef['textFormat']["foregroundColorStyle"] = {
+                "rgbColor": {
+                    "red": int(c[0])/255,
+                    "green": int(c[1])/255,
+                    "blue": int(c[2])/255,
+                    "alpha": 1
+                }
+            }
+            
+        if font_family != '':
+            if not uef.get('textFormat'):
+                uef['textFormat'] = {}
+                fields.append('textFormat')
+            uef['textFormat']['fontFamily'] = font_family
+
+        if font_size and eval(font_size) >0:
+            if not uef.get('textFormat'):
+                uef['textFormat'] = {}
+                fields.append('textFormat')
+            uef['textFormat']['fontSize'] = eval(font_size)
+        
+        if bold:
+            if not uef.get('textFormat'):
+                uef['textFormat'] = {}
+                fields.append('textFormat')
+            uef['textFormat']['bold'] = eval(bold)
+            
+        if italic:
+            if not uef.get('textFormat'):
+                uef['textFormat'] = {}
+                fields.append('textFormat')
+            uef['textFormat']['italic'] = eval(italic)
+        
+        if strikethrough:
+            if not uef.get('textFormat'):
+                uef['textFormat'] = {}
+                fields.append('textFormat')
+            uef['textFormat']['strikethrough'] = eval(strikethrough)
+        
+        if underline:
+            if not uef.get('textFormat'):
+                uef['textFormat'] = {}
+                fields.append('textFormat')
+            uef['textFormat']['underline'] = eval(underline)
+        
+        if fields != []:
+        
+            fields_ = ','.join(fields)
+                
+            cell_format= {
+                'repeatCell': {
+                    'range': {
+                        "sheetId": sheet_id,
+                        'startRowIndex': row_start,
+                        'endRowIndex': row_end,
+                        'startColumnIndex': column_start,
+                        'endColumnIndex': column_end,
+                    },
+                    'cell': {
+                        'userEnteredFormat': uef
+                        },
+                    'fields': f'userEnteredFormat({fields_})'
+                }
+            }
+            
+            body['requests'].append(cell_format)
+        
         request = service.spreadsheets().batchUpdate(spreadsheetId=ss_id, body=body)
         response = request.execute()
             
@@ -573,7 +667,8 @@ if module == "CountCells":
     try:
         ss_id = GetParams('ss_id')
         sheet = GetParams('sheetName')
-        result = GetParams('result')
+        result = GetParams('result') # Here is saved the number of rows the command was originaly made for that.
+        columns = GetParams('columns')
         
         range_ = "A1:ZZZ999999"
 
@@ -592,9 +687,16 @@ if module == "CountCells":
         response = request.execute()
 
         length = len(response["values"])
+        
+        width_aux = max([len(row) for row in response["values"]])
+        width = [width_aux, get_column_letter(width_aux)] # get_column_letter indexes begin with 1 (not 0)
+
         if result:
             SetVar(result, length)
 
+        if columns:
+            SetVar(columns, width)
+        
     except Exception as e:
         PrintException()
         raise e
