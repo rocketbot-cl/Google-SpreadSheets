@@ -601,6 +601,194 @@
             },
             "id": "resize",
             "css": "col-md-3"
+          },
+          {
+            "type": "select",
+            "placeholder": {
+              "es": "---- Select type ----",
+              "en": "---- Select type ----",
+              "pr": "---- Select type ----"
+            },
+            "title": {
+              "es": "Tipo de formato",
+              "en": "Format type",
+              "pr": "Tipo de formato"
+            },
+            "options": [
+              {
+                "title": "---- Select type ----",
+                "value": ""
+              },
+              {
+                "title": "TEXT: Text formatting, e.g 1000.12.",
+                "value": "TEXT"
+              },
+              {
+                "title": "NUMBER: Number formatting, e.g, 1,000.12.",
+                "value": "NUMBER"
+              },
+              {
+                "title": "PERCENT: Percent formatting, e.g 10.12%.",
+                "value": "PERCENT"
+              },
+              {
+                "title": "CURRENCY: Currency formatting, e.g $1,000.12.",
+                "value": "CURRENCY"
+              },
+              {
+                "title": "DATE: Date formatting, e.g 9/26/2008.",
+                "value": "DATE"
+              },
+              {
+                "title": "TIME: Time formatting, e.g 3:59:00 PM.",
+                "value": "TIME"
+              },
+              {
+                "title": "DATE_TIME: Date+Time formatting, e.g 9/26/08 15:59:00.",
+                "value": "DATE_TIME"
+              },
+              {
+                "title": "SCIENTIFIC: Scientific number formatting, e.g 1.01E+03.",
+                "value": "SCIENTIFIC"
+              }
+            ],
+            "help": {
+              "es": "Para personalizar el patron, debe seleccionar un tipo de formato.",
+              "en": "To customize the pattern, you must select a type of format.",
+              "pr": "Para personalizar o padrão, você deve selecionar um tipo de formato."
+            },
+            "id": "format",
+            "css": "col-md-6"
+          },
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "yyyy-mm-dd hh:mm A/P\".M.\"",
+              "en": "yyyy-mm-dd hh:mm A/P\".M.\"",
+              "pr": "yyyy-mm-dd hh:mm A/P\".M.\""
+            },
+            "title": {
+              "es": "Patron de formato: ",
+              "en": "Format pattern: ",
+              "pr": "Padrão de formato:"
+            },
+            "help": {
+              "es": "Si se deja vacio, se aplicará el formato por defecto del tipo elegido. \nDocumentación: https://developers.google.com/sheets/api/guides/formats?hl=es-419",
+              "en": "If left empty, the default format of the chosen type will be applied. \nDocumentation: https://developers.google.com/sheets/api/guides/formats",
+              "pr": "Se deixado em branco, o formato padrão do tipo escolhido será aplicado. \nDocumentação: https://developers.google.com/sheets/api/guides/formats?hl=pt-br"
+            },
+            "id": "pattern",
+            "css": "col-md-6"
+          },
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "255,0,0",
+              "en": "255,0,0",
+              "pr": "255,0,0"
+            },
+            "title": {
+              "es": "Color de fuente: ",
+              "en": "Font color: ",
+              "pr": "Cor da fonte:"
+            },
+            "help": {
+              "es": "Formato RGB: Ingresar 3 numeros (de 0 a 255) separados por com.",
+              "en": "RGB format: Enter 3 numbers (from 0 to 255) separated by commas.",
+              "pr": "Formato RGB: Digite 3 números (de 0 a 255) separados por vírgulas."
+            },
+            "id": "foreground",
+            "css": "col-md-6"
+          },
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "Open Sans",
+              "en": "Open Sans",
+              "pr": "Open Sans"
+            },
+            "title": {
+              "es": "Tipo de fuente: ",
+              "en": "Font family: ",
+              "pr": "Tipo de fonte:"
+            },
+            "id": "fontFamily",
+            "css": "col-md-6"
+          },
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "12",
+              "en": "12",
+              "pr": "12"
+            },
+            "title": {
+              "es": "Tamaño de fuente: ",
+              "en": "Font size: ",
+              "pr": "Tamanho da fonte:"
+            },
+            "id": "fontSize",
+            "css": "col-md-4"
+          },
+          {
+            "type": "checkbox",
+            "placeholder": {
+              "es": "",
+              "en": "",
+              "pr": ""
+            },
+            "title": {
+              "es": "Negrita",
+              "en": "Bold",
+              "pr": "Negrito"
+            },
+            "id": "bold",
+            "css": "col-md-2"
+          },
+          {
+            "type": "checkbox",
+            "placeholder": {
+              "es": "",
+              "en": "",
+              "pr": ""
+            },
+            "title": {
+              "es": "Cursiva",
+              "en": "Italic",
+              "pr": "Itálico"
+            },
+            "id": "italic",
+            "css": "col-md-2"
+          },
+          {
+            "type": "checkbox",
+            "placeholder": {
+              "es": "",
+              "en": "",
+              "pr": ""
+            },
+            "title": {
+              "es": "Tachar",
+              "en": "Strikethrough",
+              "pr": "Tachado"
+            },
+            "id": "strikethrough",
+            "css": "col-md-2"
+          },
+          {
+            "type": "checkbox",
+            "placeholder": {
+              "es": "",
+              "en": "",
+              "pr": ""
+            },
+            "title": {
+              "es": "Subrayar",
+              "en": "Underline",
+              "pr": "Sublinhado"
+            },
+            "id": "underline",
+            "css": "col-md-2"
           }
         ]
       },
@@ -1004,20 +1192,20 @@
     },
     {
       "en": {
-        "title": "Count rows",
-        "description": "Count the rows of the selected sheet",
+        "title": "Count rows and/or columns",
+        "description": "Count the used rows and/or columns of the selected sheet",
         "title_options": null,
         "options": null
       },
       "es": {
-        "title": "Contar filas",
-        "description": "Cuenta las filas de la hoja seleccionada",
+        "title": "Contar filas y/o columnas",
+        "description": "Cuenta las filas y/o columnas utilizadas de la hoja seleccionada",
         "title_options": null,
         "options": null
       },
       "pr": {
-        "title": "Contar linhas",
-        "description": "Contar as linhas da planilha selecionada",
+        "title": "Contar linhas e/ou colunas",
+        "description": "Conte as linhas e/ou colunas usadas da planilha selecionada",
         "title_options": null,
         "options": null
       },
@@ -1052,7 +1240,7 @@
               "pr": "Nome da folha:"
             },
             "id": "sheetName",
-            "css": "col-md-6"
+            "css": "col-md-4"
           },
           {
             "type": "input",
@@ -1062,17 +1250,39 @@
               "pr": "Variável"
             },
             "title": {
-              "es": "Resultado:",
-              "en": "Result:",
-              "pr": "Resultado:"
+              "es": "Variable donde almacenar resultado de filas:",
+              "en": "Variable where to store result of rows:",
+              "pr": "Variável onde armazenar o resultado das linhas:"
             },
             "help": {
               "es": "Nombre de variable sin {}",
               "en": "Variable name without {}",
               "pr": "Nome da variável sem {}"
             },
+            "remove_vars": true,
             "id": "result",
-            "css": "col-md-6"
+            "css": "col-md-4"
+          },
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "Variable",
+              "en": "Variable",
+              "pr": "Variável"
+            },
+            "title": {
+              "es": "Variable donde almacenar resultado de columnas:",
+              "en": "Variable where to store result of columns:",
+              "pr": "Variável onde armazenar o resultado das colunas:"
+            },
+            "help": {
+              "es": "Nombre de variable sin {}",
+              "en": "Variable name without {}",
+              "pr": "Nome da variável sem {}"
+            },
+            "remove_vars": true,
+            "id": "columns",
+            "css": "col-md-4"
           }
         ]
       },
