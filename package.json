@@ -1,10 +1,15 @@
 {
   "author": "Danilo Toro, Nicolas Liendro, Juan Siro",
-  "description": "Module to use Google SpreadSheets | Módulo para usar Google SpreadSheets | Módulo para utilizar Google SpreadSheets",
+  "description": "Module to use Google SpreadSheets | Módulo para usar Google SpreadSheets",
+  "description_lang":{
+    "en": "This module allows you to read, write and update Google spreadsheets. You can add, delete, duplicate or even hide sheets; filter data; add or delete rows and columns; modify cells format, copy/cut and paste them; and more.",
+    "es": "Este módulo le permite leer, escribir y actualizar hojas de cálculo de Google. Puede agregar, eliminar, duplicar o incluso ocultar hojas; filtrar datos; agregar o eliminar filas y columnas; modificar el formato de las celdas, copiarlas/cortarlas y pegarlas; y más.",
+    "pr": "Este módulo permite que você leia, escreva e atualize as planilhas do Google. Você pode adicionar, excluir, duplicar ou até ocultar planilhas; filtrar dados; adicionar ou excluir linhas e colunas; modifique o formato das células, copie/recorte e cole-as; e mais."
+  },
   "disclaimer": "THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM “AS IS” WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.",
-  "version": "2.2.4",
+  "version": "3.6.5",
   "license": "MIT",
-  "homepage": "http://rockertbot.com",
+  "homepage": "http://rocketbot.com",
   "linux": true,
   "windows": true,
   "mac": true,
@@ -59,6 +64,22 @@
             },
             "id": "credentials_path",
             "css": "col-md-12"
+          },
+          {
+            "type": "input",
+            "placeholder": "session",
+            "title": {
+              "en": "Session",
+              "es": "Session",
+              "pr": "Session"
+            },
+            "help": {
+              "es": "Identificador de sesión (Opcional)",
+              "en": "Session ID (Optional)",
+              "pr": "ID da sessão (Opcional)"
+            },
+            "id": "session",
+            "css": "col-md-6"
           }
         ]
       },
@@ -131,6 +152,22 @@
             },
             "id": "result",
             "css": "col-md-12"
+          },
+          {
+            "type": "input",
+            "placeholder": "session",
+            "title": {
+              "en": "Session",
+              "es": "Session",
+              "pr": "Session"
+            },
+            "help": {
+              "es": "Identificador de sesión (Opcional)",
+              "en": "Session ID (Optional)",
+              "pr": "ID da sessão (Opcional)"
+            },
+            "id": "session",
+            "css": "col-md-6"
           }
         ]
       },
@@ -198,6 +235,22 @@
             },
             "id": "name",
             "css": "col-md-12"
+          },
+          {
+            "type": "input",
+            "placeholder": "session",
+            "title": {
+              "en": "Session",
+              "es": "Session",
+              "pr": "Session"
+            },
+            "help": {
+              "es": "Identificador de sesión (Opcional)",
+              "en": "Session ID (Optional)",
+              "pr": "ID da sessão (Opcional)"
+            },
+            "id": "session",
+            "css": "col-md-6"
           }
         ]
       },
@@ -300,6 +353,22 @@
             },
             "id": "hidden",
             "css": "col-md-12"
+          },
+          {
+            "type": "input",
+            "placeholder": "session",
+            "title": {
+              "en": "Session",
+              "es": "Session",
+              "pr": "Session"
+            },
+            "help": {
+              "es": "Identificador de sesión (Opcional)",
+              "en": "Session ID (Optional)",
+              "pr": "ID da sessão (Opcional)"
+            },
+            "id": "session",
+            "css": "col-md-6"
           }
         ]
       },
@@ -367,6 +436,22 @@
             },
             "id": "sheetName",
             "css": "col-md-12"
+          },
+          {
+            "type": "input",
+            "placeholder": "session",
+            "title": {
+              "en": "Session",
+              "es": "Session",
+              "pr": "Session"
+            },
+            "help": {
+              "es": "Identificador de sesión (Opcional)",
+              "en": "Session ID (Optional)",
+              "pr": "ID da sessão (Opcional)"
+            },
+            "id": "session",
+            "css": "col-md-6"
           }
         ]
       },
@@ -469,6 +554,22 @@
             },
             "id": "text",
             "css": "col-md-12"
+          },
+          {
+            "type": "input",
+            "placeholder": "session",
+            "title": {
+              "en": "Session",
+              "es": "Session",
+              "pr": "Session"
+            },
+            "help": {
+              "es": "Identificador de sesión (Opcional)",
+              "en": "Session ID (Optional)",
+              "pr": "ID da sessão (Opcional)"
+            },
+            "id": "session",
+            "css": "col-md-6"
           }
         ]
       },
@@ -789,6 +890,22 @@
             },
             "id": "underline",
             "css": "col-md-2"
+          },
+          {
+            "type": "input",
+            "placeholder": "session",
+            "title": {
+              "en": "Session",
+              "es": "Session",
+              "pr": "Session"
+            },
+            "help": {
+              "es": "Identificador de sesión (Opcional)",
+              "en": "Session ID (Optional)",
+              "pr": "ID da sessão (Opcional)"
+            },
+            "id": "session",
+            "css": "col-md-6"
           }
         ]
       },
@@ -890,6 +1007,22 @@
               "pr": "Nome da variável sem {}"
             },
             "id": "result",
+            "css": "col-md-6"
+          },
+          {
+            "type": "input",
+            "placeholder": "session",
+            "title": {
+              "en": "Session",
+              "es": "Session",
+              "pr": "Session"
+            },
+            "help": {
+              "es": "Identificador de sesión (Opcional)",
+              "en": "Session ID (Optional)",
+              "pr": "ID da sessão (Opcional)"
+            },
+            "id": "session",
             "css": "col-md-6"
           }
         ]
@@ -1102,6 +1235,22 @@
             },
             "id": "cut",
             "css": "col-md-6"
+          },
+          {
+            "type": "input",
+            "placeholder": "session",
+            "title": {
+              "en": "Session",
+              "es": "Session",
+              "pr": "Session"
+            },
+            "help": {
+              "es": "Identificador de sesión (Opcional)",
+              "en": "Session ID (Optional)",
+              "pr": "ID da sessão (Opcional)"
+            },
+            "id": "session",
+            "css": "col-md-6"
           }
         ]
       },
@@ -1174,6 +1323,22 @@
             },
             "id": "result",
             "css": "col-md-12"
+          },
+          {
+            "type": "input",
+            "placeholder": "session",
+            "title": {
+              "en": "Session",
+              "es": "Session",
+              "pr": "Session"
+            },
+            "help": {
+              "es": "Identificador de sesión (Opcional)",
+              "en": "Session ID (Optional)",
+              "pr": "ID da sessão (Opcional)"
+            },
+            "id": "session",
+            "css": "col-md-6"
           }
         ]
       },
@@ -1283,6 +1448,22 @@
             "remove_vars": true,
             "id": "columns",
             "css": "col-md-4"
+          },
+          {
+            "type": "input",
+            "placeholder": "session",
+            "title": {
+              "en": "Session",
+              "es": "Session",
+              "pr": "Session"
+            },
+            "help": {
+              "es": "Identificador de sesión (Opcional)",
+              "en": "Session ID (Optional)",
+              "pr": "ID da sessão (Opcional)"
+            },
+            "id": "session",
+            "css": "col-md-6"
           }
         ]
       },
@@ -1405,6 +1586,22 @@
             },
             "id": "blank",
             "css": "col-md-4"
+          },
+          {
+            "type": "input",
+            "placeholder": "session",
+            "title": {
+              "en": "Session",
+              "es": "Session",
+              "pr": "Session"
+            },
+            "help": {
+              "es": "Identificador de sesión (Opcional)",
+              "en": "Session ID (Optional)",
+              "pr": "ID da sessão (Opcional)"
+            },
+            "id": "session",
+            "css": "col-md-6"
           }
         ]
       },
@@ -1527,6 +1724,22 @@
             },
             "id": "blank",
             "css": "col-md-4"
+          },
+          {
+            "type": "input",
+            "placeholder": "session",
+            "title": {
+              "en": "Session",
+              "es": "Session",
+              "pr": "Session"
+            },
+            "help": {
+              "es": "Identificador de sesión (Opcional)",
+              "en": "Session ID (Optional)",
+              "pr": "ID da sessão (Opcional)"
+            },
+            "id": "session",
+            "css": "col-md-6"
           }
         ]
       },
@@ -1629,6 +1842,22 @@
             },
             "id": "blank",
             "css": "col-md-4"
+          },
+          {
+            "type": "input",
+            "placeholder": "session",
+            "title": {
+              "en": "Session",
+              "es": "Session",
+              "pr": "Session"
+            },
+            "help": {
+              "es": "Identificador de sesión (Opcional)",
+              "en": "Session ID (Optional)",
+              "pr": "ID da sessão (Opcional)"
+            },
+            "id": "session",
+            "css": "col-md-6"
           }
         ]
       },
@@ -1731,6 +1960,22 @@
             },
             "id": "blank",
             "css": "col-md-4"
+          },
+          {
+            "type": "input",
+            "placeholder": "session",
+            "title": {
+              "en": "Session",
+              "es": "Session",
+              "pr": "Session"
+            },
+            "help": {
+              "es": "Identificador de sesión (Opcional)",
+              "en": "Session ID (Optional)",
+              "pr": "ID da sessão (Opcional)"
+            },
+            "id": "session",
+            "css": "col-md-6"
           }
         ]
       },
@@ -1828,6 +2073,22 @@
             },
             "id": "valor_filtro",
             "css": "col-md-4"
+          },
+          {
+            "type": "input",
+            "placeholder": "session",
+            "title": {
+              "en": "Session",
+              "es": "Session",
+              "pr": "Session"
+            },
+            "help": {
+              "es": "Identificador de sesión (Opcional)",
+              "en": "Session ID (Optional)",
+              "pr": "ID da sessão (Opcional)"
+            },
+            "id": "session",
+            "css": "col-md-6"
           }
         ]
       },
@@ -1895,6 +2156,22 @@
             },
             "id": "sheetName",
             "css": "col-md-4"
+          },
+          {
+            "type": "input",
+            "placeholder": "session",
+            "title": {
+              "en": "Session",
+              "es": "Session",
+              "pr": "Session"
+            },
+            "help": {
+              "es": "Identificador de sesión (Opcional)",
+              "en": "Session ID (Optional)",
+              "pr": "ID da sessão (Opcional)"
+            },
+            "id": "session",
+            "css": "col-md-6"
           }
         ]
       },
@@ -2017,6 +2294,22 @@
             },
             "id": "res",
             "css": "col-md-4"
+          },
+          {
+            "type": "input",
+            "placeholder": "session",
+            "title": {
+              "en": "Session",
+              "es": "Session",
+              "pr": "Session"
+            },
+            "help": {
+              "es": "Identificador de sesión (Opcional)",
+              "en": "Session ID (Optional)",
+              "pr": "ID da sessão (Opcional)"
+            },
+            "id": "session",
+            "css": "col-md-6"
           }
         ]
       },
@@ -2119,6 +2412,22 @@
             },
             "id": "res",
             "css": "col-md-4"
+          },
+          {
+            "type": "input",
+            "placeholder": "session",
+            "title": {
+              "en": "Session",
+              "es": "Session",
+              "pr": "Session"
+            },
+            "help": {
+              "es": "Identificador de sesión (Opcional)",
+              "en": "Session ID (Optional)",
+              "pr": "ID da sessão (Opcional)"
+            },
+            "id": "session",
+            "css": "col-md-6"
           }
         ]
       },
@@ -2247,6 +2556,22 @@
             },
             "id": "res",
             "css": "col-md-4"
+          },
+          {
+            "type": "input",
+            "placeholder": "session",
+            "title": {
+              "en": "Session",
+              "es": "Session",
+              "pr": "Session"
+            },
+            "help": {
+              "es": "Identificador de sesión (Opcional)",
+              "en": "Session ID (Optional)",
+              "pr": "ID da sessão (Opcional)"
+            },
+            "id": "session",
+            "css": "col-md-6"
           }
         ]
       },

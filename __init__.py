@@ -27,9 +27,15 @@ import os.path
 import sys
 
 base_path = tmp_global_obj["basepath"]
-cur_path = base_path + 'modules' + os.sep + \
-           'Google-SpreadSheets' + os.sep + 'libs' + os.sep
-sys.path.append(cur_path)
+cur_path = base_path + 'modules' + os.sep + 'Google-SpreadSheets' + os.sep + 'libs' + os.sep
+
+cur_path_x64 = os.path.join(cur_path, 'Windows' + os.sep +  'x64' + os.sep)
+cur_path_x86 = os.path.join(cur_path, 'Windows' + os.sep +  'x86' + os.sep)
+
+if cur_path_x64 not in sys.path and sys.maxsize > 2**32:
+    sys.path.append(cur_path_x64)
+elif cur_path_x86 not in sys.path and sys.maxsize > 32:
+    sys.path.append(cur_path_x86)
 
 from googleapiclient import discovery
 from google_auth_oauthlib.flow import InstalledAppFlow
@@ -45,11 +51,29 @@ import re
 module = GetParams("module")
 
 global creds
+global mod_gss_session
+
+session = GetParams("session")
+if not session:
+    session = ''
+    
+try:
+    if not mod_gss_session : #type:ignore
+        mod_gss_session = {}
+except NameError:
+    mod_gss_session = {}
 
 if module == "GoogleSuite":
     cred = None
     credential_path = GetParams("credentials_path")
 
+    if session == '':
+        filename = "token_drive.pickle"
+    else:
+        filename = "token_drive_{s}.pickle".format(s=session)
+    
+    filename = os.path.join(base_path, filename)
+    
     try:
         if not os.path.exists(credential_path):
             raise Exception(
@@ -64,8 +88,8 @@ if module == "GoogleSuite":
             'https://www.googleapis.com/auth/drive.scripts'
         ]
 
-        if os.path.exists('token_sheet.pickle'):
-            with open('token_sheet.pickle', 'rb') as token:
+        if os.path.exists(filename):
+            with open(filename, 'rb') as token:
                 cred = pickle.load(token)
             # If there are no (valid) credentials available, let the user log in.
         if not cred or not cred.valid:
@@ -76,23 +100,25 @@ if module == "GoogleSuite":
                     credential_path, SCOPES)
                 cred = flow.run_local_server()
             # Save the credentials for the next run
-            with open('token_sheet.pickle', 'wb') as token:
+            with open(filename, 'wb') as token:
                 pickle.dump(cred, token)
-        creds = cred
+        
+        # global creds
+        mod_gss_session[session] = cred
+        
     except Exception as e:
         PrintException()
         raise e
 
-if module == "CreateSpreadSheet":
+if not mod_gss_session[session]:
+    raise Exception("There's no credentials, nor valid token. Please, generate your credentials.")
 
-    if not creds:
-        raise Exception(
-            "There's no credentials, nor valid token. Please, generate your credentials.")
+if module == "CreateSpreadSheet":
 
     ss_name = GetParams('ss_name')
     result = GetParams('result')
 
-    service = discovery.build('sheets', 'v4', credentials=creds)
+    service = discovery.build('sheets', 'v4', credentials=mod_gss_session[session])
 
     spreadsheet_body = {
         "properties": {
@@ -106,15 +132,12 @@ if module == "CreateSpreadSheet":
         SetVar(result, response["spreadsheetId"])
         
 if module == "CreateSheet":
-    if not creds:
-        raise Exception(
-            "There's no credentials, nor valid token. Please, generate your credentials.")
 
     ss_id = GetParams('ss_id')
     name = GetParams('name')
     result = GetParams('result')
 
-    service = discovery.build('sheets', 'v4', credentials=creds)
+    service = discovery.build('sheets', 'v4', credentials=mod_gss_session[session])
 
     body = {
         "requests": [
@@ -137,16 +160,13 @@ if module == "CreateSheet":
         SetVar(result, sheetId)
 
 if module == "UpdateSheetProperties":
-    if not creds:
-        raise Exception(
-            "There's no credentials, nor valid token. Please, generate your credentials.")
 
     ss_id = GetParams('ss_id')
     sheet = GetParams('sheetName')
     newName = GetParams('newName')
     hidden = GetParams('hidden')
     
-    service = discovery.build('sheets', 'v4', credentials=creds)
+    service = discovery.build('sheets', 'v4', credentials=mod_gss_session[session])
 
     data = service.spreadsheets().get(spreadsheetId=ss_id).execute()
         
@@ -185,13 +205,10 @@ if module == "UpdateSheetProperties":
     response = request.execute()
 
 if module == "DeleteSheet":
-    if not creds:
-        raise Exception(
-            "There's no credentials, nor valid token. Please, generate your credentials.")
 
     ss_id = GetParams('ss_id')
     sheet = GetParams('sheetName')
-    service = discovery.build('sheets', 'v4', credentials=creds)
+    service = discovery.build('sheets', 'v4', credentials=mod_gss_session[session])
 
     data = service.spreadsheets().get(spreadsheetId=ss_id).execute()
         
@@ -219,10 +236,6 @@ if module == "DeleteSheet":
 
 if module == "UpdateRange":
 
-    if not creds:
-        raise Exception(
-            "There's no credentials, nor valid token. Please, generate your credentials.")
-
     ss_id = GetParams('ss_id')
     sheet = GetParams("sheetName")
     range_ = GetParams('range')
@@ -235,7 +248,7 @@ if module == "UpdateRange":
         
         values = eval(text)
         
-        service = discovery.build('sheets', 'v4', credentials=creds)
+        service = discovery.build('sheets', 'v4', credentials=mod_gss_session[session])
 
         # Checks existence of the given sheet name and update the range
         data = service.spreadsheets().get(spreadsheetId=ss_id).execute()
@@ -273,10 +286,6 @@ def get_column_index(col):
         raise e
 
 if module == "UpdateFormat":
-    
-    if not creds:
-        raise Exception(
-            "There's no credentials, nor valid token. Please, generate your credentials.")
 
     ss_id = GetParams('ss_id')
     sheet = GetParams("sheetName")
@@ -303,7 +312,7 @@ if module == "UpdateFormat":
         else:
             range_ = range_ + ":" + range_
         
-        service = discovery.build('sheets', 'v4', credentials=creds)
+        service = discovery.build('sheets', 'v4', credentials=mod_gss_session[session])
 
         # Checks existence of the given sheet name and update the range
         data = service.spreadsheets().get(spreadsheetId=ss_id).execute()
@@ -479,18 +488,13 @@ if module == "UpdateFormat":
         raise e
 
 if module == "ReadCells":
-
-    if not creds:
-        raise Exception(
-            "There's no credentials, nor valid token. Please, generate your credentials.")
-
     ss_id = GetParams('ss_id')
     sheet = GetParams("sheetName")
     range_ = GetParams('range')
     result = GetParams('result')
 
     try:
-        service = discovery.build('sheets', 'v4', credentials=creds)
+        service = discovery.build('sheets', 'v4', credentials=mod_gss_session[session])
 
         # Checks existence of the given sheet name and update the range
         data = service.spreadsheets().get(spreadsheetId=ss_id).execute()
@@ -517,10 +521,6 @@ if module == "ReadCells":
 
 
 if module == "copyPaste":
-    
-    if not creds:
-        raise Exception(
-            "There's no credentials, nor valid token. Please, generate your credentials.")
 
     ss_id = GetParams('ss_id')
     sheet = GetParams("sheetName")
@@ -545,7 +545,7 @@ if module == "copyPaste":
         else:
             range_2 = range_2 + ":" + range_2
         
-        service = discovery.build('sheets', 'v4', credentials=creds)
+        service = discovery.build('sheets', 'v4', credentials=mod_gss_session[session])
 
         # Checks existence of the given sheet name and update the range
         data = service.spreadsheets().get(spreadsheetId=ss_id).execute()
@@ -639,15 +639,10 @@ if module == "copyPaste":
         
 
 if module == "GetSheets":
-
-    if not creds:
-        raise Exception(
-            "There's no credentials, nor valid token. Please, generate your credentials.")
-
     ss_id = GetParams('ss_id')
     result = GetParams('result')
     
-    service = discovery.build('sheets', 'v4', credentials=creds)
+    service = discovery.build('sheets', 'v4', credentials=mod_gss_session[session])
         
     request = service.spreadsheets().get(spreadsheetId=ss_id)
     response = request.execute()
@@ -659,11 +654,6 @@ if module == "GetSheets":
         SetVar(result, sheets)
         
 if module == "CountCells":
-
-    if not creds:
-        raise Exception(
-            "There's no credentials, nor valid token. Please, generate your credentials.")
-
     try:
         ss_id = GetParams('ss_id')
         sheet = GetParams('sheetName')
@@ -672,7 +662,7 @@ if module == "CountCells":
         
         range_ = "A1:ZZZ999999"
 
-        service = discovery.build('sheets', 'v4', credentials=creds)
+        service = discovery.build('sheets', 'v4', credentials=mod_gss_session[session])
         
         # Checks existence of the given sheet name and update the range
         data = service.spreadsheets().get(spreadsheetId=ss_id).execute()
@@ -702,17 +692,13 @@ if module == "CountCells":
         raise e
 
 if module == "DeleteColumn":
-    if not creds:
-        raise Exception(
-            "There's no credentials, nor valid token. Please, generate your credentials.")
-
     ss_id = GetParams('ss_id')
     sheet = GetParams("sheetName")
     col = GetParams('column').lower()
     blank = GetParams('blank')
 
     try:
-        service = discovery.build('sheets', 'v4', credentials=creds)
+        service = discovery.build('sheets', 'v4', credentials=mod_gss_session[session])
 
         data = service.spreadsheets().get(spreadsheetId=ss_id).execute()
 
@@ -761,10 +747,6 @@ if module == "DeleteColumn":
         raise e
 
 if module == "DeleteRow":
-    if not creds:
-        raise Exception(
-            "There's no credentials, nor valid token. Please, generate your credentials.")
-
     ss_id = GetParams('ss_id')
     sheet = GetParams("sheetName")
     row = GetParams('row')
@@ -772,7 +754,7 @@ if module == "DeleteRow":
 
     try:
 
-        service = discovery.build('sheets', 'v4', credentials=creds)
+        service = discovery.build('sheets', 'v4', credentials=mod_gss_session[session])
 
         data = service.spreadsheets().get(spreadsheetId=ss_id).execute()
 
@@ -821,10 +803,6 @@ if module == "DeleteRow":
         raise e
 
 if module == "AddColumn":
-    if not creds:
-        raise Exception(
-            "There's no credentials, nor valid token. Please, generate your credentials.")
-
     ss_id = GetParams('ss_id')
     sheet = GetParams("sheetName")
     col = GetParams('column').lower()
@@ -832,7 +810,7 @@ if module == "AddColumn":
     blank = GetParams('blank')
 
     try:
-        service = discovery.build('sheets', 'v4', credentials=creds)
+        service = discovery.build('sheets', 'v4', credentials=mod_gss_session[session])
 
         data = service.spreadsheets().get(spreadsheetId=ss_id).execute()
 
@@ -875,10 +853,6 @@ if module == "AddColumn":
         raise e
 
 if module == "AddRow":
-    if not creds:
-        raise Exception(
-            "There's no credentials, nor valid token. Please, generate your credentials.")
-
     ss_id = GetParams('ss_id')
     sheet = GetParams("sheetName")
     row = int(GetParams('row'))
@@ -887,7 +861,7 @@ if module == "AddRow":
     
     try:
 
-        service = discovery.build('sheets', 'v4', credentials=creds)
+        service = discovery.build('sheets', 'v4', credentials=mod_gss_session[session])
 
         data = service.spreadsheets().get(spreadsheetId=ss_id).execute()
 
@@ -1014,13 +988,10 @@ def create_filter_structure(ranges, values, sheet_id):
         raise e
 
 if module == "unfilterData":
-    if not creds:
-        raise Exception(
-            "There's no credentials, nor valid token. Please, generate your credentials.")
     ss_id = GetParams('ss_id')
     sheet = GetParams("sheetName")
     try:
-        service = discovery.build('sheets', 'v4', credentials=creds)
+        service = discovery.build('sheets', 'v4', credentials=mod_gss_session[session])
         data = service.spreadsheets().get(spreadsheetId=ss_id).execute()
         
         if sheet == None or sheet == "":
@@ -1046,9 +1017,6 @@ if module == "unfilterData":
         raise e
 
 if module == "filterData":
-    if not creds:
-        raise Exception(
-            "There's no credentials, nor valid token. Please, generate your credentials.")
     ss_id = GetParams('ss_id')
     sheet = GetParams("sheetName")
     col = GetParams("col").lower()
@@ -1056,7 +1024,7 @@ if module == "filterData":
     try:
         col_index = get_column_index(col)
 
-        service = discovery.build('sheets', 'v4', credentials=creds)
+        service = discovery.build('sheets', 'v4', credentials=mod_gss_session[session])
         data = service.spreadsheets().get(spreadsheetId=ss_id).execute()
         
         if sheet == None or sheet == "":
@@ -1106,9 +1074,6 @@ if module == "filterData":
         raise e
 
 if module == "filterCells":
-    if not creds:
-        raise Exception(
-            "There's no credentials, nor valid token. Please, generate your credentials.")
     ss_id = GetParams('ss_id')
     sheet = GetParams("sheetName")
     res = GetParams("res")
@@ -1116,7 +1081,7 @@ if module == "filterCells":
     row_info = GetParams("row_info")
     
     try:
-        service = discovery.build('sheets', 'v4', credentials=creds)
+        service = discovery.build('sheets', 'v4', credentials=mod_gss_session[session])
         
         data_ = service.spreadsheets().get(spreadsheetId=ss_id).execute()
         
@@ -1173,16 +1138,13 @@ if module == "filterCells":
         raise e
     
 if module == "CopySheet":
-    if not creds:
-        raise Exception(
-            "There's no credentials, nor valid token. Please, generate your credentials.")
     try:
         ss_id = GetParams('ss_id')
         sheet = GetParams("sheetName")
         ss_id_2 = GetParams('ss_id_2')
         result = GetParams('res')
 
-        service = discovery.build('sheets', 'v4', credentials=creds)
+        service = discovery.build('sheets', 'v4', credentials=mod_gss_session[session])
 
         data = service.spreadsheets().get(spreadsheetId=ss_id).execute()
         
@@ -1207,16 +1169,13 @@ if module == "CopySheet":
         raise e
     
 if module == "TextToColumns":
-    if not creds:
-        raise Exception(
-            "There's no credentials, nor valid token. Please, generate your credentials.")
     try:
         ss_id = GetParams('ss_id')
         sheet = GetParams("sheetName")
         separator = GetParams('separator')
         result = GetParams('res')
 
-        service = discovery.build('sheets', 'v4', credentials=creds)
+        service = discovery.build('sheets', 'v4', credentials=mod_gss_session[session])
 
         data = service.spreadsheets().get(spreadsheetId=ss_id).execute()
         
