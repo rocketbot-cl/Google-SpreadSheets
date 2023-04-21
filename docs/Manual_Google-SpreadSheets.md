@@ -6,9 +6,7 @@
   
 This module allows you to read, write and update Google spreadsheets. You can add, delete, duplicate or even hide sheets; filter data; add or delete rows and columns; modify cells format, copy/cut and paste them; and more.  
 
-  
-*Read this in other languages: [English](Manual_Google SpreadSheet.md), [Português](Manual_Google SpreadSheet.pr.md), [Español](Manual_Google SpreadSheet.es.md)*  
-
+*Read this in other languages: [English](Manual_Google-SpreadSheets.md), [Português](Manual_Google-SpreadSheets.pr.md), [Español](Manual_Google-SpreadSheets.es.md)*
   
 ![banner](imgs/Banner_Google-SpreadSheets.png)
 ## How to install this module
@@ -26,8 +24,7 @@ Before using this module, you must register your app into Google Cloud Portal.
 2. Complete the form to create a new proyect and then press "Create".
 3. Within the Navigation Menu (Left), get into API and Services.
 4. Go to the upper section and press "+ ENABLE API AND SERVICES".
-5. Search for "Google Sheets API", select it 
-and then press "ENABLE".
+5. Search for "Google Sheets API", select it and then press "ENABLE".
 6. Go back to the Navigation Menu, go to API and Services and then get into Credentials.
 7. Press Create Credentials and select OAuth Client ID. Then select Application Type: Desktop App, give it a name and press Create.
 8. Download the credentials JSON file.

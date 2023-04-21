@@ -2,13 +2,11 @@
 
 
 
-# Planilhas Google
+# Google SpreadSheet
   
 Este módulo permite que você leia, escreva e atualize as planilhas do Google. Você pode adicionar, excluir, duplicar ou até ocultar planilhas; filtrar dados; adicionar ou excluir linhas e colunas; modifique o formato das células, copie/recorte e cole-as; e mais.  
 
-  
-*Read this in other languages: [English](Manual_Planilhas Google.md), [Português](Manual_Planilhas Google.pr.md), [Español](Manual_Planilhas Google.es.md)*  
-
+*Read this in other languages: [English](Manual_Google-SpreadSheets.md), [Português](Manual_Google-SpreadSheets.pr.md), [Español](Manual_Google-SpreadSheets.es.md)*
   
 ![banner](imgs/Banner_Google-SpreadSheets.png)
 ## Como instalar este módulo
@@ -27,13 +25,12 @@ Antes de usar este módulo, você deve registrar seu aplicativo no Google Cloud 
 2. Preencha o formulário para criar um novo projeto e pressione "Criar".
 3. No Menu de Navegação (Esquerda), entre em API e Serviços.
 4. Vá para a seção superior e pressione "+ ATIVAR API E SERVIÇOS".
-5. Pesquise por "Google Sheets API", 
-selecione-o e pressione "ATIVAR".
+5. Pesquise por "Google Sheets API", selecione-o e pressione "ATIVAR".
 6. Volte para o Menu de Navegação, vá para API e Serviços e depois entre em Credenciais.
 7. Pressione Criar credenciais e selecione ID do cliente OAuth. Em seguida, selecione Tipo de aplicativo: Aplicativo de desktop, dê um nome a ele e pressione Criar.
 8. Faça download do arquivo JSON de credenciais.
-9. Por fim, volte ao Menu de Navegação, vá até a Tela de Consentimento e adicione seu usuário na seção "Testar Usuários" (mesmo que seja o mesmo que está criando o
- app).
+9. Por fim, volte ao Menu de Navegação, vá até a Tela de Consentimento e adicione seu usuário na seção "Testar Usuários" (mesmo que seja o mesmo que está criando o 
+app).
 
 Nota: Quando a primeira conexão for feita, um arquivo .pickle será criado na pasta raiz do Rocketbot, para se conectar ao mesmo serviço com outra conta, você deve dar um nome a cada sessão. Se as credenciais expirarem, você deverá excluir o arquivo .pickle e criar e baixar um arquivo de credenciais nwe (JSON).
 
