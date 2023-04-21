@@ -1,29 +1,39 @@
+
+
+
+
 # Google SpreadSheet
   
-Module to use Google SpreadSheets  
+This module allows you to read, write and update Google spreadsheets. You can add, delete, duplicate or even hide sheets; filter data; add or delete rows and columns; modify cells format, copy/cut and paste them; and more.  
+
+  
+*Read this in other languages: [English](Manual_Google SpreadSheet.md), [Português](Manual_Google SpreadSheet.pr.md), [Español](Manual_Google SpreadSheet.es.md)*  
+
 
 ## How to install this module
   
-__Download__ and __install__ the content in 'modules' folder in Rocketbot path  
-
+To install the module in Rocketbot Studio, it can be done in two ways:
+1. Manual: __Download__ the .zip file and unzip it in the modules folder. The folder name must be the same as the module and inside it must have the following files and folders: \__init__.py, package.json, docs, example and libs. If you have the application open, refresh your browser to be able to use the new module.
+2. Automatic: When entering Rocketbot Studio on the right margin you will find the **Addons** section, select **Install Mods**, search for the desired module and press install.  
 
 
 ## How to use this module
 
-Before using this module, you must register your app into the Google Cloud Portal.
+Before using this module, you must register your app into Google Cloud Portal.
 
-1. Sign in with a google account to the following link: https://console.cloud.google.com/projectcreate?previousPage=%2Fhome%2Fdashboard
-2. Complete the form and then press Create
-3. Within the Navigation Menu (Left), enter API and Services
-4. In the upper section, go to "+ ENABLE API AND SERVICES"
-5. Search for "Google Sheets API", select it and finally enable it
-6. Again, go to the Navigation Menu (Left) > API and Services > Credentials
-7. Press Create Credentials > OAuth Client ID, select Application Type: Desktop App, enter a name and create.
+1. Sign in with a google account and get into the following link: https://console.cloud.google.com/projectcreate?previousPage=%2Fhome%2Fdashboard
+2. Complete the form to create a new proyect and then press "Create".
+3. Within the Navigation Menu (Left), get into API and Services.
+4. Go to the upper section and press "+ ENABLE API AND SERVICES".
+5. Search for "Google Sheets API", select it 
+and then press "ENABLE".
+6. Go back to the Navigation Menu, go to API and Services and then get into Credentials.
+7. Press Create Credentials and select OAuth Client ID. Then select Application Type: Desktop App, give it a name and press Create.
 8. Download the credentials JSON file.
-9. Finally go to the Navigation Menu (Left) > Consent Screen and add a user in the "Test Users" section
+9. Finally, go back to the Navigation Menu, go to Consent Screen and add your user in the "Test Users" section (even if it is the same that is creating the app).
 
-Note: When the first connection is made, a .pickle file will be created in the Rocketbot root folder, to connect to the same service from another account you must delete
-that file. Do the same procedure for the case in which the credentials expire.
+Note: When the first connection is made, a .pickle 
+file will be created in the Rocketbot root folder, to connect to the same service with another account you must give each session a name. If credentials expire you must delete the .pickle file and create and download a nwe credentials (JSON) file.
 
 
 ## Overview
@@ -59,8 +69,8 @@ Copy or cut and paste a cell or range of cells in the selected Spreadsheet
 10. Get sheets  
 Get list of sheets with their ID of the selected Spreadsheet
 
-11. Count rows  
-Count the rows of the selected sheet
+11. Count rows and/or columns  
+Count the used rows and/or columns of the selected sheet
 
 12. Add column  
 Add Columns to Selected Spreadsheet
