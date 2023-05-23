@@ -4,30 +4,15 @@
 
 # Google SpreadSheet
   
-Module to use Google SpreadSheets  
+This module allows you to read, write and update Google spreadsheets. You can add, delete, duplicate or even hide sheets; filter data; add or delete rows and columns; modify cells format, copy/cut and paste them; and more.  
+
+*Read this in other languages: [English](README.md), [Português](README.pr.md), [Español](README.es.md)*
 
 ## How to install this module
   
-__Download__ and __install__ the content in 'modules' folder in Rocketbot path  
-
-
-
-## How to use this module
-
-Before using this module, you must register your app into the Google Cloud Portal.
-
-1. Sign in with a google account to the following link: https://console.cloud.google.com/projectcreate?previousPage=%2Fhome%2Fdashboard
-2. Complete the form and then press Create
-3. Within the Navigation Menu (Left), enter API and Services
-4. In the upper section, go to "+ ENABLE API AND SERVICES"
-5. Search for "Google Sheets API", select it and finally enable it
-6. Again, go to the Navigation Menu (Left) > API and Services > Credentials
-7. Press Create Credentials > OAuth Client ID, select Application Type: Desktop App, enter a name and create.
-8. Download the credentials JSON file.
-9. Finally go to the Navigation Menu (Left) > Consent Screen and add a user in the "Test Users" section
-
-Note: When the first connection is made, a .pickle file will be created in the Rocketbot root folder, to connect to the same service from another account you must delete
-that file. Do the same procedure for the case in which the credentials expire.
+To install the module in Rocketbot Studio, it can be done in two ways:
+1. Manual: __Download__ the .zip file and unzip it in the modules folder. The folder name must be the same as the module and inside it must have the following files and folders: \__init__.py, package.json, docs, example and libs. If you have the application open, refresh your browser to be able to use the new module.
+2. Automatic: When entering Rocketbot Studio on the right margin you will find the **Addons** section, select **Install Mods**, search for the desired module and press install.  
 
 
 ## Overview
@@ -42,49 +27,55 @@ Create a new spreadsheet in Google SpreadSheet
 3. Create Sheet  
 Create a new sheet in selected SpreadSheet
 
-4. Delete Sheet  
+4. Update Sheet properties  
+Update a sheet properties from selected SpreadSheet
+
+5. Delete Sheet  
 Delete a sheet from selected SpreadSheet
 
-5. Write cells  
+6. Write cells  
 Write to a cell or range of cells in the selected Spreadsheet
 
-6. Format cells  
+7. Format cells  
 Change format of a cell or range of cells in the selected Spreadsheet
 
-7. Read cells  
+8. Read cells  
 Read a cell or range of cells from the selected Spreadsheet, example A1 or A1:B5
 
-8. Get sheets  
+9. Copy/Cut and paste  
+Copy or cut and paste a cell or range of cells in the selected Spreadsheet
+
+10. Get sheets  
 Get list of sheets with their ID of the selected Spreadsheet
 
-9. Contar filas  
-Count the rows of the selected sheet
+11. Count rows and/or columns  
+Count the used rows and/or columns of the selected sheet
 
-10. Add column  
+12. Add column  
 Add Columns to Selected Spreadsheet
 
-11. Add row  
+13. Add row  
 Add rows to the selected Spreadsheet
 
-12. Delete column  
+14. Delete column  
 Delete a column from a selected Spreadsheet
 
-13. Delete row  
+15. Delete row  
 Delete a row from a selected Spreadsheet
 
-14. Filter data  
+16. Filter data  
 Filter data in the selected Spreadsheet
 
-15. Unfilter data  
+17. Unfilter data  
 Unfilter data in the selected Spreadsheet
 
-16. Get filtered cells  
+18. Get filtered cells  
 Get the filtered cells
 
-17. Duplicate sheet  
+19. Duplicate sheet  
 Duplicates the selected sheet to the same or another workbook
 
-18. Text to columns  
+20. Text to columns  
 Splits a column of text into multiple columns, based on a delimiter in each cell.  
 
 

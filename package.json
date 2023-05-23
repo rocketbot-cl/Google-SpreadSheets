@@ -1,10 +1,15 @@
 {
   "author": "Danilo Toro, Nicolas Liendro, Juan Siro",
-  "description": "Module to use Google SpreadSheets | Módulo para usar Google SpreadSheets | Módulo para utilizar Google SpreadSheets",
+  "description": "Module to use Google SpreadSheets | Módulo para usar Google SpreadSheets",
+  "description_lang":{
+    "en": "This module allows you to read, write and update Google spreadsheets. You can add, delete, duplicate or even hide sheets; filter data; add or delete rows and columns; modify cells format, copy/cut and paste them; and more.",
+    "es": "Este módulo le permite leer, escribir y actualizar hojas de cálculo de Google. Puede agregar, eliminar, duplicar o incluso ocultar hojas; filtrar datos; agregar o eliminar filas y columnas; modificar el formato de las celdas, copiarlas/cortarlas y pegarlas; y más.",
+    "pr": "Este módulo permite que você leia, escreva e atualize as planilhas do Google. Você pode adicionar, excluir, duplicar ou até ocultar planilhas; filtrar dados; adicionar ou excluir linhas e colunas; modifique o formato das células, copie/recorte e cole-as; e mais."
+  },
   "disclaimer": "THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM “AS IS” WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.",
-  "version": "2.2.2",
+  "version": "3.6.6",
   "license": "MIT",
-  "homepage": "http://rockertbot.com",
+  "homepage": "http://rocketbot.com",
   "linux": true,
   "windows": true,
   "mac": true,
@@ -19,7 +24,7 @@
   "title": {
     "en": "Google SpreadSheet",
     "es": "Google SpreadSheet",
-    "pr": "Planilhas Google"
+    "pr": "Google SpreadSheet"
   },
   "icon": "data:image/png;base64,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",
   "children": [
@@ -59,6 +64,22 @@
             },
             "id": "credentials_path",
             "css": "col-md-12"
+          },
+          {
+            "type": "input",
+            "placeholder": "session",
+            "title": {
+              "en": "Session",
+              "es": "Session",
+              "pr": "Session"
+            },
+            "help": {
+              "es": "Identificador de sesión (Opcional)",
+              "en": "Session ID (Optional)",
+              "pr": "ID da sessão (Opcional)"
+            },
+            "id": "session",
+            "css": "col-md-6"
           }
         ]
       },
@@ -131,6 +152,22 @@
             },
             "id": "result",
             "css": "col-md-12"
+          },
+          {
+            "type": "input",
+            "placeholder": "session",
+            "title": {
+              "en": "Session",
+              "es": "Session",
+              "pr": "Session"
+            },
+            "help": {
+              "es": "Identificador de sesión (Opcional)",
+              "en": "Session ID (Optional)",
+              "pr": "ID da sessão (Opcional)"
+            },
+            "id": "session",
+            "css": "col-md-6"
           }
         ]
       },
@@ -198,12 +235,146 @@
             },
             "id": "name",
             "css": "col-md-12"
+          },
+          {
+            "type": "input",
+            "placeholder": "session",
+            "title": {
+              "en": "Session",
+              "es": "Session",
+              "pr": "Session"
+            },
+            "help": {
+              "es": "Identificador de sesión (Opcional)",
+              "en": "Session ID (Optional)",
+              "pr": "ID da sessão (Opcional)"
+            },
+            "id": "session",
+            "css": "col-md-6"
           }
         ]
       },
       "video_youtube": "aMV6cXPMMSo",
       "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAMAAADDpiTIAAAAA3NCSVQICAjb4U/gAAAACXBIWXMAAA3XAAAN1wFCKJt4AAAAGXRFWHRTb2Z0d2FyZQB3d3cuaW5rc2NhcGUub3Jnm+48GgAAAsRQTFRF////KLRGKLRGKLRGScFhKLRGScFhKLRGKLRGKLRGKLRGKLRGKLRGKLRGKLRGKLRGKLRGKLRGKLRGKLRGKLRGKLRGKLRGKLRGKLRGKLRGKLRGKLRGKLRGKLRGKLRGKLRGKLRGKLRGKLRGKLRGKLRGKLRGKLRGKLRGKLRGKLRGLKtFJKQ9KLRGJKQ9KLRGKLRGKLRGKLRGKLRGKLRGKLRGKLRGKLRGKLRGKLRGTsNlKLRGKLRGWcduWMdtWcduWcduKLRGWcduKLRGWshvKLRGKLRGKLRGKLRGKLRGKLRGKLRGKLRGKLRGKLRGKLRGKLRGIZs4IZw4IZw5IZ05Ip05Ip46Ip86IqA7I6E7I6E8I6I8I6M8I6Q9JKQ9JKU+JKY+JKc+JKc/Jag/JalAJapAJapBJatBJqtBJqxBJqxCJq1CJq5DJq9DJ589J61CJ69DJ7BEJ7FEJ7JFKLJFKLNFKLNGKLRGKbRGKbRHKrJIKrVHKrVIK7VIK7VJLLVJLLZJLbZKLqREL7ZMMLdNMbhNM6hJM6lJM7hPNa1MNbZQNblRNblSNrlSN7lTN7pSOrtVO7RTO7pWO7tXO7xWP7xaP71ZQb5aQr5bQr5cQ79cRsBfSLZdSMFgSsFiS8BkTsNlT8NmUL1kUMJpUr1lU8VqVMVqVcFpVcZrVsZrV8dtWcJsWcduWsVxXMhwXsd0XslyYMh3YchzYcp1Yst2Y8l5ZMx3Zct3Zsp8Zsx4Zs15aM16aM17ac17ast/as58cM2Edc+Ids+JedCMgNORg9SUitaai9eckNifkdmhm9ypnd2rn92sod6uo9+wsOO7seS8suS9tOW+tuXAu+fEvOjGvujHwenJw+rL0O/W0/DZ1vHb1/Hd3PPh3fPi3vTj3/Tj4PTk5fbp6ffs6/ju8Pry8frz8/v1+P35+v37/f7+/v/+////9rLsDQAAAFB0Uk5TAAECBQYICAsQEh4jJCksMjQ1O0JDREVHSU1cYGFmaGlydXx/iYuTlJWYnKSkpqanqbK5u77Ay9DU1Nvd3+Dg4eLi4+Pk5ejp7/D2+fr7/f4epxpHAAAJcUlEQVR42u3c97+WdR3H8YthjIQQShHEQEbSMCEFggaVSkzRXNnO9rL5bZKmlZU2KNtFtre0i8adpoVYimkqZsM9Ov9EWo8s64jAuc7Vdd3v5+sP+P5w3k/Og8/hPlTV8DZi0ozZ8xcsOnJt6Yce+4BKu9GofQ8+ovRTm59CwK633yErS5+1uUfArrbPYaX/2twjYNfa+9CjS38CIGAXGjNvTSn9CoCA+2384lL6GAAB99PkFaW/ARCw06avLv0OgICdNKeU/gdAwH02s0QAIOA+mrouBAABgzZhZUkBQMAgjVtacgAQ8L8tLEkACPjv9i9ZAAi4dyOXpAEg4F4dUOIAEPAf7bU8EAAB/25WSQRAwD1/AzgqEwAB//o3wBIKgIB/NjcWAAH/aGkuAALuamIJBkBAVR0UDYCA6vBsAAQsCwcQL2BVOoBwAWNLPIBsARMAyBYwBYBsAdMAuLsnxQo4EIBsAQCECwAgXAAA4QIACBcAQLgAAMIFABAuAIBwAQCECwAgXAAA4QIACBcAQLgAAMIFADC4gNEARAPIEQBAuAAAwgUAEC4AgHABAOykJ44GIBpAggAAwgUAEC4AgHABAIQLACBcAADhAgAIFwBAuAAAwgUAEC4AgHABAIQLACBcAADhAgAIFwBAuAAAwgUAEC4AgHABAIQLACBcAADhAgAIFwBAuAAAwgUAEC4AgHABAIQLACBcAADhAgAIFwBAuAAAwgUAEC4AgHABAIQLACBcAADhAgAIFwBAuAAAaukJowGIBtBdAQCECwAgXAAA4QIACBcAQLgAAMIFABAuAIBwAQCECwgB8O0eAdEAvtYjIBrAeT0CogF8pkdANICP9wiIBvCRHgHRAN7XIyAawFu2EBANoHypR0A0gI/2CIgG8PafNS/gcaMBaE9f7xEQDeCTPQKiAZz2EwKiAZRP9QiIBvDW7xMQDaB8rEdANIA3biYgGkD5YI+AaADlswRkAyhfJSAbwNs2ExANoJz5QwKiAZQPbCEgGkA563sERAMop3+TgGgA5U3nERANoJRPbCEgGkA5/XM/JyAZQCnv/DIB0QBKee9XfkpAMoBS3vyhz/8oXkAygLt61Xs+/cVvfLfRbwWPHw1Am3r1c562fv0r3/Guxnr3wwFoV69/4Ynrm+xRALSuU591DADZve6UEwAI72XPACC81zzvOADCe8nTAYi/C48FwF0IQHavGMa7EIDwuxCA8LsQgPC7EIDwuxCA8LsQgO7dhS84EYDwXl7fXQhAN3vtKccD4C4EwF0IQHYvPgmA9Lvw2ccC4C4EIPwufOYxAITfhc8/HoD0u/BkANyFAGT3ht29CwEIvwsB6Mu78AQA3IUAuAsBcBcC4C4EwF0IQHKn7uwuBCD8LgQg/C4EIPwuBCCpl54MQPpd+NzjAAi/C190EgDuQgDC78J7/sMJAHLvQgDchQDE34WPACC7hwKQ3YEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACQAAIAAEgAASAABAAAkAACAABIAAEgAAQAAJg99twduvbAMAwtfHCy3bcPtD6bt9x2YUbAai/C24d6Ey3XgBA3X/8rxroVFdtBKDOzvzLQMf68xkA1NjvBjrXbwGor/P/1j0Ad34LgNr600AH+yMAdXVOF/cfuPMsAGrqO50EMHA+ADX1m24C+DUANbW9mwC2A1BTV3YTwJUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMCQAVx8xp536WAPXjqEBy8GoHEAFw3hwW2DPbhtCA9eBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADsDoDLf7XnXTPYg9cM4cHLAWgcgF8NAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACA/gBw/R/2vBsGe/CGITx4PQCNA/CxcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA6CKAa7fteTsGe3DHEB68FoDGAfjlUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8KFQHwr1sXAfCwcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPh/Abjlxj3vtsEevG0ID94CQOMA/G4gAAAAAAAAAAAAAAAAAAAAAAAAAED/AbiimwCuAKCmLukmgK0A1NSPuwngBwDU1Ie7CeD9ANTVjV3c/68FgLr6ZRcB/AKA+vp99/bfXgCor3Nu6tr+N50NQJ1tuq5b+1+3qQBQaxu23tGd+e/YuqEAUPs3gUuuvrkL69989SWbGvhy5AG4u3O/0PrObehLkQlAAAgAASAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABIAAEgAAQAAJAAAgARQCYZpCmm9YqAFMM0nRTWgVggkGabkKrAIw1SNONbRWAapVFmm1Vu/avlpmk2Za1DMDhJmm2w1sG4CCTNNtBLQMw0STNNrFlAKqlNmmypW3bv5prlCab2zoAk43SZJNbB2DkUVZprqNGtg5ANcsszTWrfftXey23S1Mt36uFAKoDDNNUB7Rx/2rkEss005KRrQRQ7W+aZtq/amkLbdNEC9u6fzXOjwOb+CHguNYCqCastM9wt3JC1eKmrrPQ8LZuatXqZppoeJtZtbw5NhrO5lStb/pqMw1Xq6dXHWjyCksNTysmV51o/GJbDUeLx1cdacy8NeaquzXzxlTdae9DjzZZnR396AdW3Wqfw6xWX495UNW99jvEzwVr6amPfHDVzUbte/AR9htaT37YQ0ZVHW7EpBmz5y9YdORaU+5ea49ctGD+7BmTRgzzQH8HdHI/2wWAEUoAAAAASUVORK5CYII=",
       "module": "CreateSheet",
+      "module_name": "Google-SpreadSheets",
+      "visible": true,
+      "options": false,
+      "father": "module",
+      "group": "scripts",
+      "linux": true,
+      "windows": true,
+      "mac": true,
+      "docker": true
+    },
+    {
+      "en": {
+        "title": "Update Sheet properties",
+        "description": "Update a sheet properties from selected SpreadSheet",
+        "title_options": null,
+        "options": null
+      },
+      "es": {
+        "title": "Actualizar propiedades de Hoja",
+        "description": "Actualiza las propiedades de una hoja de la Hoja de Cálculo seleccionada",
+        "title_options": null,
+        "options": null
+      },
+      "pr": {
+        "title": "Atualizar propriedades da Folha",
+        "description": "Atualiza as propriedades de uma folha da Planilha selecionada",
+        "title_options": null,
+        "options": null
+      },
+      "form": {
+        "css": "modal-lg",
+        "inputs": [
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "Spreadsheet ID",
+              "en": "Spreadsheet ID",
+              "pr": "ID da Planilha"
+            },
+            "title": {
+              "es": "Spreadsheet ID:",
+              "en": "Spreadsheet ID:",
+              "pr": "ID da Planilha:"
+            },
+            "id": "ss_id",
+            "css": "col-md-12"
+          },
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "Nombre de la hoja",
+              "en": "Sheet Name",
+              "pr": "Nome da folha"
+            },
+            "title": {
+              "es": "Nombre de la hoja a actualizar:",
+              "en": "Name of the sheet to update:",
+              "pr": "Nome da folha para atualizar:"
+            },
+            "id": "sheetName",
+            "css": "col-md-12"
+          },
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "Nuevo",
+              "en": "New",
+              "pr": "Novo"
+            },
+            "title": {
+              "es": "Nuevo Nombre (Opcional):",
+              "en": "New Name (Optional):",
+              "pr": "Novo Nome (Opcional):"
+            },
+            "id": "newName",
+            "css": "col-md-12"
+          },
+          {
+            "type": "checkbox",
+            "placeholder": {
+              "es": "False",
+              "en": "False",
+              "pr": "False"
+            },
+            "title": {
+              "es": "Ocultar hoja",
+              "en": "Hide sheet",
+              "pr": "Ocultar folha"
+            },
+            "help": {
+              "es": "Tildar para ocultar, dejar vacio para mostrar.",
+              "en": "Check to hide, leave empty to show.",
+              "pr": "Marque para ocultar, deixe em branco para mostrar."
+            },
+            "id": "hidden",
+            "css": "col-md-12"
+          },
+          {
+            "type": "input",
+            "placeholder": "session",
+            "title": {
+              "en": "Session",
+              "es": "Session",
+              "pr": "Session"
+            },
+            "help": {
+              "es": "Identificador de sesión (Opcional)",
+              "en": "Session ID (Optional)",
+              "pr": "ID da sessão (Opcional)"
+            },
+            "id": "session",
+            "css": "col-md-6"
+          }
+        ]
+      },
+      "video_youtube": "aMV6cXPMMSo",
+      "icon": "data:image/png;base64,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",
+      "module": "UpdateSheetProperties",
       "module_name": "Google-SpreadSheets",
       "visible": true,
       "options": false,
@@ -265,6 +436,22 @@
             },
             "id": "sheetName",
             "css": "col-md-12"
+          },
+          {
+            "type": "input",
+            "placeholder": "session",
+            "title": {
+              "en": "Session",
+              "es": "Session",
+              "pr": "Session"
+            },
+            "help": {
+              "es": "Identificador de sesión (Opcional)",
+              "en": "Session ID (Optional)",
+              "pr": "ID da sessão (Opcional)"
+            },
+            "id": "session",
+            "css": "col-md-6"
           }
         ]
       },
@@ -367,6 +554,22 @@
             },
             "id": "text",
             "css": "col-md-12"
+          },
+          {
+            "type": "input",
+            "placeholder": "session",
+            "title": {
+              "en": "Session",
+              "es": "Session",
+              "pr": "Session"
+            },
+            "help": {
+              "es": "Identificador de sesión (Opcional)",
+              "en": "Session ID (Optional)",
+              "pr": "ID da sessão (Opcional)"
+            },
+            "id": "session",
+            "css": "col-md-6"
           }
         ]
       },
@@ -499,6 +702,210 @@
             },
             "id": "resize",
             "css": "col-md-3"
+          },
+          {
+            "type": "select",
+            "placeholder": {
+              "es": "---- Select type ----",
+              "en": "---- Select type ----",
+              "pr": "---- Select type ----"
+            },
+            "title": {
+              "es": "Tipo de formato",
+              "en": "Format type",
+              "pr": "Tipo de formato"
+            },
+            "options": [
+              {
+                "title": "---- Select type ----",
+                "value": ""
+              },
+              {
+                "title": "TEXT: Text formatting, e.g 1000.12.",
+                "value": "TEXT"
+              },
+              {
+                "title": "NUMBER: Number formatting, e.g, 1,000.12.",
+                "value": "NUMBER"
+              },
+              {
+                "title": "PERCENT: Percent formatting, e.g 10.12%.",
+                "value": "PERCENT"
+              },
+              {
+                "title": "CURRENCY: Currency formatting, e.g $1,000.12.",
+                "value": "CURRENCY"
+              },
+              {
+                "title": "DATE: Date formatting, e.g 9/26/2008.",
+                "value": "DATE"
+              },
+              {
+                "title": "TIME: Time formatting, e.g 3:59:00 PM.",
+                "value": "TIME"
+              },
+              {
+                "title": "DATE_TIME: Date+Time formatting, e.g 9/26/08 15:59:00.",
+                "value": "DATE_TIME"
+              },
+              {
+                "title": "SCIENTIFIC: Scientific number formatting, e.g 1.01E+03.",
+                "value": "SCIENTIFIC"
+              }
+            ],
+            "help": {
+              "es": "Para personalizar el patron, debe seleccionar un tipo de formato.",
+              "en": "To customize the pattern, you must select a type of format.",
+              "pr": "Para personalizar o padrão, você deve selecionar um tipo de formato."
+            },
+            "id": "format",
+            "css": "col-md-6"
+          },
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "yyyy-mm-dd hh:mm A/P\".M.\"",
+              "en": "yyyy-mm-dd hh:mm A/P\".M.\"",
+              "pr": "yyyy-mm-dd hh:mm A/P\".M.\""
+            },
+            "title": {
+              "es": "Patron de formato: ",
+              "en": "Format pattern: ",
+              "pr": "Padrão de formato:"
+            },
+            "help": {
+              "es": "Si se deja vacio, se aplicará el formato por defecto del tipo elegido. \nDocumentación: https://developers.google.com/sheets/api/guides/formats?hl=es-419",
+              "en": "If left empty, the default format of the chosen type will be applied. \nDocumentation: https://developers.google.com/sheets/api/guides/formats",
+              "pr": "Se deixado em branco, o formato padrão do tipo escolhido será aplicado. \nDocumentação: https://developers.google.com/sheets/api/guides/formats?hl=pt-br"
+            },
+            "id": "pattern",
+            "css": "col-md-6"
+          },
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "255,0,0",
+              "en": "255,0,0",
+              "pr": "255,0,0"
+            },
+            "title": {
+              "es": "Color de fuente: ",
+              "en": "Font color: ",
+              "pr": "Cor da fonte:"
+            },
+            "help": {
+              "es": "Formato RGB: Ingresar 3 numeros (de 0 a 255) separados por com.",
+              "en": "RGB format: Enter 3 numbers (from 0 to 255) separated by commas.",
+              "pr": "Formato RGB: Digite 3 números (de 0 a 255) separados por vírgulas."
+            },
+            "id": "foreground",
+            "css": "col-md-6"
+          },
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "Open Sans",
+              "en": "Open Sans",
+              "pr": "Open Sans"
+            },
+            "title": {
+              "es": "Tipo de fuente: ",
+              "en": "Font family: ",
+              "pr": "Tipo de fonte:"
+            },
+            "id": "fontFamily",
+            "css": "col-md-6"
+          },
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "12",
+              "en": "12",
+              "pr": "12"
+            },
+            "title": {
+              "es": "Tamaño de fuente: ",
+              "en": "Font size: ",
+              "pr": "Tamanho da fonte:"
+            },
+            "id": "fontSize",
+            "css": "col-md-4"
+          },
+          {
+            "type": "checkbox",
+            "placeholder": {
+              "es": "",
+              "en": "",
+              "pr": ""
+            },
+            "title": {
+              "es": "Negrita",
+              "en": "Bold",
+              "pr": "Negrito"
+            },
+            "id": "bold",
+            "css": "col-md-2"
+          },
+          {
+            "type": "checkbox",
+            "placeholder": {
+              "es": "",
+              "en": "",
+              "pr": ""
+            },
+            "title": {
+              "es": "Cursiva",
+              "en": "Italic",
+              "pr": "Itálico"
+            },
+            "id": "italic",
+            "css": "col-md-2"
+          },
+          {
+            "type": "checkbox",
+            "placeholder": {
+              "es": "",
+              "en": "",
+              "pr": ""
+            },
+            "title": {
+              "es": "Tachar",
+              "en": "Strikethrough",
+              "pr": "Tachado"
+            },
+            "id": "strikethrough",
+            "css": "col-md-2"
+          },
+          {
+            "type": "checkbox",
+            "placeholder": {
+              "es": "",
+              "en": "",
+              "pr": ""
+            },
+            "title": {
+              "es": "Subrayar",
+              "en": "Underline",
+              "pr": "Sublinhado"
+            },
+            "id": "underline",
+            "css": "col-md-2"
+          },
+          {
+            "type": "input",
+            "placeholder": "session",
+            "title": {
+              "en": "Session",
+              "es": "Session",
+              "pr": "Session"
+            },
+            "help": {
+              "es": "Identificador de sesión (Opcional)",
+              "en": "Session ID (Optional)",
+              "pr": "ID da sessão (Opcional)"
+            },
+            "id": "session",
+            "css": "col-md-6"
           }
         ]
       },
@@ -601,12 +1008,255 @@
             },
             "id": "result",
             "css": "col-md-6"
+          },
+          {
+            "type": "input",
+            "placeholder": "session",
+            "title": {
+              "en": "Session",
+              "es": "Session",
+              "pr": "Session"
+            },
+            "help": {
+              "es": "Identificador de sesión (Opcional)",
+              "en": "Session ID (Optional)",
+              "pr": "ID da sessão (Opcional)"
+            },
+            "id": "session",
+            "css": "col-md-6"
           }
         ]
       },
       "video_youtube": "aMV6cXPMMSo",
       "icon": "data:image/png;base64,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",
       "module": "ReadCells",
+      "module_name": "Google-SpreadSheets",
+      "visible": true,
+      "options": false,
+      "father": "module",
+      "group": "scripts",
+      "linux": true,
+      "windows": true,
+      "mac": true,
+      "docker": true
+    },
+    {
+      "en": {
+        "title": "Copy/Cut and paste",
+        "description": "Copy or cut and paste a cell or range of cells in the selected Spreadsheet",
+        "title_options": null,
+        "options": null
+      },
+      "es": {
+        "title": "Copiar/cortar y pegar",
+        "description": "Copie o corte y pegue una celda o rango de celdas en la Hoja de Cálculo seleccionada",
+        "title_options": null,
+        "options": null
+      },
+      "pr": {
+        "title": "Copiar/Cortar e colar",
+        "description": "Copie ou recorte e cole uma célula ou intervalo de células na Planilha selecionada",
+        "title_options": null,
+        "options": null
+      },
+      "form": {
+        "css": "modal-lg",
+        "inputs": [
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "Spreadsheet ID",
+              "en": "Spreadsheet ID",
+              "pr": "ID da Planilha"
+            },
+            "title": {
+              "es": "Spreadsheet ID:",
+              "en": "Spreadsheet ID:",
+              "pr": "ID da Planilha:"
+            },
+            "id": "ss_id",
+            "css": "col-md-12"
+          },
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "Hoja1",
+              "en": "Sheet1",
+              "pr": "Folha1"
+            },
+            "title": {
+              "es": "Nombre de la hoja origen:",
+              "en": "Source sheet name:",
+              "pr": "Nome da folha de origem:"
+            },
+            "id": "sheetName",
+            "css": "col-md-6"
+          },
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "A1:C1",
+              "en": "A1:C1",
+              "pr": "A1:C1"
+            },
+            "title": {
+              "es": "Celdas origen: ",
+              "en": "Source cells: ",
+              "pr": "Células de origem:"
+            },
+            "help": {
+              "es": "Ejemplo A1:C1",
+              "en": "Example A1:C1",
+              "pr": "Exemplo A1:C1"
+            },
+            "id": "range",
+            "css": "col-md-6"
+          },
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "Hoja2",
+              "en": "Sheet2",
+              "pr": "Folha2"
+            },
+            "title": {
+              "es": "Nombre de la hoja destino:",
+              "en": "Destination sheet name:",
+              "pr": "Nome da folha de destino:"
+            },
+            "id": "sheetName2",
+            "css": "col-md-6"
+          },
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "A2:C2",
+              "en": "A2:C2",
+              "pr": "A2:C2"
+            },
+            "title": {
+              "es": "Celdas destino: ",
+              "en": "Destination cells: ",
+              "pr": "Células de destino:"
+            },
+            "help": {
+              "es": "Ejemplo A2:C2",
+              "en": "Example A2:C2",
+              "pr": "Exemplo A2:C2"
+            },
+            "id": "range2",
+            "css": "col-md-6"
+          },
+          {
+            "type": "select",
+            "placeholder": {
+              "es": "---- Select type ----",
+              "en": "---- Select type ----",
+              "pr": "---- Select type ----"
+            },
+            "title": {
+              "es": "Tipo de pegado",
+              "en": "Paste type",
+              "pr": "Tipo de pasta"
+            },
+            "options": [
+              {
+                "title": "---- Select type ----",
+                "value": ""
+              },
+              {
+                "title": "PASTE_NORMAL: Paste values, formulas, formats, and merges.",
+                "value": "PASTE_NORMAL"
+              },
+              {
+                "title": "PASTE_VALUES: Paste the values ONLY without formats, formulas, or merges.",
+                "value": "PASTE_VALUES"
+              },
+              {
+                "title": "PASTE_FORMAT: Paste the format and data validation only.",
+                "value": "PASTE_FORMAT"
+              },
+              {
+                "title": "PASTE_NO_BORDERS: Like PASTE_NORMAL but without borders.",
+                "value": "PASTE_NO_BORDERS"
+              },
+              {
+                "title": "PASTE_FORMULA: Paste the formulas only.",
+                "value": "PASTE_FORMULA"
+              },
+              {
+                "title": "PASTE_DATA_VALIDATION: Paste the data validation only.",
+                "value": "PASTE_DATA_VALIDATION"
+              },
+              {
+                "title": "PASTE_CONDITIONAL_FORMATTING: Paste the conditional formatting rules only.",
+                "value": "PASTE_CONDITIONAL_FORMATTING"
+              }
+            ],
+            "id": "type",
+            "css": "col-md-12"
+          },
+          {
+            "type": "checkbox",
+            "placeholder": {
+              "es": "",
+              "en": "",
+              "pr": ""
+            },
+            "title": {
+              "es": "Transponer",
+              "en": "Transponse",
+              "pr": "Transpor"
+            },
+            "help": {
+              "es": "No se puede utilizar en combinación con la opción de cortar.",
+              "en": "Can not be used in combination with cut option.",
+              "pr": "Não pode ser usado em combinação com a opção de corte."
+            },
+            "id": "transponse",
+            "css": "col-md-6"
+          },
+          {
+            "type": "checkbox",
+            "placeholder": {
+              "es": "",
+              "en": "",
+              "pr": ""
+            },
+            "title": {
+              "es": "Cortar",
+              "en": "Cut",
+              "pr": "Cortar"
+            },
+            "help": {
+              "es": "Mueve los datos del origen al destino.",
+              "en": "Moves data from the source to the destination.",
+              "pr": "Move os dados da origem para o destino."
+            },
+            "id": "cut",
+            "css": "col-md-6"
+          },
+          {
+            "type": "input",
+            "placeholder": "session",
+            "title": {
+              "en": "Session",
+              "es": "Session",
+              "pr": "Session"
+            },
+            "help": {
+              "es": "Identificador de sesión (Opcional)",
+              "en": "Session ID (Optional)",
+              "pr": "ID da sessão (Opcional)"
+            },
+            "id": "session",
+            "css": "col-md-6"
+          }
+        ]
+      },
+      "video_youtube": "aMV6cXPMMSo",
+      "icon": "data:image/png;base64,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",
+      "module": "copyPaste",
       "module_name": "Google-SpreadSheets",
       "visible": true,
       "options": false,
@@ -673,6 +1323,22 @@
             },
             "id": "result",
             "css": "col-md-12"
+          },
+          {
+            "type": "input",
+            "placeholder": "session",
+            "title": {
+              "en": "Session",
+              "es": "Session",
+              "pr": "Session"
+            },
+            "help": {
+              "es": "Identificador de sesión (Opcional)",
+              "en": "Session ID (Optional)",
+              "pr": "ID da sessão (Opcional)"
+            },
+            "id": "session",
+            "css": "col-md-6"
           }
         ]
       },
@@ -691,20 +1357,20 @@
     },
     {
       "en": {
-        "title": "Count rows",
-        "description": "Count the rows of the selected sheet",
+        "title": "Count rows and/or columns",
+        "description": "Count the used rows and/or columns of the selected sheet",
         "title_options": null,
         "options": null
       },
       "es": {
-        "title": "Contar filas",
-        "description": "Cuenta las filas de la hoja seleccionada",
+        "title": "Contar filas y/o columnas",
+        "description": "Cuenta las filas y/o columnas utilizadas de la hoja seleccionada",
         "title_options": null,
         "options": null
       },
       "pr": {
-        "title": "Contar linhas",
-        "description": "Contar as linhas da planilha selecionada",
+        "title": "Contar linhas e/ou colunas",
+        "description": "Conte as linhas e/ou colunas usadas da planilha selecionada",
         "title_options": null,
         "options": null
       },
@@ -739,7 +1405,7 @@
               "pr": "Nome da folha:"
             },
             "id": "sheetName",
-            "css": "col-md-6"
+            "css": "col-md-4"
           },
           {
             "type": "input",
@@ -749,16 +1415,54 @@
               "pr": "Variável"
             },
             "title": {
-              "es": "Resultado:",
-              "en": "Result:",
-              "pr": "Resultado:"
+              "es": "Variable donde almacenar resultado de filas:",
+              "en": "Variable where to store result of rows:",
+              "pr": "Variável onde armazenar o resultado das linhas:"
             },
             "help": {
               "es": "Nombre de variable sin {}",
               "en": "Variable name without {}",
               "pr": "Nome da variável sem {}"
             },
+            "remove_vars": true,
             "id": "result",
+            "css": "col-md-4"
+          },
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "Variable",
+              "en": "Variable",
+              "pr": "Variável"
+            },
+            "title": {
+              "es": "Variable donde almacenar resultado de columnas:",
+              "en": "Variable where to store result of columns:",
+              "pr": "Variável onde armazenar o resultado das colunas:"
+            },
+            "help": {
+              "es": "Nombre de variable sin {}",
+              "en": "Variable name without {}",
+              "pr": "Nome da variável sem {}"
+            },
+            "remove_vars": true,
+            "id": "columns",
+            "css": "col-md-4"
+          },
+          {
+            "type": "input",
+            "placeholder": "session",
+            "title": {
+              "en": "Session",
+              "es": "Session",
+              "pr": "Session"
+            },
+            "help": {
+              "es": "Identificador de sesión (Opcional)",
+              "en": "Session ID (Optional)",
+              "pr": "ID da sessão (Opcional)"
+            },
+            "id": "session",
             "css": "col-md-6"
           }
         ]
@@ -882,6 +1586,22 @@
             },
             "id": "blank",
             "css": "col-md-4"
+          },
+          {
+            "type": "input",
+            "placeholder": "session",
+            "title": {
+              "en": "Session",
+              "es": "Session",
+              "pr": "Session"
+            },
+            "help": {
+              "es": "Identificador de sesión (Opcional)",
+              "en": "Session ID (Optional)",
+              "pr": "ID da sessão (Opcional)"
+            },
+            "id": "session",
+            "css": "col-md-6"
           }
         ]
       },
@@ -1004,6 +1724,22 @@
             },
             "id": "blank",
             "css": "col-md-4"
+          },
+          {
+            "type": "input",
+            "placeholder": "session",
+            "title": {
+              "en": "Session",
+              "es": "Session",
+              "pr": "Session"
+            },
+            "help": {
+              "es": "Identificador de sesión (Opcional)",
+              "en": "Session ID (Optional)",
+              "pr": "ID da sessão (Opcional)"
+            },
+            "id": "session",
+            "css": "col-md-6"
           }
         ]
       },
@@ -1106,6 +1842,22 @@
             },
             "id": "blank",
             "css": "col-md-4"
+          },
+          {
+            "type": "input",
+            "placeholder": "session",
+            "title": {
+              "en": "Session",
+              "es": "Session",
+              "pr": "Session"
+            },
+            "help": {
+              "es": "Identificador de sesión (Opcional)",
+              "en": "Session ID (Optional)",
+              "pr": "ID da sessão (Opcional)"
+            },
+            "id": "session",
+            "css": "col-md-6"
           }
         ]
       },
@@ -1208,6 +1960,22 @@
             },
             "id": "blank",
             "css": "col-md-4"
+          },
+          {
+            "type": "input",
+            "placeholder": "session",
+            "title": {
+              "en": "Session",
+              "es": "Session",
+              "pr": "Session"
+            },
+            "help": {
+              "es": "Identificador de sesión (Opcional)",
+              "en": "Session ID (Optional)",
+              "pr": "ID da sessão (Opcional)"
+            },
+            "id": "session",
+            "css": "col-md-6"
           }
         ]
       },
@@ -1305,6 +2073,22 @@
             },
             "id": "valor_filtro",
             "css": "col-md-4"
+          },
+          {
+            "type": "input",
+            "placeholder": "session",
+            "title": {
+              "en": "Session",
+              "es": "Session",
+              "pr": "Session"
+            },
+            "help": {
+              "es": "Identificador de sesión (Opcional)",
+              "en": "Session ID (Optional)",
+              "pr": "ID da sessão (Opcional)"
+            },
+            "id": "session",
+            "css": "col-md-6"
           }
         ]
       },
@@ -1372,6 +2156,22 @@
             },
             "id": "sheetName",
             "css": "col-md-4"
+          },
+          {
+            "type": "input",
+            "placeholder": "session",
+            "title": {
+              "en": "Session",
+              "es": "Session",
+              "pr": "Session"
+            },
+            "help": {
+              "es": "Identificador de sesión (Opcional)",
+              "en": "Session ID (Optional)",
+              "pr": "ID da sessão (Opcional)"
+            },
+            "id": "session",
+            "css": "col-md-6"
           }
         ]
       },
@@ -1438,7 +2238,7 @@
               "pr": "Nome da folha:"
             },
             "id": "sheetName",
-            "css": "col-md-4"
+            "css": "col-md-6"
           },
           {
             "type": "input",
@@ -1453,7 +2253,27 @@
               "pr": "Intervalo: "
             },
             "id": "range_",
-            "css": "col-md-4"
+            "css": "col-md-6"
+          },
+          {
+            "type": "checkbox",
+            "placeholder": {
+              "es": "",
+              "en": "",
+              "pr": ""
+            },
+            "title": {
+              "es": "Obtener datos con número de fila:",
+              "en": "Get data with row number:",
+              "pr": "Obter dados com o número da linha:"
+            },
+            "help": {
+              "es": "Obtendra un diccionario donde la Key será el número de fila.",
+              "en": "You will be a dictionary where the Key will be the row number.",
+              "pr": "Você obterá um dicionário onde a Key será o número da linha."
+            },
+            "id": "row_info",
+            "css": "col-md-6"
           },
           {
             "type": "input",
@@ -1474,6 +2294,22 @@
             },
             "id": "res",
             "css": "col-md-4"
+          },
+          {
+            "type": "input",
+            "placeholder": "session",
+            "title": {
+              "en": "Session",
+              "es": "Session",
+              "pr": "Session"
+            },
+            "help": {
+              "es": "Identificador de sesión (Opcional)",
+              "en": "Session ID (Optional)",
+              "pr": "ID da sessão (Opcional)"
+            },
+            "id": "session",
+            "css": "col-md-6"
           }
         ]
       },
@@ -1576,6 +2412,22 @@
             },
             "id": "res",
             "css": "col-md-4"
+          },
+          {
+            "type": "input",
+            "placeholder": "session",
+            "title": {
+              "en": "Session",
+              "es": "Session",
+              "pr": "Session"
+            },
+            "help": {
+              "es": "Identificador de sesión (Opcional)",
+              "en": "Session ID (Optional)",
+              "pr": "ID da sessão (Opcional)"
+            },
+            "id": "session",
+            "css": "col-md-6"
           }
         ]
       },
@@ -1704,6 +2556,22 @@
             },
             "id": "res",
             "css": "col-md-4"
+          },
+          {
+            "type": "input",
+            "placeholder": "session",
+            "title": {
+              "en": "Session",
+              "es": "Session",
+              "pr": "Session"
+            },
+            "help": {
+              "es": "Identificador de sesión (Opcional)",
+              "en": "Session ID (Optional)",
+              "pr": "ID da sessão (Opcional)"
+            },
+            "id": "session",
+            "css": "col-md-6"
           }
         ]
       },
