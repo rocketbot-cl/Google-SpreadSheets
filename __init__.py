@@ -42,6 +42,7 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 from openpyxl.utils.cell import get_column_letter
 
+import traceback
 import pickle
 import re
 
@@ -68,9 +69,9 @@ if module == "GoogleSuite":
     credential_path = GetParams("credentials_path")
 
     if session == '':
-        filename = "token_drive.pickle"
+        filename = "token_spreadsheets.pickle"
     else:
-        filename = "token_drive_{s}.pickle".format(s=session)
+        filename = "token_spreadsheets_{s}.pickle".format(s=session)
     
     filename = os.path.join(base_path, filename)
     
@@ -107,6 +108,7 @@ if module == "GoogleSuite":
         mod_gss_session[session] = cred
         
     except Exception as e:
+        traceback.print_exc()
         PrintException()
         raise e
 
@@ -269,6 +271,7 @@ if module == "UpdateRange":
         response = request.execute()
     
     except Exception as e:
+        traceback.print_exc()
         PrintException()
         raise e
 
@@ -516,6 +519,7 @@ if module == "ReadCells":
         if result:
             SetVar(result, value)
     except Exception as e:
+        traceback.print_exc()
         PrintException()
         raise e
 
@@ -688,6 +692,7 @@ if module == "CountCells":
             SetVar(columns, width)
         
     except Exception as e:
+        traceback.print_exc()
         PrintException()
         raise e
 
@@ -743,6 +748,7 @@ if module == "DeleteColumn":
         response = request.execute()
 
     except Exception as e:
+        traceback.print_exc()
         PrintException()
         raise e
 
@@ -799,6 +805,7 @@ if module == "DeleteRow":
         response = request.execute()
 
     except Exception as e:
+        traceback.print_exc()
         PrintException()
         raise e
 
@@ -849,6 +856,7 @@ if module == "AddColumn":
         response = request.execute()
 
     except Exception as e:
+        traceback.print_exc()
         PrintException()
         raise e
 
@@ -900,6 +908,7 @@ if module == "AddRow":
         response = request.execute()
 
     except Exception as e:
+        traceback.print_exc()
         PrintException()
         raise e
 
@@ -1013,6 +1022,7 @@ if module == "unfilterData":
         service.spreadsheets().batchUpdate(**params).execute()      
         
     except Exception as e:
+        traceback.print_exc()
         PrintException()
         raise e
 
@@ -1070,6 +1080,7 @@ if module == "filterData":
         filters = create_filter_structure(ranges, hidden_values, sheet_id)
         apply_filters(ss_id, filters, service)
     except Exception as e:
+        traceback.print_exc()
         PrintException()
         raise e
 
@@ -1134,6 +1145,7 @@ if module == "filterCells":
                     final_cells.append(item)                      
                 SetVar(res, final_cells)
     except Exception as e:
+        traceback.print_exc()
         PrintException()
         raise e
     
@@ -1165,6 +1177,7 @@ if module == "CopySheet":
         SetVar(res, True)
     except Exception as e:
         SetVar(res, False)
+        traceback.print_exc()
         PrintException()
         raise e
     
