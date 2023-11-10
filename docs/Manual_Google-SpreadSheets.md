@@ -157,6 +157,7 @@ Count the used rows and/or columns of the selected sheet
 | --- | --- | --- |
 |Spreadsheet ID||Spreadsheet ID|
 |Sheet name||Sheet1|
+|Range ||A1:A100|
 |Variable where to store result of rows||Variable|
 |Variable where to store result of columns||Variable|
 |Session||session|

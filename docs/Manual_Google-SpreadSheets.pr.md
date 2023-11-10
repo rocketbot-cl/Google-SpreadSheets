@@ -158,6 +158,7 @@ Conte as linhas e/ou colunas usadas da planilha selecionada
 | --- | --- | --- |
 |ID da Planilha||ID da Planilha|
 |Nome da folha||Folha1|
+|Intervalo||A1:A100|
 |Variável onde armazenar o resultado das linhas||Variável|
 |Variável onde armazenar o resultado das colunas||Variável|
 |Session||session|

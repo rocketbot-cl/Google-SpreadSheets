@@ -40,7 +40,7 @@ elif cur_path_x86 not in sys.path and sys.maxsize > 32:
 from googleapiclient import discovery
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
-from openpyxl.utils.cell import get_column_letter
+from openpyxl.utils.cell import column_index_from_string, get_column_letter
 
 import traceback
 import pickle
@@ -663,8 +663,7 @@ if module == "CountCells":
         sheet = GetParams('sheetName')
         result = GetParams('result') # Here is saved the number of rows the command was originaly made for that.
         columns = GetParams('columns')
-        
-        range_ = "A1:ZZZ999999"
+        range_ = "A1:ZZZ999999" if not GetParams('range') else GetParams('range')
 
         service = discovery.build('sheets', 'v4', credentials=mod_gss_session[session])
         
@@ -672,18 +671,34 @@ if module == "CountCells":
         data = service.spreadsheets().get(spreadsheetId=ss_id).execute()
         for element in data["sheets"]:
             if element["properties"]["title"] == sheet:
-                range_ = sheet + "!" + range_ # Sheet1!A1:A10
+                full_range = sheet + "!" + range_ # Sheet1!A1:A10
                 
         if not 'range_' in locals():
             raise Exception("Sheet could't be found...")
         
-        request = service.spreadsheets().values().get(spreadsheetId=ss_id, range=range_)
+        request = service.spreadsheets().values().get(spreadsheetId=ss_id, range=full_range)
         response = request.execute()
-
-        length = len(response["values"])
         
-        width_aux = max([len(row) for row in response["values"]])
-        width = [width_aux, get_column_letter(width_aux)] # get_column_letter indexes begin with 1 (not 0)
+        column_range = re.findall(r'([A-Z]+)', range_)
+        
+        if "values" in response.keys():
+            length = len(response["values"])
+            
+            width_aux = max([len(row) for row in response["values"]])
+            if column_range[0] == column_range[1]:
+                width = [get_column_index(column_range[0]), column_range[0]]
+            elif column_range[0] != "A":
+                width_aux_ = width_aux + get_column_index(column_range[0])
+                width = [width_aux_, get_column_letter(width_aux_)]
+            else:
+                width = [width_aux, get_column_letter(width_aux)] # get_column_letter indexes begin with 1 (not 0)
+        else:
+            if column_range[0] == column_range[1]:
+                width = [get_column_index(column_range[0]), column_range[0]]
+            else:
+                width = [0, 0]
+            length = 0
+            
 
         if result:
             SetVar(result, length)

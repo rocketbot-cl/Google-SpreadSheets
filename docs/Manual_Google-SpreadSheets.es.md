@@ -16,6 +16,7 @@ Para instalar el módulo en Rocketbot Studio, se puede hacer de dos formas:
 2. Automática: Al ingresar a Rocketbot Studio sobre el margen derecho encontrara la sección de **Addons**, seleccionar **Install Mods**, buscar el modulo deseado y presionar install.  
 
 
+
 ## Como usar este modulo
 
 Antes de usar este módulo, debe registrar su aplicación en Google Cloud Portal.
@@ -157,6 +158,7 @@ Cuenta las filas y/o columnas utilizadas de la hoja seleccionada
 | --- | --- | --- |
 |Spreadsheet ID||Spreadsheet ID|
 |Nombre de la hoja||Hoja1|
+|Rango ||A1:A100|
 |Variable donde almacenar resultado de filas||Variable|
 |Variable donde almacenar resultado de columnas||Variable|
 |Session||session|
