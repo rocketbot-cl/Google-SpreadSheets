@@ -7,7 +7,7 @@
     "pr": "Este módulo permite que você leia, escreva e atualize as planilhas do Google. Você pode adicionar, excluir, duplicar ou até ocultar planilhas; filtrar dados; adicionar ou excluir linhas e colunas; modifique o formato das células, copie/recorte e cole-as; e mais."
   },
   "disclaimer": "THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM “AS IS” WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.",
-  "version": "3.6.9",
+  "version": "3.7.0",
   "license": "MIT",
   "homepage": "http://rocketbot.com",
   "linux": true,
@@ -58,12 +58,38 @@
               "pr": "C:/caminho/credenciais.json"
             },
             "title": {
-              "es": "Ruta",
-              "en": "Path",
-              "pr": "Caminho"
+              "es": "Ruta del archivo de credenciales",
+              "en": "Credentials file path",
+              "pr": "Caminho de credenciais"
             },
+            "description": {
+              "es": "Archivo JSON con las credenciales de acceso a la API de Google SpreadSheets.",
+              "en": "JSON file with the credentials to access the Google SpreadSheets API.",
+              "pr": "Arquivo JSON com as credenciais de acesso ao API do Google SpreadSheets."
+            },
+            "extensions": [
+              [
+                "Json Files",
+                "*.json"
+              ]
+            ],
             "id": "credentials_path",
             "css": "col-md-12"
+          },
+          {
+            "type": "input",
+            "placeholder": {
+              "es": "8080",
+              "en": "8080",
+              "pr": "8080"
+            },
+            "title": {
+              "es": "Puerto (Opcional)",
+              "en": "Port (Optional)",
+              "pr": "Porto (Opcional)"
+            },
+            "id": "port",
+            "css": "col-md-6"
           },
           {
             "type": "input",

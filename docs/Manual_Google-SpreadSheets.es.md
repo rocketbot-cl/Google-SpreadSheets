@@ -42,7 +42,8 @@ Nota: Cuando se realiza la primera conexión, se creará un archivo .pickle en l
 Obtiene los permisos para manejar Google SpreadSheet con Rocketbot
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Ruta||C:/ruta/a/credenciales.json|
+|Ruta del archivo de credenciales|Archivo JSON con las credenciales de acceso a la API de Google SpreadSheets.|C:/ruta/a/credenciales.json|
+|Puerto (Opcional)||8080|
 |Session||session|
 
 ### Crear Hoja de Cálculo
