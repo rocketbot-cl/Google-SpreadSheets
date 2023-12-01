@@ -1178,9 +1178,9 @@ if module == "CopySheet":
         request = service.spreadsheets().sheets().copyTo(spreadsheetId=ss_id, sheetId=sheet_id, body=body)
         response = request.execute()
 
-        SetVar(res, True)
+        SetVar(result, True)
     except Exception as e:
-        SetVar(res, False)
+        SetVar(result, False)
         traceback.print_exc()
         PrintException()
         raise e
@@ -1221,8 +1221,8 @@ if module == "TextToColumns":
         request = service.spreadsheets().batchUpdate(spreadsheetId=ss_id, body=body)
         response = request.execute()
 
-        SetVar(res, True)
+        SetVar(result, True)
     except Exception as e:
-        SetVar(res, False)
+        SetVar(result, False)
         PrintException()
         raise e
