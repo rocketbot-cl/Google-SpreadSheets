@@ -41,7 +41,8 @@ file will be created in the Rocketbot root folder, to connect to the same servic
 Get permissions to handle Google SpreadSheet with Rocketbot
 |Parameters|Description|example|
 | --- | --- | --- |
-|Path||C:/path/to/credentials.json|
+|Credentials file path|JSON file with the credentials to access the Google SpreadSheets API.|C:/path/to/credentials.json|
+|Port (Optional)||8080|
 |Session||session|
 
 ### Create SpreadSheet
@@ -157,6 +158,7 @@ Count the used rows and/or columns of the selected sheet
 | --- | --- | --- |
 |Spreadsheet ID||Spreadsheet ID|
 |Sheet name||Sheet1|
+|Range ||A1:A100|
 |Variable where to store result of rows||Variable|
 |Variable where to store result of columns||Variable|
 |Session||session|

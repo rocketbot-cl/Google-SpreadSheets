@@ -16,6 +16,7 @@ Para instalar el módulo en Rocketbot Studio, se puede hacer de dos formas:
 2. Automática: Al ingresar a Rocketbot Studio sobre el margen derecho encontrara la sección de **Addons**, seleccionar **Install Mods**, buscar el modulo deseado y presionar install.  
 
 
+
 ## Como usar este modulo
 
 Antes de usar este módulo, debe registrar su aplicación en Google Cloud Portal.
@@ -41,7 +42,8 @@ Nota: Cuando se realiza la primera conexión, se creará un archivo .pickle en l
 Obtiene los permisos para manejar Google SpreadSheet con Rocketbot
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Ruta||C:/ruta/a/credenciales.json|
+|Ruta del archivo de credenciales|Archivo JSON con las credenciales de acceso a la API de Google SpreadSheets.|C:/ruta/a/credenciales.json|
+|Puerto (Opcional)||8080|
 |Session||session|
 
 ### Crear Hoja de Cálculo
@@ -157,6 +159,7 @@ Cuenta las filas y/o columnas utilizadas de la hoja seleccionada
 | --- | --- | --- |
 |Spreadsheet ID||Spreadsheet ID|
 |Nombre de la hoja||Hoja1|
+|Rango ||A1:A100|
 |Variable donde almacenar resultado de filas||Variable|
 |Variable donde almacenar resultado de columnas||Variable|
 |Session||session|
