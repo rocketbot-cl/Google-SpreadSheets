@@ -673,6 +673,9 @@ if module == "CountCells":
         service = discovery.build('sheets', 'v4', credentials=mod_gss_session[session])
         
         # Checks existence of the given sheet name and update the range
+        
+        column_range = re.findall(r'([A-Z]+)', range_)
+        
         data = service.spreadsheets().get(spreadsheetId=ss_id).execute()
         for element in data["sheets"]:
             if element["properties"]["title"].strip() == sheet:
@@ -681,10 +684,8 @@ if module == "CountCells":
         if not 'range_' in locals():
             raise Exception("Sheet could't be found...")
         
-        request = service.spreadsheets().values().get(spreadsheetId=ss_id, range=full_range)
+        request = service.spreadsheets().values().get(spreadsheetId=ss_id, range=range_)
         response = request.execute()
-        
-        column_range = re.findall(r'([A-Z]+)', range_)
         
         if "values" in response.keys():
             length = len(response["values"])
