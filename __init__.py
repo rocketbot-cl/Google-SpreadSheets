@@ -45,7 +45,7 @@ from googleapiclient import discovery #type: ignore
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 from openpyxl.utils.cell import column_index_from_string, get_column_letter
-
+from urllib.parse import unquote
 import traceback
 import pickle
 import re
@@ -178,7 +178,7 @@ if module == "UpdateSheetProperties":
     data = service.spreadsheets().get(spreadsheetId=ss_id).execute()
         
     for element in data["sheets"]:
-        if element["properties"]["title"].strip() == sheet:
+        if unquote(element["properties"]["title"]).strip() == sheet:
             sheet_id = element["properties"]["sheetId"]
     
     if not 'sheet_id' in locals():
@@ -220,7 +220,7 @@ if module == "DeleteSheet":
     data = service.spreadsheets().get(spreadsheetId=ss_id).execute()
         
     for element in data["sheets"]:
-        if element["properties"]["title"].strip() == sheet:
+        if unquote(element["properties"]["title"]).strip() == sheet:
             sheet_id = element["properties"]["sheetId"]
 
     if not 'sheet_id' in locals():
@@ -260,7 +260,7 @@ if module == "UpdateRange":
         # Checks existence of the given sheet name and update the range
         data = service.spreadsheets().get(spreadsheetId=ss_id).execute()
         for element in data["sheets"]:
-            if element["properties"]["title"].strip() == sheet:
+            if unquote(element["properties"]["title"]).strip() == sheet:
                 range_ = element["properties"]["title"] + "!" + range_ # Sheet1!A1:A10
         
         if not 'range_' in locals():
@@ -325,7 +325,7 @@ if module == "UpdateFormat":
         # Checks existence of the given sheet name and update the range
         data = service.spreadsheets().get(spreadsheetId=ss_id).execute()
         for element in data["sheets"]:
-            if element["properties"]["title"].strip() == sheet:
+            if unquote(element["properties"]["title"]).strip() == sheet:
                 sheet_id = element["properties"]["sheetId"]
 
         if not 'sheet_id' in locals():
@@ -507,7 +507,7 @@ if module == "ReadCells":
         # Checks existence of the given sheet name and update the range
         data = service.spreadsheets().get(spreadsheetId=ss_id).execute()
         for element in data["sheets"]:
-            if element["properties"]["title"].strip() == sheet:
+            if unquote(element["properties"]["title"]).strip() == sheet:
                 range_ = element["properties"]["title"] + "!" + range_ # Sheet1!A1:A10
         
         if not 'range_' in locals():
@@ -559,7 +559,7 @@ if module == "copyPaste":
         # Checks existence of the given sheet name and update the range
         data = service.spreadsheets().get(spreadsheetId=ss_id).execute()
         for element in data["sheets"]:
-            if element["properties"]["title"].strip() == sheet:
+            if unquote(element["properties"]["title"]).strip() == sheet:
                 sheet_id = element["properties"]["sheetId"]
             if element["properties"]["title"].strip() == sheet2:
                 sheet_id2 = element["properties"]["sheetId"]
@@ -678,7 +678,7 @@ if module == "CountCells":
         
         data = service.spreadsheets().get(spreadsheetId=ss_id).execute()
         for element in data["sheets"]:
-            if element["properties"]["title"].strip() == sheet:
+            if unquote(element["properties"]["title"]).strip() == sheet:
                 range_ = element["properties"]["title"] + "!" + range_ # Sheet1!A1:A10
                 
         if not 'range_' in locals():
@@ -729,7 +729,7 @@ if module == "DeleteColumn":
         data = service.spreadsheets().get(spreadsheetId=ss_id).execute()
 
         for element in data["sheets"]:
-            if element["properties"]["title"].strip() == sheet:
+            if unquote(element["properties"]["title"]).strip() == sheet:
                 sheet_id = element["properties"]["sheetId"]
         
         if not 'sheet_id' in locals():
@@ -786,7 +786,7 @@ if module == "DeleteRow":
         data = service.spreadsheets().get(spreadsheetId=ss_id).execute()
 
         for element in data["sheets"]:
-            if element["properties"]["title"].strip() == sheet:
+            if unquote(element["properties"]["title"]).strip() == sheet:
                 sheet_id = element["properties"]["sheetId"]
 
         if not 'sheet_id' in locals():
@@ -843,7 +843,7 @@ if module == "AddColumn":
         data = service.spreadsheets().get(spreadsheetId=ss_id).execute()
 
         for element in data["sheets"]:
-            if element["properties"]["title"].strip() == sheet:
+            if unquote(element["properties"]["title"]).strip() == sheet:
                 sheet_id = element["properties"]["sheetId"]
 
         if not 'sheet_id' in locals():
@@ -895,7 +895,7 @@ if module == "AddRow":
         data = service.spreadsheets().get(spreadsheetId=ss_id).execute()
 
         for element in data["sheets"]:
-            if element["properties"]["title"].strip() == sheet:
+            if unquote(element["properties"]["title"]).strip() == sheet:
                 sheet_id = element["properties"]["sheetId"]
         
         if not 'sheet_id' in locals():
@@ -1028,7 +1028,7 @@ if module == "unfilterData":
                     sheet_id = 0
         else:
             for element in data["sheets"]:
-                if element["properties"]["title"].strip() == sheet:
+                if unquote(element["properties"]["title"]).strip() == sheet:
                     sheet_id = element["properties"]["sheetId"]
 
             if not 'sheet_id' in locals():
@@ -1051,19 +1051,18 @@ if module == "filterData":
     ss_id = GetParams('ss_id')
     sheet = GetParams("sheetName")
     col = GetParams("col").lower()
-    valor_filtro = GetParams("valor_filtro")
+    valor_filtro = GetParams("valor_filtro") or ""
     try:
         col_index = get_column_index(col)
 
         service = discovery.build('sheets', 'v4', credentials=mod_gss_session[session])
         data = service.spreadsheets().get(spreadsheetId=ss_id).execute()
-        
         if sheet == None or sheet == "":
             sheet_id = 0
         else:
             for element in data["sheets"]:
-                if element["properties"]["title"].strip() == sheet:
-                    sheet_id = element["properties"]["sheetId"]
+                if unquote(element["properties"]["title"]).strip() == sheet:
+                    sheet_id = element["properties"]["sheetId"]     
 
             if not 'sheet_id' in locals():
                 raise Exception("Sheet could't be found...")
@@ -1120,7 +1119,7 @@ if module == "filterCells":
         for element in data_["sheets"]:
             if sheet == None or sheet == "":
                     sheet = data_["sheets"][0]["properties"]["title"]
-            if element["properties"]["title"].strip() == sheet:
+            if unquote(element["properties"]["title"]).strip() == sheet:
                 sheet_id = element["properties"]["sheetId"]
                 
                 if not 'sheet_id' in locals():
@@ -1182,7 +1181,7 @@ if module == "CopySheet":
         data = service.spreadsheets().get(spreadsheetId=ss_id).execute()
         
         for element in data["sheets"]:
-            if element["properties"]["title"].strip() == sheet:
+            if unquote(element["properties"]["title"]).strip() == sheet:
                 sheet_id = element["properties"]["sheetId"]
         
         if not 'sheet_id' in locals():
@@ -1214,7 +1213,7 @@ if module == "TextToColumns":
         data = service.spreadsheets().get(spreadsheetId=ss_id).execute()
         
         for element in data["sheets"]:
-            if element["properties"]["title"].strip() == sheet:
+            if unquote(element["properties"]["title"]).strip() == sheet:
                 sheet_id = element["properties"]["sheetId"]
         
         if not 'sheet_id' in locals():
