@@ -71,7 +71,7 @@ except NameError:
 if module == "GoogleSuite":
     cred = None
     credential_path = GetParams("credentials_path")
-    port = 8080 if not GetParams("port") else GetParams("port")
+    port = 8080 if not GetParams("port") else eval(GetParams("port"))
 
     if session == '':
         filename = "token_spreadsheets.pickle"
