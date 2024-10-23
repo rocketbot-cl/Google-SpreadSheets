@@ -247,6 +247,7 @@ if module == "UpdateRange":
     sheet = GetParams("sheetName")
     range_ = GetParams('range')
     text = GetParams('text')
+    typeData = GetParams('sendData')
 
     try:
         if not text.startswith("["):
@@ -254,7 +255,8 @@ if module == "UpdateRange":
             text = "[[ \"{}\" ]]".format(text)
         
         values = eval(text)
-        
+        if not typeData:
+            typeData = "USER_ENTERED"
         service = discovery.build('sheets', 'v4', credentials=mod_gss_session[session])
 
         # Checks existence of the given sheet name and update the range
@@ -271,7 +273,7 @@ if module == "UpdateRange":
         }
         
         request = service.spreadsheets().values().update(spreadsheetId=ss_id, range=range_,
-                                                         valueInputOption="USER_ENTERED",
+                                                         valueInputOption=typeData,
                                                          body=body)
         response = request.execute()
     
@@ -279,7 +281,7 @@ if module == "UpdateRange":
         traceback.print_exc()
         PrintException()
         raise e
-
+    
 def get_column_index(col):
     try:
         abc = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u',

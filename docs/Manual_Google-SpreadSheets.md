@@ -4,261 +4,280 @@
 
 # Google SpreadSheet
   
-This module allows you to read, write and update Google spreadsheets. You can add, delete, duplicate or even hide sheets; filter data; add or delete rows and columns; modify cells format, copy/cut and paste them; and more.  
+Este módulo le permite leer, escribir y actualizar hojas de cálculo de Google. Puede agregar, eliminar, duplicar o incluso ocultar hojas; filtrar datos; agregar o eliminar filas y columnas; modificar el formato de las celdas, copiarlas/cortarlas y pegarlas; y más.  
 
 *Read this in other languages: [English](Manual_Google-SpreadSheets.md), [Português](Manual_Google-SpreadSheets.pr.md), [Español](Manual_Google-SpreadSheets.es.md)*
   
 ![banner](imgs/Banner_Google-SpreadSheets.png)
-## How to install this module
+## Como instalar este módulo
   
-To install the module in Rocketbot Studio, it can be done in two ways:
-1. Manual: __Download__ the .zip file and unzip it in the modules folder. The folder name must be the same as the module and inside it must have the following files and folders: \__init__.py, package.json, docs, example and libs. If you have the application open, refresh your browser to be able to use the new module.
-2. Automatic: When entering Rocketbot Studio on the right margin you will find the **Addons** section, select **Install Mods**, search for the desired module and press install.  
+Para instalar el módulo en Rocketbot Studio, se puede hacer de dos formas:
+1. Manual: __Descargar__ el archivo .zip y descomprimirlo en la carpeta modules. El nombre de la carpeta debe ser el mismo al del módulo y dentro debe tener los siguientes archivos y carpetas: \__init__.py, package.json, docs, example y libs. Si tiene abierta la aplicación, refresca el navegador para poder utilizar el nuevo modulo.
+2. Automática: Al ingresar a Rocketbot Studio sobre el margen derecho encontrara la sección de **Addons**, seleccionar **Install Mods**, buscar el modulo deseado y presionar install.  
 
 
-## How to use this module
 
-Before using this module, you must register your app into Google Cloud Portal.
+## Como usar este modulo
 
-1. Sign in with a google account and get into the following link: https://console.cloud.google.com/projectcreate?previousPage=%2Fhome%2Fdashboard
-2. Complete the form to create a new proyect and then press "Create".
-3. Within the Navigation Menu (Left), get into API and Services.
-4. Go to the upper section and press "+ ENABLE API AND SERVICES".
-5. Search for "Google Sheets API", select it and then press "ENABLE".
-6. Go back to the Navigation Menu, go to API and Services and then get into Credentials.
-7. Press Create Credentials and select OAuth Client ID. Then select Application Type: Desktop App, give it a name and press Create.
-8. Download the credentials JSON file.
-9. Finally, go back to the Navigation Menu, go to Consent Screen and add your user in the "Test Users" section (even if it is the same that is creating the app).
+Antes de usar este módulo, debe registrar su aplicación en Google Cloud Portal.
 
-Note: When the first connection is made, a .pickle 
-file will be created in the Rocketbot root folder, to connect to the same service with another account you must give each session a name. If credentials expire you must delete the .pickle file and create and download a nwe credentials (JSON) file.
+1. Inicie sesión con una cuenta de Google y acceda al siguiente enlace: https://console.cloud.google.com/projectcreate?previousPage=%2Fhome%2Fdashboard
+2. Complete el formulario para crear un nuevo proyecto y luego presione "Crear".
+3. Dentro del menú de navegación (izquierda), acceda a API y servicios.
+4. Ve a la sección superior y presiona "+ HABILITAR API Y SERVICIOS".
+5. Busque "Google Sheets API", selecciónelo y luego presione "HABILITAR".
+6. Vuelva al menú de navegación, vaya a API y servicios y luego acceda a Credenciales.
+7. Pulse Crear credenciales y seleccione ID de cliente de OAuth. Luego seleccione Tipo de aplicación: Aplicación de escritorio, asígnele un nombre y presione Crear.
+8. Descargue el archivo JSON de credenciales.
+9. Finalmente, vuelve al Menú de Navegación, ve a la Pantalla de Consentimiento y agrega tu usuario en la sección "Usuarios de prueba" (aunque 
+sea el mismo que está creando la aplicación).
+
+Nota: Cuando se realiza la primera conexión, se creará un archivo .pickle en la carpeta raíz de Rocketbot, para conectarse al mismo servicio con otra cuenta, debe asignar un nombre a cada sesión. Si las credenciales caducan, debe eliminar el archivo .pickle y crear y descargar un archivo de credenciales nwe (JSON).
+
+## ERROR REDIRECT_URI_MISMATCH
+
+Si aparece el siguiente error al utilizar un archivo .json de credenciales que estaba funcional:
+
+![error](imgs/redirect_uri_mismatch_Error.png)
+
+Se deberán crear las credenciales nuevamente. Antes del paso 6 del apartado anterior 'Como usar este modulo', se tiene que configurar lo siguiente:
+- Ir a 'Pantalla de Consentimiento de OAuth' del menú izquierdo
+- Elegir el Tipo de Usuario:
+    1. Interno: los proyectos asociados con una organización de Google Cloud pueden configurar usuarios internos para limitar las solicitudes de autorización a los miembros de la organización.
+    2. Externo: 
+disponibles para cualquier usuario con una cuenta de Google.
+       
+        Hacer click en Crear
+- Completar los datos obligatorios marcados con asterisco (*) en la pagina Información de la aplicación, como el Nombre de la Aplicación, el Correo Electrónico de asistencia del usuario y la información de contacto del desarrollador. Hacer click en Guardar y continuar.
+- Seguir desde el paso 6 indicado en esta sección para concluir.
 
 
-## Description of the commands
+## Descripción de los comandos
 
-### Setup G-Suite credentials
+### Configurar credenciales G-Suite
   
-Get permissions to handle Google SpreadSheet with Rocketbot
-|Parameters|Description|example|
+Obtiene los permisos para manejar Google SpreadSheet con Rocketbot
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|Credentials file path|JSON file with the credentials to access the Google SpreadSheets API.|C:/path/to/credentials.json|
-|Port (Optional)||8080|
+|Ruta del archivo de credenciales|Archivo JSON con las credenciales de acceso a la API de Google SpreadSheets.|C:/ruta/a/credenciales.json|
+|Puerto (Opcional)||8080|
 |Session||session|
 
-### Create SpreadSheet
+### Crear Hoja de Cálculo
   
-Create a new spreadsheet in Google SpreadSheet
-|Parameters|Description|example|
+Crea una nueva hoja de cálculo en Google SpreadSheet
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
-|SpreadSheet name||Name|
-|Variable where the ID will be saved||Variable|
+|Nombre de la hoja de cálculo||Nombre|
+|Variable donde se guardará el ID||Variable|
 |Session||session|
 
-### Create Sheet
+### Crear Hoja
   
-Create a new sheet in selected SpreadSheet
-|Parameters|Description|example|
+Crear una nueva hoja en la Hoja de Cálculo seleccionada
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Spreadsheet ID||Spreadsheet ID|
-|Sheet name||Name|
+|Nombre de la hoja||Nombre|
 |Session||session|
 
-### Update Sheet properties
+### Actualizar propiedades de Hoja
   
-Update a sheet properties from selected SpreadSheet
-|Parameters|Description|example|
+Actualiza las propiedades de una hoja de la Hoja de Cálculo seleccionada
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Spreadsheet ID||Spreadsheet ID|
-|Name of the sheet to update||Sheet Name|
-|New Name (Optional)||New|
-|Hide sheet||False|
+|Nombre de la hoja a actualizar||Nombre de la hoja|
+|Nuevo Nombre (Opcional)||Nuevo|
+|Ocultar hoja||False|
 |Session||session|
 
-### Delete Sheet
+### Borrar Hoja
   
-Delete a sheet from selected SpreadSheet
-|Parameters|Description|example|
+Elimina una hoja de la Hoja de Cálculo seleccionada
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Spreadsheet ID||Spreadsheet ID|
-|Name of the sheet to delete||Sheet Name|
+|Nombre de la hoja a borrar||Nombre de la hoja|
 |Session||session|
 
-### Write cells
+### Escribir en celdas
   
-Write to a cell or range of cells in the selected Spreadsheet
-|Parameters|Description|example|
+Escribe en una celda o rango de celdas en la Hoja de Cálculo seleccionada
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Spreadsheet ID||Spreadsheet ID|
-|Sheet name||Sheet1|
-|Cell to write ||A1|
-|Text ||[["data","data"],["data","data"]]|
+|Nombre de la hoja||Hoja1|
+|Celda a escribir ||A1|
+|Texto ||[["data","data"],["data","data"]]|
+|Tipo de envio de datos||USER_ENTERED|
 |Session||session|
 
-### Format cells
+### Formatear celdas
   
-Change format of a cell or range of cells in the selected Spreadsheet
-|Parameters|Description|example|
+Cambiar formato de una celda o rango de celdas en la hoja de cálculo seleccionada
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Spreadsheet ID||Spreadsheet ID|
-|Sheet name||Sheet1|
-|Cells to format ||A1:C1|
-|Merge cells|||
-|Unmerge cells|||
-|Adjust columns size|||
-|Format type||---- Select type ----|
-|Format pattern ||yyyy-mm-dd hh:mm A/P".M."|
-|Font color ||255,0,0|
-|Font family ||Open Sans|
-|Font size ||12|
-|Bold|||
-|Italic|||
-|Strikethrough|||
-|Underline|||
+|Nombre de la hoja||Hoja1|
+|Celdas a formatear ||A1:C1|
+|Combinar celdas|||
+|Separar celdas|||
+|Ajustar tamaño de columnas|||
+|Tipo de formato||---- Select type ----|
+|Patron de formato ||yyyy-mm-dd hh:mm A/P".M."|
+|Color de fuente ||255,0,0|
+|Tipo de fuente ||Open Sans|
+|Tamaño de fuente ||12|
+|Negrita|||
+|Cursiva|||
+|Tachar|||
+|Subrayar|||
 |Session||session|
 
-### Read cells
+### Leer celdas
   
-Read a cell or range of cells from the selected Spreadsheet, example A1 or A1:B5
-|Parameters|Description|example|
+Lee una celda o rango de celdas desde la Hoja de Cálculo seleccionada, ejemplo A1 o A1:B5
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Spreadsheet ID||Spreadsheet ID|
-|Sheet name||Sheet1|
-|Cell or range of cells ||A1|
-|Result||Variable|
+|Nombre de la hoja||Hoja1|
+|Celda o rango de celdas ||A1|
+|Resultado||Variable|
 |Session||session|
 
-### Copy/Cut and paste
+### Copiar/cortar y pegar
   
-Copy or cut and paste a cell or range of cells in the selected Spreadsheet
-|Parameters|Description|example|
+Copie o corte y pegue una celda o rango de celdas en la Hoja de Cálculo seleccionada
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Spreadsheet ID||Spreadsheet ID|
-|Source sheet name||Sheet1|
-|Source cells ||A1:C1|
-|Destination sheet name||Sheet2|
-|Destination cells ||A2:C2|
-|Paste type||---- Select type ----|
-|Transponse|||
-|Cut|||
+|Nombre de la hoja origen||Hoja1|
+|Celdas origen ||A1:C1|
+|Nombre de la hoja destino||Hoja2|
+|Celdas destino ||A2:C2|
+|Tipo de pegado||---- Select type ----|
+|Transponer|||
+|Cortar|||
 |Session||session|
 
-### Get sheets
+### Obtener hojas
   
-Get list of sheets with their ID of the selected Spreadsheet
-|Parameters|Description|example|
+Obtener lista de hojas con su ID de la Hoja de Cálculo seleccionada
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Spreadsheet ID||Spreadsheet ID|
-|Result||Variable|
+|Resultado||Variable|
 |Session||session|
 
-### Count rows and/or columns
+### Contar filas y/o columnas
   
-Count the used rows and/or columns of the selected sheet
-|Parameters|Description|example|
+Cuenta las filas y/o columnas utilizadas de la hoja seleccionada
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Spreadsheet ID||Spreadsheet ID|
-|Sheet name||Sheet1|
-|Range ||A1:A100|
-|Variable where to store result of rows||Variable|
-|Variable where to store result of columns||Variable|
+|Nombre de la hoja||Hoja1|
+|Rango ||A1:A100|
+|Variable donde almacenar resultado de filas||Variable|
+|Variable donde almacenar resultado de columnas||Variable|
 |Session||session|
 
-### Add column
+### Agregar columna
   
-Add Columns to Selected Spreadsheet
-|Parameters|Description|example|
+Agregar columnas a la Hoja de Cálculo seleccionada
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Spreadsheet ID||Spreadsheet ID|
-|Sheet name||Sheet1|
-|Column||A|
-|Quantity||Quantity|
-|Keep format|||
+|Nombre de la hoja||Hoja1|
+|Columna||A|
+|Cantidad||Cantidad|
+|Mantener formato|||
 |Session||session|
 
-### Add row
+### Agregar fila
   
-Add rows to the selected Spreadsheet
-|Parameters|Description|example|
+Agregar filas a la Hoja de Cálculo seleccionada
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Spreadsheet ID||Spreadsheet ID|
-|Sheet name||Sheet1|
-|Row||5|
-|Quantity||Quantity|
-|Keep format|||
+|Nombre de la hoja||Hoja1|
+|Fila||5|
+|Cantidad||Cantidad|
+|Mantener formato|||
 |Session||session|
 
-### Delete column
+### Eliminar columna
   
-Delete a column from a selected Spreadsheet
-|Parameters|Description|example|
+Elimina una columna de una Hoja de Cálculo seleccionada
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Spreadsheet ID||Spreadsheet ID|
-|Sheet name||Sheet1|
-|Column/s||A:C|
-|Blank|||
+|Nombre de la hoja||Hoja1|
+|Columna/as||A:C|
+|Dejar en blanco|||
 |Session||session|
 
-### Delete row
+### Eliminar fila
   
-Delete a row from a selected Spreadsheet
-|Parameters|Description|example|
+Elimina una fila de una Hoja de Cálculo seleccionada
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Spreadsheet ID||Spreadsheet ID|
-|Sheet name||Sheet1|
-|Row||5:7|
-|Blank|||
+|Nombre de la hoja||Hoja1|
+|Fila||5:7|
+|Dejar en blanco|||
 |Session||session|
 
-### Filter data
+### Filtrar datos
   
-Filter data in the selected Spreadsheet
-|Parameters|Description|example|
+Filtrar datos en la Hoja de Cálculo seleccionada
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Spreadsheet ID||Spreadsheet ID|
-|Sheet name||Sheet1|
-|Column||Column|
-|Value||Value to filter|
+|Nombre de la hoja||Hoja1|
+|Columna||Columna|
+|Valor||Valor a filtrar|
 |Session||session|
 
-### Unfilter data
+### Desfiltrar datos
   
-Unfilter data in the selected Spreadsheet
-|Parameters|Description|example|
+Desfiltrar datos en la Hoja de Cálculo seleccionada
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Spreadsheet ID||Spreadsheet ID|
-|Sheet name||Sheet1|
+|Nombre de la hoja||Hoja1|
 |Session||session|
 
-### Get filtered cells
+### Obtener celdas filtradas
   
-Get the filtered cells
-|Parameters|Description|example|
+Obtiene las celdas filtradas
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Spreadsheet ID||Spreadsheet ID|
-|Sheet name||Sheet1|
-|Range ||A1:B2|
-|Get data with row number|||
-|Result||Variable|
+|Nombre de la hoja||Hoja1|
+|Rango||A1:B2|
+|Obtener datos con número de fila|||
+|Resultado||Variable|
 |Session||session|
 
-### Duplicate sheet
+### Duplicar hoja
   
-Duplicates the selected sheet to the same or another workbook
-|Parameters|Description|example|
+Duplica la hoja seleccionada al mismo o a otro libro
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Spreadsheet ID||Spreadsheet ID|
-|Sheet name||Sheet1|
+|Nombre de la hoja||Hoja1|
 |Spreadsheet ID||Spreadsheet ID|
-|Result||Variable|
+|Resultado||Variable|
 |Session||session|
 
-### Text to columns
+### Texto a columnas
   
-Splits a column of text into multiple columns, based on a delimiter in each cell.
-|Parameters|Description|example|
+Divide una columna de texto en varias columnas, en función de un delimitador en cada celda.
+|Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Spreadsheet ID||Spreadsheet ID|
-|Sheet name||Sheet1|
-|separator||---- Select separator ----|
-|Result||Variable|
+|Nombre de la hoja||Hoja1|
+|Separador||---- Select separator ----|
+|Resultado||Variable|
 |Session||session|

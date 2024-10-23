@@ -34,7 +34,21 @@ app).
 
 Nota: Quando a primeira conexão for feita, um arquivo .pickle será criado na pasta raiz do Rocketbot, para se conectar ao mesmo serviço com outra conta, você deve dar um nome a cada sessão. Se as credenciais expirarem, você deverá excluir o arquivo .pickle e criar e baixar um arquivo de credenciais nwe (JSON).
 
+## ERROR REDIRECT_URI_MISMATCH
+Se você receber o seguinte erro ao usar um arquivo .json de credenciais anteriormente funcionais:
 
+![erro](imgs/redirect_uri_mismatch_Error.png)
+
+As credenciais precisarão ser criadas novamente. Antes do passo 6 da seção anterior 'Como usar este módulo', deve-se configurar o seguinte:
+- Vá para 'Tela de consentimento do OAuth' no menu esquerdo
+- Escolha o tipo de usuário:
+    1. Interno: projetos associados a uma organização do Google Cloud podem configurar usuários internos para limitar solicitações de autorização a membros da organização.
+    2. Externo: disponível para qualquer usuário com conta Google.
+       
+        Clique em Criar
+- 
+Preencha os dados obrigatórios marcados com um asterisco (*) na página Informações do Aplicativo, como o Nome do Aplicativo, o Email de suporte do usuário e os dados de contato do desenvolvedor. Clique em Salvar e continuar.
+- Continue a partir do passo 6 indicado nesta seção para concluir.
 ## Descrição do comando
 
 ### Configurar credenciais G-Suite
@@ -93,6 +107,7 @@ Gravar em uma célula ou intervalo de células na Planilha selecionada
 |Nome da folha||Folha1|
 |Célula para escrever||A1|
 |Texto ||[["data","data"],["data","data"]]|
+|Tipo de envio de dados||USER_ENTERED|
 |Session||session|
 
 ### Formatar células
