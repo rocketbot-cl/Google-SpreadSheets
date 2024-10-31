@@ -7,7 +7,7 @@
     "pr": "Este módulo permite que você leia, escreva e atualize as planilhas do Google. Você pode adicionar, excluir, duplicar ou até ocultar planilhas; filtrar dados; adicionar ou excluir linhas e colunas; modifique o formato das células, copie/recorte e cole-as; e mais."
   },
   "disclaimer": "THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM “AS IS” WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.",
-  "version": "3.7.1",
+  "version": "3.7.4",
   "license": "MIT",
   "homepage": "http://rocketbot.com",
   "linux": true,
@@ -581,6 +581,40 @@
             "id": "text",
             "css": "col-md-12"
           },
+          {
+            "type": "select",
+            "placeholder": {
+              "es": "USER_ENTERED",
+              "en": "USER_ENTERED",
+              "pr": "USER_ENTERED"
+            },
+            "title": {
+              "es": "Tipo de envio de datos",
+              "en": "Type of data sending",
+              "pr": "Tipo de envio de dados"
+            },
+            "options": [
+              {
+                "title": "---- Select type ----",
+                "value": ""
+              },
+              {
+                "title": "RAW",
+                "value": "RAW"
+              },
+              {
+                "title": "USER_ENTERED",
+                "value": "USER_ENTERED"
+              }
+            ],
+            "help": {
+              "es": "RAW almacena los datos sin cambios, mientras que USER_ENTERED (opcion por defecto) los analiza y formatea para adaptarlos a un formato específico.",
+              "en": "RAW stores data unchanged, while USER_ENTERED (default option) analyzes and formats it to fit a specific format.",
+              "pr": "RAW armazena os dados sem alterações, enquanto USER_ENTERED (opção padrão) analisa e formata para se ajustar a um formato específico."
+            },
+            "id": "sendData",
+            "css": "col-md-6"
+          },          
           {
             "type": "input",
             "placeholder": "session",
