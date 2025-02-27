@@ -120,6 +120,61 @@ if module == "GoogleSuite":
 if not mod_gss_session[session]:
     raise Exception("There's no credentials, nor valid token. Please, generate your credentials.")
 
+
+if module == "GoogleSuiteWithoutJSON":
+    cred = None
+
+    client_id = GetParams("client_id")
+    client_secret = GetParams("client_secret")
+
+    port = 8080 if not GetParams("port") else int(GetParams("port"))
+    
+    if session == '':
+        filename = "token_spreadsheets.pickle"
+    else:
+        filename ="token_spreadsheets_{s}.pickle".format(s=session)
+    
+    filename = os.path.join(base_path, filename)
+    
+    if os.path.exists(filename):
+        with open(filename, 'rb') as token:
+            cred = pickle.load(token)
+        # If there are no (valid) credentials available, let the user log in.
+    if not cred or not cred.valid:
+        if cred and cred.expired and cred.refresh_token:
+            cred.refresh(Request())
+        else:
+            temp_json = {
+                "installed": {
+                    "client_id": client_id,
+                    "client_secret": client_secret,
+                    "redirect_uris": ["http://localhost"],
+                    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+                    "token_uri": "https://oauth2.googleapis.com/token",
+                }
+            }
+
+            with tempfile.NamedTemporaryFile(mode='w', delete=False) as temp_file:
+                json.dump(temp_json, temp_file)
+                temp_file_path = temp_file.name
+
+            flow = InstalledAppFlow.from_client_secrets_file(
+                temp_file_path, SCOPES)
+            
+            os.remove(temp_file_path)
+            cred = flow.run_local_server(port=port)
+            
+        # Save the credentials for the next run
+        with open(filename, 'wb') as token:
+            pickle.dump(cred, token)
+
+    # global creds
+    mod_gss_session[session] = cred
+
+if not mod_gss_session[session]:
+    raise Exception("No hay credenciales ni token válidos, por favor configure sus credenciales")
+
+
 if module == "CreateSpreadSheet":
 
     ss_name = GetParams('ss_name')
