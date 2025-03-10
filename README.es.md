@@ -21,61 +21,64 @@ Para instalar el módulo en Rocketbot Studio, se puede hacer de dos formas:
 1. Configurar credenciales G-Suite  
 Obtiene los permisos para manejar Google SpreadSheet con Rocketbot
 
-2. Crear Hoja de Cálculo  
+2. Iniciar sesión sin archivo json  
+Iniciar sesión en Google Drive sin archivo json
+
+3. Crear Hoja de Cálculo  
 Crea una nueva hoja de cálculo en Google SpreadSheet
 
-3. Crear Hoja  
+4. Crear Hoja  
 Crear una nueva hoja en la Hoja de Cálculo seleccionada
 
-4. Actualizar propiedades de Hoja  
+5. Actualizar propiedades de Hoja  
 Actualiza las propiedades de una hoja de la Hoja de Cálculo seleccionada
 
-5. Borrar Hoja  
+6. Borrar Hoja  
 Elimina una hoja de la Hoja de Cálculo seleccionada
 
-6. Escribir en celdas  
+7. Escribir en celdas  
 Escribe en una celda o rango de celdas en la Hoja de Cálculo seleccionada
 
-7. Formatear celdas  
+8. Formatear celdas  
 Cambiar formato de una celda o rango de celdas en la hoja de cálculo seleccionada
 
-8. Leer celdas  
+9. Leer celdas  
 Lee una celda o rango de celdas desde la Hoja de Cálculo seleccionada, ejemplo A1 o A1:B5
 
-9. Copiar/cortar y pegar  
+10. Copiar/cortar y pegar  
 Copie o corte y pegue una celda o rango de celdas en la Hoja de Cálculo seleccionada
 
-10. Obtener hojas  
+11. Obtener hojas  
 Obtener lista de hojas con su ID de la Hoja de Cálculo seleccionada
 
-11. Contar filas y/o columnas  
+12. Contar filas y/o columnas  
 Cuenta las filas y/o columnas utilizadas de la hoja seleccionada
 
-12. Agregar columna  
+13. Agregar columna  
 Agregar columnas a la Hoja de Cálculo seleccionada
 
-13. Agregar fila  
+14. Agregar fila  
 Agregar filas a la Hoja de Cálculo seleccionada
 
-14. Eliminar columna  
+15. Eliminar columna  
 Elimina una columna de una Hoja de Cálculo seleccionada
 
-15. Eliminar fila  
+16. Eliminar fila  
 Elimina una fila de una Hoja de Cálculo seleccionada
 
-16. Filtrar datos  
+17. Filtrar datos  
 Filtrar datos en la Hoja de Cálculo seleccionada
 
-17. Desfiltrar datos  
+18. Desfiltrar datos  
 Desfiltrar datos en la Hoja de Cálculo seleccionada
 
-18. Obtener celdas filtradas  
+19. Obtener celdas filtradas  
 Obtiene las celdas filtradas
 
-19. Duplicar hoja  
+20. Duplicar hoja  
 Duplica la hoja seleccionada al mismo o a otro libro
 
-20. Texto a columnas  
+21. Texto a columnas  
 Divide una columna de texto en varias columnas, en función de un delimitador en cada celda.  
 
 

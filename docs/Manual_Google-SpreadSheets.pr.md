@@ -60,6 +60,16 @@ Obtém permissão para trabalhar no Google SpreadSheet com o Rocketbot
 |Porto (Opcional)||8080|
 |Session||session|
 
+### Login sem arquivo json
+  
+Login no Google Drive sem arquivo json
+|Parâmetros|Descrição|exemplo|
+| --- | --- | --- |
+|Client ID|ID do cliente do console da Google Cloud Platform.|123456789012-xxxxxxxxxxxxxxx.apps.googleusercontent.com|
+|Client Secret|Segredo do cliente do console da Google Cloud Platform.|GOCSPX-xxxxxxxxx_Dc9TGFy32_xxxxxxxx|
+|Porto (Opcional)||8080|
+|Session||session|
+
 ### Criar Planilha do google
   
 Cria uma nova Planilha do google
