@@ -25,6 +25,7 @@ Para instalar librerias se debe ingresar por terminal a la carpeta "libs"
 """
 import os.path
 import sys
+import tempfile
 
 PrintException = PrintException # type: ignore
 GetParams = GetParams # type: ignore
@@ -49,6 +50,7 @@ from urllib.parse import unquote
 import traceback
 import pickle
 import re
+import json
 
 """
     Obtengo el modulo que fueron invocados
@@ -68,112 +70,126 @@ try:
 except NameError:
     mod_gss_session = {}
 
+class GoogleSheetsAuth:
+    SCOPES = [
+        'https://www.googleapis.com/auth/spreadsheets',
+        'https://www.googleapis.com/auth/drive.file',
+        'https://www.googleapis.com/auth/drive',
+        'https://www.googleapis.com/auth/script.projects',
+        'https://www.googleapis.com/auth/script.external_request',
+        'https://www.googleapis.com/auth/drive.scripts'
+    ]
+
+    def __init__(self, credentials_path=None, client_id=None, client_secret=None, session="default", port=8080):
+        self.session = session
+        self.port = port
+        self.token_path = f"token_spreadsheets_{session}.pickle"
+
+        if credentials_path:
+            self.credentials = self.set_credentials(credentials_path)
+        elif client_id and client_secret:
+            self.credentials = self.set_credentials_without_json(client_id, client_secret)
+        else:
+            raise ValueError("Se requiere un archivo JSON de credenciales o un Client ID y Client Secret.")
+
+    def get_credentials(self):
+        """Obtiene las credenciales guardadas en la sesión."""
+        import pickle
+        if os.path.exists(self.token_path):
+            with open(self.token_path, 'rb') as token:
+                self.credentials = pickle.load(token)
+        return self.credentials
+
+    def set_credentials(self, credentials_path):
+        """Autenticación usando un archivo JSON de credenciales."""
+        creds = None
+        import pickle
+        if os.path.exists(self.token_path):
+            with open(self.token_path, 'rb') as token:
+                creds = pickle.load(token)
+
+        if not creds or not creds.valid:
+            if creds and creds.expired and creds.refresh_token:
+                creds.refresh(Request())
+            else:
+                from google_auth_oauthlib.flow import InstalledAppFlow
+                flow = InstalledAppFlow.from_client_secrets_file(credentials_path, self.SCOPES)
+                creds = flow.run_local_server(port=self.port)
+
+            with open(self.token_path, 'wb') as token:
+                pickle.dump(creds, token)
+
+        self.credentials = creds
+        return creds
+
+    def set_credentials_without_json(self, client_id, client_secret):
+        """Autenticación sin JSON de credenciales, usando Client ID y Secret."""
+        creds = None
+        import pickle
+        if os.path.exists(self.token_path):
+            with open(self.token_path, 'rb') as token:
+                creds = pickle.load(token)
+
+        if not creds or not creds.valid:
+            if creds and creds.expired and creds.refresh_token:
+                creds.refresh(Request())
+            else:
+                temp_json = {
+                    "installed": {
+                        "client_id": client_id,
+                        "client_secret": client_secret,
+                        "redirect_uris": ["http://localhost"],
+                        "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+                        "token_uri": "https://oauth2.googleapis.com/token",
+                    }
+                }
+                import tempfile
+                with tempfile.NamedTemporaryFile(mode='w', delete=False) as temp_file:
+                    json.dump(temp_json, temp_file)
+                    temp_file_path = temp_file.name
+                from google_auth_oauthlib.flow import InstalledAppFlow
+                flow = InstalledAppFlow.from_client_secrets_file(temp_file_path, self.SCOPES)
+                creds = flow.run_local_server(port=self.port)
+
+                os.remove(temp_file_path)
+
+            with open(self.token_path, 'wb') as token:
+                pickle.dump(creds, token)
+
+        self.credentials = creds
+        return creds
+
 if module == "GoogleSuite":
     cred = None
     credential_path = GetParams("credentials_path")
     port = 8080 if not GetParams("port") else eval(GetParams("port"))
-
-    if session == '':
-        filename = "token_spreadsheets.pickle"
-    else:
-        filename = "token_spreadsheets_{s}.pickle".format(s=session)
-    
-    filename = os.path.join(base_path, filename)
     
     try:
-        if not os.path.exists(credential_path):
-            raise Exception(
-                "El archivo de credenciales no existe en la ruta especificada")
-
-        SCOPES = [
-            'https://www.googleapis.com/auth/spreadsheets',
-            'https://www.googleapis.com/auth/drive.file',
-            'https://www.googleapis.com/auth/drive',
-            'https://www.googleapis.com/auth/script.projects',
-            'https://www.googleapis.com/auth/script.external_request',
-            'https://www.googleapis.com/auth/drive.scripts'
-        ]
-
-        if os.path.exists(filename):
-            with open(filename, 'rb') as token:
-                cred = pickle.load(token)
-            # If there are no (valid) credentials available, let the user log in.
-        if not cred or not cred.valid:
-            if cred and cred.expired and cred.refresh_token:
-                cred.refresh(Request())
-            else:
-                flow = InstalledAppFlow.from_client_secrets_file(
-                    credential_path, SCOPES)
-                cred = flow.run_local_server(port=port)
-            # Save the credentials for the next run
-            with open(filename, 'wb') as token:
-                pickle.dump(cred, token)
-        
-        # global creds
-        mod_gss_session[session] = cred
+        gsuite_auth = GoogleSheetsAuth(credentials_path=credential_path, session=session, port=port)
+        credentials = gsuite_auth.get_credentials()
+        mod_gss_session[session] = credentials
         
     except Exception as e:
         traceback.print_exc()
         PrintException()
         raise e
 
-if not mod_gss_session[session]:
-    raise Exception("There's no credentials, nor valid token. Please, generate your credentials.")
-
+    if not mod_gss_session[session]:
+        raise Exception("There's no credentials, nor valid token. Please, generate your credentials.")
 
 if module == "GoogleSuiteWithoutJSON":
     cred = None
 
     client_id = GetParams("client_id")
     client_secret = GetParams("client_secret")
-
     port = 8080 if not GetParams("port") else int(GetParams("port"))
     
-    if session == '':
-        filename = "token_spreadsheets.pickle"
-    else:
-        filename ="token_spreadsheets_{s}.pickle".format(s=session)
-    
-    filename = os.path.join(base_path, filename)
-    
-    if os.path.exists(filename):
-        with open(filename, 'rb') as token:
-            cred = pickle.load(token)
-        # If there are no (valid) credentials available, let the user log in.
-    if not cred or not cred.valid:
-        if cred and cred.expired and cred.refresh_token:
-            cred.refresh(Request())
-        else:
-            temp_json = {
-                "installed": {
-                    "client_id": client_id,
-                    "client_secret": client_secret,
-                    "redirect_uris": ["http://localhost"],
-                    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-                    "token_uri": "https://oauth2.googleapis.com/token",
-                }
-            }
+    gsuite_auth = GoogleSheetsAuth(client_id=client_id, client_secret=client_secret, session=session, port=port)
+    credentials = gsuite_auth.get_credentials()
+    mod_gss_session[session] = credentials
 
-            with tempfile.NamedTemporaryFile(mode='w', delete=False) as temp_file:
-                json.dump(temp_json, temp_file)
-                temp_file_path = temp_file.name
-
-            flow = InstalledAppFlow.from_client_secrets_file(
-                temp_file_path, SCOPES)
-            
-            os.remove(temp_file_path)
-            cred = flow.run_local_server(port=port)
-            
-        # Save the credentials for the next run
-        with open(filename, 'wb') as token:
-            pickle.dump(cred, token)
-
-    # global creds
-    mod_gss_session[session] = cred
-
-if not mod_gss_session[session]:
-    raise Exception("No hay credenciales ni token válidos, por favor configure sus credenciales")
-
+    if not mod_gss_session[session]:
+        raise Exception("No hay credenciales ni token válidos, por favor configure sus credenciales")
 
 if module == "CreateSpreadSheet":
 
@@ -190,6 +206,7 @@ if module == "CreateSpreadSheet":
 
     request = service.spreadsheets().create(body=spreadsheet_body)
     response = request.execute()
+    print(response)
     if result:
         SetVar(result, response["spreadsheetId"])
         
