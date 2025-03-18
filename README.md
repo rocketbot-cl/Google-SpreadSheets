@@ -21,61 +21,64 @@ To install the module in Rocketbot Studio, it can be done in two ways:
 1. Setup G-Suite credentials  
 Get permissions to handle Google SpreadSheet with Rocketbot
 
-2. Create SpreadSheet  
+2. Login without json file  
+Login to Google Drive without json file
+
+3. Create SpreadSheet  
 Create a new spreadsheet in Google SpreadSheet
 
-3. Create Sheet  
+4. Create Sheet  
 Create a new sheet in selected SpreadSheet
 
-4. Update Sheet properties  
+5. Update Sheet properties  
 Update a sheet properties from selected SpreadSheet
 
-5. Delete Sheet  
+6. Delete Sheet  
 Delete a sheet from selected SpreadSheet
 
-6. Write cells  
+7. Write cells  
 Write to a cell or range of cells in the selected Spreadsheet
 
-7. Format cells  
+8. Format cells  
 Change format of a cell or range of cells in the selected Spreadsheet
 
-8. Read cells  
+9. Read cells  
 Read a cell or range of cells from the selected Spreadsheet, example A1 or A1:B5
 
-9. Copy/Cut and paste  
+10. Copy/Cut and paste  
 Copy or cut and paste a cell or range of cells in the selected Spreadsheet
 
-10. Get sheets  
+11. Get sheets  
 Get list of sheets with their ID of the selected Spreadsheet
 
-11. Count rows and/or columns  
+12. Count rows and/or columns  
 Count the used rows and/or columns of the selected sheet
 
-12. Add column  
+13. Add column  
 Add Columns to Selected Spreadsheet
 
-13. Add row  
+14. Add row  
 Add rows to the selected Spreadsheet
 
-14. Delete column  
+15. Delete column  
 Delete a column from a selected Spreadsheet
 
-15. Delete row  
+16. Delete row  
 Delete a row from a selected Spreadsheet
 
-16. Filter data  
+17. Filter data  
 Filter data in the selected Spreadsheet
 
-17. Unfilter data  
+18. Unfilter data  
 Unfilter data in the selected Spreadsheet
 
-18. Get filtered cells  
+19. Get filtered cells  
 Get the filtered cells
 
-19. Duplicate sheet  
+20. Duplicate sheet  
 Duplicates the selected sheet to the same or another workbook
 
-20. Text to columns  
+21. Text to columns  
 Splits a column of text into multiple columns, based on a delimiter in each cell.  
 
 
