@@ -110,7 +110,11 @@ class GoogleSheetsAuth:
 
         if not creds or not creds.valid:
             if creds and creds.expired and creds.refresh_token:
-                creds.refresh(Request())
+                try:
+                    from google.auth.transport.requests import Request
+                    creds.refresh(Request())
+                except Exception as e:
+                    print(e)
             else:
                 from google_auth_oauthlib.flow import InstalledAppFlow
                 flow = InstalledAppFlow.from_client_secrets_file(credentials_path, self.SCOPES)
@@ -132,7 +136,11 @@ class GoogleSheetsAuth:
 
         if not creds or not creds.valid:
             if creds and creds.expired and creds.refresh_token:
-                creds.refresh(Request())
+                try:
+                    from google.auth.transport.requests import Request
+                    creds.refresh(Request())
+                except Exception as e:
+                    print(e)
             else:
                 temp_json = {
                     "installed": {
