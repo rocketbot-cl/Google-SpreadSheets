@@ -1154,32 +1154,40 @@ if module == "filterData":
         
         # It checks where the table that is going to be filtered starts and ends 
         first_row = 0
-        values = req["values"]
+        values = req.get("values", [])
         for cell in values:
             if cell == []:
                 first_row += 1
             else:
                 break
-        last_row = len(req['values'])
+        
+        hidden_values = set()
+        for row in values:
+            if len(row) > col_index:
+                cell = row[col_index]
+            else:
+                cell = ""
+            
+            if valor_filtro != cell:
+                hidden_values.add(cell)
         
         ranges = {
             "sheetId": sheet_id,
-            'startRowIndex': first_row,
-            'endRowIndex': last_row,
-            'startColumnIndex': col_index,
-            'endColumnIndex': col_index + 1,
+            'startRowIndex': first_row
         }
         
-        hidden_values = []
-        for row in values:
-            # It appends a blank space to the list so the row is recognized as one in the following "for"
-            if row == []:
-                row.append("")
-            for cell in row:
-                if valor_filtro != cell:
-                    hidden_values.append(cell)
-        
-        filters = create_filter_structure(ranges, hidden_values, sheet_id)
+        filters = {
+            sheet_id: {
+                'range': ranges,
+                'filterSpecs': [{
+                    'columnIndex': col_index,
+                    'filterCriteria': {
+                        'hiddenValues': list(hidden_values)
+                    }
+                }]
+            }
+        }
+
         apply_filters(ss_id, filters, service)
     except Exception as e:
         traceback.print_exc()
