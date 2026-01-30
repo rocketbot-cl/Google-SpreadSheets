@@ -1161,16 +1161,6 @@ if module == "filterData":
             else:
                 break
         
-        hidden_values = set()
-        for row in values:
-            if len(row) > col_index:
-                cell = row[col_index]
-            else:
-                cell = ""
-            
-            if valor_filtro != cell:
-                hidden_values.add(cell)
-        
         ranges = {
             "sheetId": sheet_id,
             'startRowIndex': first_row
@@ -1182,7 +1172,14 @@ if module == "filterData":
                 'filterSpecs': [{
                     'columnIndex': col_index,
                     'filterCriteria': {
-                        'hiddenValues': list(hidden_values)
+                        'condition': {
+                            'type': 'TEXT_EQ',
+                            'values': [
+                                {
+                                    'userEnteredValue': valor_filtro
+                                }
+                            ]
+                        }
                     }
                 }]
             }
