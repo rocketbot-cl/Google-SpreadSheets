@@ -1197,7 +1197,7 @@ if module == "filterCells":
     res = GetParams("res")
     range = GetParams("range_")
     row_info = GetParams("row_info")
-    
+    dont_show_header = GetParams("no_header")
     try:
         service = discovery.build('sheets', 'v4', credentials=mod_gss_session[session])
         
@@ -1212,45 +1212,80 @@ if module == "filterCells":
                 if not 'sheet_id' in locals():
                     raise Exception("Sheet could't be found...")
                 
-                filter_start = element["basicFilter"]["range"]["startRowIndex"]
+                filter_start = element["basicFilter"]["range"]["startRowIndex"] + 1
+                filter_end = element["basicFilter"]["range"]["endRowIndex"]
                 
         data = service.spreadsheets().get(spreadsheetId=ss_id, fields="sheets(data(rowMetadata(hiddenByFilter)),properties/sheetId)").execute()
 
         #column_filter = get_existing_basic_filters(ss_id, service)
-        list_hidden_rows = []
+        list_hidden_rows = set()
         for column in data['sheets']:
             if column['properties']['sheetId'] == sheet_id:
                 for index, item in enumerate(column['data'][0]['rowMetadata']):
                     if bool(item):
-                        list_hidden_rows.append(index)
+                        list_hidden_rows.add(index)
        
-        # It makes sure that always start from the first row of the filter, so the row index vs hidden rows can be done
-        range_first_row = range[1]
+        #Transforms the range from a String into a List and then gets the first and last row of the range
+        range_start_and_end = [item for item in range.split(":")]
+        range_start_and_end_numbers = list(map(lambda x: x[1:], range_start_and_end))
+        start_row = int(range_start_and_end_numbers[0])
+        end_row = int(range_start_and_end_numbers[1])
         
-        if range_first_row != filter_start:
-            tmp = list(range)
-            tmp[1] = filter_start + 1
-            
-            range = "".join(str(x) for x in tmp)
-            
-            
+        if start_row > filter_end:
+            raise Exception("Selected range starts after filtered range ended")
+
+        if start_row + end_row -1 < filter_start:
+            raise Exception("Selected range ends before filtered range starts")
+
+        tmp = range_start_and_end_numbers
+        if dont_show_header is None:
+
+            if start_row <= filter_start: #Starts from the filter
+                tmp[0] = filter_start
+
+            elif start_row > filter_start: #Starts from the filter, but hides the rows between it and the start of the given range.
+                diff = start_row - filter_start
+                while diff > 1:
+                    index = start_row-diff
+                    list_hidden_rows.add(index)
+                    diff -= 1
+                
+                tmp[0] = filter_start
+                
+            range = f"{range_start_and_end[0][0]}{tmp[0]}:{range_start_and_end[1][0]}{tmp[1]}"
+            start_row = filter_start
+
+        elif start_row <= filter_start: #Starts from the row after the filter
+            tmp[0] = filter_start + 1
+            range = f"{range_start_and_end[0][0]}{tmp[0]}:{range_start_and_end[1][0]}{tmp[1]}"
+            start_row = filter_start + 1
+
+
         range_ = sheet + "!" + range
         request = service.spreadsheets().values().get(spreadsheetId=ss_id, range=range_)
         response = request.execute()
-        value = response["values"]
+        value = response.get("values", [])
+        
+        if value == []:
+            raise Exception("Selected range is empty")
         
         final_cells = []
         final_cells_row = {}
         for row_index, item in enumerate(value):
-            row_index = (row_index + filter_start)
-            if row_info and eval(row_info) == True:
+            row_index = (row_index + start_row - 1)
+            if row_index >= filter_end:
+                break
+
+            elif row_info and eval(row_info) == True:
                 if row_index not in list_hidden_rows:
                     final_cells_row[row_index+1] = item   
                 SetVar(res, final_cells_row)
+
             else:
                 if row_index not in list_hidden_rows:
                     final_cells.append(item)                      
                 SetVar(res, final_cells)
+
     except Exception as e:
         traceback.print_exc()
         PrintException()
@@ -1329,3 +1364,4 @@ if module == "TextToColumns":
         SetVar(result, False)
         PrintException()
         raise e
+    
