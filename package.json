@@ -2492,7 +2492,8 @@
               "pr": "Nome da variável sem {}"
             },
             "id": "res",
-            "css": "col-md-4"
+            "css": "col-md-4",
+            "remove_vars": true
           },
           {
             "type": "input",
