@@ -1015,6 +1015,22 @@ if module == "AddRow":
         PrintException()
         raise e
 
+def is_date(value):
+    import unicodedata
+    from datetime import datetime
+    original = value
+    # Elimina espacios, caracteres invisibles y normaliza
+    value = str(value).strip()
+    value = unicodedata.normalize('NFKC', value)
+    value = value.replace('\u200b', '').replace('\ufeff', '').replace('\xa0', '').strip()
+    for fmt in ("%d/%m/%Y", "%Y-%m-%d", "%d-%m-%Y", "%d.%m.%Y"):
+        try:
+            dt = datetime.strptime(value, fmt)
+            return True
+        except Exception as e:
+            continue
+    return False
+
 def get_existing_basic_filters(ss_id, service, startRow=0, endRow=1000) -> dict:
     params = {'spreadsheetId': ss_id,
               'fields': 'sheets(properties(sheetId,title),basicFilter)'}
@@ -1166,6 +1182,12 @@ if module == "filterData":
             'startRowIndex': first_row
         }
         
+        filter_type = 'TEXT_EQ'
+        print(f"Valor filtro: {valor_filtro}")
+        print(f"Es fecha: {is_date(valor_filtro)}")
+        if is_date(valor_filtro):
+            filter_type = 'DATE_EQ'
+
         filters = {
             sheet_id: {
                 'range': ranges,
@@ -1173,7 +1195,7 @@ if module == "filterData":
                     'columnIndex': col_index,
                     'filterCriteria': {
                         'condition': {
-                            'type': 'TEXT_EQ',
+                            'type': filter_type,
                             'values': [
                                 {
                                     'userEnteredValue': valor_filtro
@@ -1225,11 +1247,24 @@ if module == "filterCells":
                     if bool(item):
                         list_hidden_rows.add(index)
        
-        #Transforms the range from a String into a List and then gets the first and last row of the range
+        #Separates the range into it's start and end. Then, it sepparate the range start and end into it's columns and rows
         range_start_and_end = [item for item in range.split(":")]
-        range_start_and_end_numbers = list(map(lambda x: x[1:], range_start_and_end))
-        start_row = int(range_start_and_end_numbers[0])
-        end_row = int(range_start_and_end_numbers[1])
+        range_start_and_end_rows = []
+        range_start_and_end_columns = []
+        for item in range_start_and_end:
+            item_column = ""
+            item_number = ""
+            for character in item:
+                if not character.isdigit():
+                    item_column += character
+                else:
+                    item_number += character
+
+            range_start_and_end_rows.append(item_number)
+            range_start_and_end_columns.append(item_column)
+
+        start_row = int(range_start_and_end_rows[0])
+        end_row = int(range_start_and_end_rows[1])
         
         if start_row > filter_end:
             raise Exception("Selected range starts after filtered range ended")
@@ -1237,7 +1272,7 @@ if module == "filterCells":
         if start_row + end_row -1 < filter_start:
             raise Exception("Selected range ends before filtered range starts")
 
-        tmp = range_start_and_end_numbers
+        tmp = range_start_and_end_rows
         if dont_show_header is None:
 
             if start_row <= filter_start: #Starts from the filter
@@ -1252,12 +1287,12 @@ if module == "filterCells":
                 
                 tmp[0] = filter_start
                 
-            range = f"{range_start_and_end[0][0]}{tmp[0]}:{range_start_and_end[1][0]}{tmp[1]}"
+            range = f"{range_start_and_end_columns[0]}{tmp[0]}:{range_start_and_end_columns[1]}{tmp[1]}"
             start_row = filter_start
 
         elif start_row <= filter_start: #Starts from the row after the filter
             tmp[0] = filter_start + 1
-            range = f"{range_start_and_end[0][0]}{tmp[0]}:{range_start_and_end[1][0]}{tmp[1]}"
+            range = f"{range_start_and_end_columns[0]}{tmp[0]}:{range_start_and_end_columns[1]}{tmp[1]}"
             start_row = filter_start + 1
 
 
@@ -1364,4 +1399,3 @@ if module == "TextToColumns":
         SetVar(result, False)
         PrintException()
         raise e
-    
