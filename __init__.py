@@ -1263,22 +1263,30 @@ if module == "filterCells":
             range_start_and_end_rows.append(item_number)
             range_start_and_end_columns.append(item_column)
 
-        start_row = int(range_start_and_end_rows[0])
-        end_row = int(range_start_and_end_rows[1])
-        
-        if start_row > filter_end:
+        #There may not be a start row or an end
+        try:
+            start_row = int(range_start_and_end_rows[0])
+        except:
+            start_row = ''
+
+        try:
+            end_row = int(range_start_and_end_rows[1])
+        except:
+            end_row = ''
+
+        if start_row and start_row > filter_end:
             raise Exception("Selected range starts after filtered range ended")
 
-        if start_row + end_row -1 < filter_start:
+        if end_row and ((end_row < filter_start) or (start_row and start_row + end_row -1 < filter_start)):
             raise Exception("Selected range ends before filtered range starts")
 
         tmp = range_start_and_end_rows
         if dont_show_header is None:
 
-            if start_row <= filter_start: #Starts from the filter
+            if not start_row or start_row <= filter_start: #Starts from the filter
                 tmp[0] = filter_start
 
-            elif start_row > filter_start: #Starts from the filter, but hides the rows between it and the start of the given range.
+            elif start_row and start_row > filter_start: #Starts from the filter, but hides the rows between it and the start of the given range.
                 diff = start_row - filter_start
                 while diff > 1:
                     index = start_row-diff
@@ -1287,12 +1295,12 @@ if module == "filterCells":
                 
                 tmp[0] = filter_start
                 
-            range = f"{range_start_and_end_columns[0]}{tmp[0]}:{range_start_and_end_columns[1]}{tmp[1]}"
+            range = f"{range_start_and_end_columns[0]}{tmp[0]}:{range_start_and_end_columns[1]}{end_row}"
             start_row = filter_start
 
-        elif start_row <= filter_start: #Starts from the row after the filter
+        elif not start_row or start_row <= filter_start: #Starts from the row after the filter
             tmp[0] = filter_start + 1
-            range = f"{range_start_and_end_columns[0]}{tmp[0]}:{range_start_and_end_columns[1]}{tmp[1]}"
+            range = f"{range_start_and_end_columns[0]}{tmp[0]}:{range_start_and_end_columns[1]}{end_row}"
             start_row = filter_start + 1
 
 
