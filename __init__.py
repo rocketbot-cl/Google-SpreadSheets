@@ -84,19 +84,22 @@ class GoogleSheetsAuth:
         self.session = session
         self.port = port
         self.token_path = f"token_spreadsheets_{session}.pickle"
+        self.credential_type = ""
 
         if credentials_path:
             with open(credentials_path, "r") as cred_f:
                 credential_data = json.load(cred_f)
 
-            self.credential_type = credential_data.get("type")
+            self.credential_type = credential_data.get("type", "")
             if self.credential_type == "service_account":
                 self.credentials = self.set_service_account_credentials(credentials_path)
 
             else:
                 self.credentials = self.set_credentials(credentials_path)
+
         elif client_id and client_secret:
             self.credentials = self.set_credentials_without_json(client_id, client_secret)
+
         else:
             raise ValueError("Se requiere un archivo JSON de credenciales o un Client ID y Client Secret.")
 
@@ -109,6 +112,7 @@ class GoogleSheetsAuth:
         if os.path.exists(self.token_path):
             with open(self.token_path, 'rb') as token:
                 self.credentials = pickle.load(token)
+                
         return self.credentials
 
     def get_service_account_credentials(self):
@@ -183,10 +187,10 @@ class GoogleSheetsAuth:
 
     def set_service_account_credentials(self, credentials_path):
         from google.oauth2 import service_account
-        credentials = service_account.Credentials.from_service_account_file(
+        creds = service_account.Credentials.from_service_account_file(
             credentials_path, scopes=self.SCOPES
         )
-        self.credentials = credentials
+        self.credentials = creds
         return self.credentials
 
 if module == "GoogleSuite":
@@ -225,7 +229,6 @@ if module == "GoogleSuiteServiceAccount":
     cred = None
     credential_path = GetParams("credentials_path")
 
-    print(credential_path)
     try:
         gsuite_auth = GoogleSheetsAuth(credentials_path=credential_path, session=session)
         credentials = gsuite_auth.get_credentials()

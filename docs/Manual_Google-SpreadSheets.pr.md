@@ -70,6 +70,14 @@ Login no Google Drive sem arquivo json
 |Porto (Opcional)||8080|
 |Session||session|
 
+### Configurar credenciais de conta de Serviço G-Suite
+  
+Obtém permissão para trabalhar no Google SpreadSheet com o Rocketbot
+|Parâmetros|Descrição|exemplo|
+| --- | --- | --- |
+|Caminho de credenciais|Arquivo JSON da Service account com as credenciais para acessar a API do Google SpreadSheets.|C:/caminho/credenciais.json|
+|Session||session|
+
 ### Criar Planilha do google
   
 Cria uma nova Planilha do google
@@ -264,6 +272,7 @@ Obtenha as células filtradas
 |Nome da folha||Folha1|
 |Intervalo ||A1:B2|
 |Obter dados com o número da linha|||
+|Não mostrar cabeçalho|||
 |Resultado||Variável|
 |Session||session|
 

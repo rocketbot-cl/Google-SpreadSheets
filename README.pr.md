@@ -24,61 +24,64 @@ Obtém permissão para trabalhar no Google SpreadSheet com o Rocketbot
 2. Login sem arquivo json  
 Login no Google Drive sem arquivo json
 
-3. Criar Planilha do google  
+3. Configurar credenciais de conta de Serviço G-Suite  
+Obtém permissão para trabalhar no Google SpreadSheet com o Rocketbot
+
+4. Criar Planilha do google  
 Cria uma nova Planilha do google
 
-4. Ciar Página  
+5. Ciar Página  
 Cria uma nova página na Planilha selecionada
 
-5. Atualizar propriedades da Folha  
+6. Atualizar propriedades da Folha  
 Atualiza as propriedades de uma folha da Planilha selecionada
 
-6. Excluir Página  
+7. Excluir Página  
 Excluir uma folha na Planilha selecionada
 
-7. Escrever em células  
+8. Escrever em células  
 Gravar em uma célula ou intervalo de células na Planilha selecionada
 
-8. Formatar células  
+9. Formatar células  
 Alterar o formato de uma célula ou intervalo de células na planilha selecionada
 
-9. Ler células  
+10. Ler células  
 Ler uma célula ou intervalo de células da planilha selecionada, exemplo A1 ou A1:B5
 
-10. Copiar/Cortar e colar  
+11. Copiar/Cortar e colar  
 Copie ou recorte e cole uma célula ou intervalo de células na Planilha selecionada
 
-11. Obter folhas  
+12. Obter folhas  
 Obter lista de planilhas com o ID da Planilha selecionada
 
-12. Contar linhas e/ou colunas  
+13. Contar linhas e/ou colunas  
 Conte as linhas e/ou colunas usadas da planilha selecionada
 
-13. Adicionar Coluna  
+14. Adicionar Coluna  
 Adicionar colunas à Planilha selecionada
 
-14. Adicionar linha  
+15. Adicionar linha  
 Adicionar linhas à Planilha selecionada
 
-15. Excluir Coluna  
+16. Excluir Coluna  
 Excluir uma coluna de uma Planilha selecionada
 
-16. Excluir linha  
+17. Excluir linha  
 Excluir uma linha de uma planilha selecionada
 
-17. Filtrar dados  
+18. Filtrar dados  
 Filtrar dados na Planilha selecionada
 
-18. Não filtrar dados  
+19. Não filtrar dados  
 Não filtrar dados na Planilha selecionada
 
-19. Obter células filtrdas  
+20. Obter células filtrdas  
 Obtenha as células filtradas
 
-20. Duplicar folha  
+21. Duplicar folha  
 Duplica a folha selecionada para a mesma ou outra pasta de trabalho
 
-21. Texto para colunas  
+22. Texto para colunas  
 Divide uma coluna de texto em várias colunas, com base em um delimitador em cada célula.  
 
 
@@ -96,5 +99,5 @@ Divide uma coluna de texto em várias colunas, com base em um delimitador em cad
 - [**google-api-python-client**](https://pypi.org/project/google-api-python-client/)- [**google-auth-httplib2**](https://pypi.org/project/google-auth-httplib2/)- [**google-auth-oauthlib**](https://pypi.org/project/google-auth-oauthlib/)- [**gspread**](https://pypi.org/project/gspread/)
 ### License
   
-![MIT](https://camo.githubusercontent.com/107590fac8cbd65071396bb4d04040f76cde5bde/687474703a2f2f696d672e736869656c64732e696f2f3a6c6963656e73652d6d69742d626c75652e7376673f7374796c653d666c61742d737175617265)  
-[MIT](http://opensource.org/licenses/mit-license.ph)
+![MIT](https://img.shields.io/github/license/instaloader/instaloader.svg)  
+[MIT](https://opensource.org/license/mit)

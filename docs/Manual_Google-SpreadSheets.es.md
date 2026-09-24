@@ -73,6 +73,14 @@ Iniciar sesión en Google Drive sin archivo json
 |Puerto (Opcional)||8080|
 |Session||session|
 
+### Configurar credenciales de cuenta de Servicio G-Suite
+  
+Obtiene los permisos para manejar Google SpreadSheet con Rocketbot
+|Parámetros|Descripción|ejemplo|
+| --- | --- | --- |
+|Ruta del archivo de credenciales|Archivo JSON de Service account con las credenciales de acceso a la API de Google SpreadSheets.|C:/ruta/a/credenciales.json|
+|Session||session|
+
 ### Crear Hoja de Cálculo
   
 Crea una nueva hoja de cálculo en Google SpreadSheet
@@ -267,6 +275,7 @@ Obtiene las celdas filtradas
 |Nombre de la hoja||Hoja1|
 |Rango||A1:B2|
 |Obtener datos con número de fila|||
+|No mostrar encabezado|||
 |Resultado||Variable|
 |Session||session|
 

@@ -71,6 +71,14 @@ Login to Google Drive without json file
 |Port (Optional)||8080|
 |Session||session|
 
+### Setup G-Suite Service Account credentials
+  
+Get permissions to handle Google SpreadSheet with Rocketbot
+|Parameters|Description|example|
+| --- | --- | --- |
+|Credentials file path|Service account JSON file with the credentials to access the Google SpreadSheets API.|C:/path/to/credentials.json|
+|Session||session|
+
 ### Create SpreadSheet
   
 Create a new spreadsheet in Google SpreadSheet
@@ -265,6 +273,7 @@ Get the filtered cells
 |Sheet name||Sheet1|
 |Range ||A1:B2|
 |Get data with row number|||
+|Do not show header|||
 |Result||Variable|
 |Session||session|
 
